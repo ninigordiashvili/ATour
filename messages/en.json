@@ -1,0 +1,20 @@
+{
+  "Header": {
+    "links": {
+      "home": "Home",
+      "services": "Services",
+      "blog": "Blog",
+      "testimonials": "Testimonials"
+    },
+    "languageSwitcher": {
+      "en": "Eng",
+      "ka": "Geo"
+    }
+  },
+  "Hero": {
+    "tag": "Premium Travel Solutions",
+    "title": "Premium Business Travel & Event Management",
+    "description": "We create seamless travel experiences and unforgettable events for businesses worldwide.",
+    "button": "Book Your Tour"
+  }
+}
