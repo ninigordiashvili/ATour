@@ -9,7 +9,8 @@ export type TypographyVariant =
   | "text-md"
   | "text-mdOneline"
   | "text-sm"
-  | "text-xs";
+  | "text-xs"
+  | "display-xs";
 
 export type TypographyWeight = "regular" | "medium" | "semibold" | "bold";
 
@@ -46,6 +47,10 @@ const variantStyles = {
   "display-sm": css`
     font-size: 24px;
     line-height: 34px;
+  `,
+  "display-xs": css`
+    font-size: 22px;
+    line-height: 26px;
   `,
   "text-lg": css`
     font-size: 18px;

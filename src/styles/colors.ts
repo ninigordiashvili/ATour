@@ -48,13 +48,14 @@ export const colors = {
     focus: {
       outline: "#4285f4",
       ring: "#6A8FE7",
+      active: "#3F5FBF",
     },
   },
 
   // Shadow colors (rgba values)
   shadow: {
-    light: "0 1px 2px rgba(16, 24, 40, 0.05)",
-    medium: "0 1px 2px rgba(10, 13, 18, 0.05)",
+    light: "-4px 6px 28px 0px #1F29374D",
+    medium: "0px 6px 28px 0px #1F29374D",
     dark: "0 4px 8px rgba(10, 13, 18, 0.1)",
   },
 

@@ -1,4 +1,11 @@
 {
+  "Buttons": {
+    "bookNow": "Book Your Tour",
+    "readMore": "Read More",
+    "back": "Get Back",
+    "call": "Book a Call",
+    "bookACall": "Book a Call"
+  },
   "Header": {
     "links": {
       "home": "Home",
@@ -16,5 +23,73 @@
     "title": "Premium Business Travel & Event Management",
     "description": "We create seamless travel experiences and unforgettable events for businesses worldwide.",
     "button": "Book Your Tour"
+  },
+  "Services": {
+    "title": "Our Services",
+    "description": "Tailored solutions for your business travel and event needs",
+    "Card1": {
+      "title": "Business Travel",
+      "description": "Complete corporate travel management including flights, accommodations, and ground transportation. We handle every detail so you can focus on your business."
+    },
+    "Card2": {
+      "title": "MICE & DMC",
+      "description": "Meetings, Incentives, Conferences, and Events. Full destination management services for corporate gatherings of any scale."
+    }
+  },
+  "Partners": {
+    "title": "Aptos is a world-renowned aesthetic technology brand",
+    "partner": "Partnered with :"
+  },
+  "Insights": {
+    "title": "Latest Insights",
+    "description": "Expert tips and industry trends",
+    "Card1": {
+      "date": "December 1, 2024",
+      "title": "5 Tips for Efficient Business Travel in 2024",
+      "description": "Discover the latest strategies to optimize your corporate travel program and reduce costs."
+    },
+    "Card2": {
+      "date": "November 28, 2024",
+      "title": "How to Plan a Successful Corporate Event",
+      "description": "From venue selection to post-event analysis, learn the essential steps for corporate events."
+    }
+  },
+  "Testimonials": {
+    "title": "What Our Clients Say",
+    "description": "Trusted by leading companies worldwide",
+    "Card1": {
+      "name": "Isabella Rodrigues",
+      "position": "Marketing Head at Aptos",
+      "feedback": "Working with this team has transformed our business travel program."
+    },
+    "Card2": {
+      "name": "Isabella Rodrigues",
+      "position": "Marketing Head at Aptos",
+      "feedback": "Working with this team has transformed our business travel program."
+    }
+  },
+  "Contact": {
+    "title": "Interested In Our Services or Have a Question? ",
+    "form": {
+      "emailTitle": "Your Email or phone*",
+      "emailPlaceholder": "Write here...",
+      "messageTitle": "Message",
+      "messagePlaceholder": "Write here.."
+    }
+  },
+  "Footer": {
+    "rights": "© 2025 ATOUR | All Rights Reserved",
+    "description": "Your trusted partner for business travel and event management solutions.",
+    "Links": {
+      "home": "Quick Links",
+      "blog": "Blog",
+      "testimonials": "Testimonials",
+      "contact": "Contact"
+    },
+    "Contact": {
+      "title": "Contact ",
+      "email": "info@atour.ge",
+      "location": "Tbilisi, Georgia"
+    }
   }
 }

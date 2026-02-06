@@ -10,15 +10,16 @@ import Image from "next/image";
 import WhatsappIcon from "../icons/WhatsappIcon";
 import InstaIcon from "../icons/InstaIcon";
 import MessengerIcon from "../icons/MessengerIcon";
+import Button from "./Button";
 
 const HeroImageWrapper = styled.div`
   position: absolute;
   width: 100%;
-  height: 805px;
+  height: 905px;
   top: -108px;
   z-index: -1;
   @media screen and (max-width: 1080px) {
-    height: 538px;
+    height: 700px;
   }
 `;
 
@@ -38,9 +39,9 @@ const TagWrapper = styled.div`
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 100px 0;
+  padding: 100px 0 0 0;
   gap: 32px;
-  max-width: 650px;
+  max-width: 648px;
   @media screen and (max-width: 1080px) {
     max-width: 100%;
     gap: 16px;
@@ -58,8 +59,10 @@ const SocialsBox = styled.div`
   justify-self: flex-end;
   backdrop-filter: blur(40px);
   border-radius: 24px;
+  margin-bottom: 100px;
   @media screen and (max-width: 1080px) {
     justify-self: center;
+    margin-bottom: 48px;
   }
 `;
 
@@ -146,6 +149,7 @@ const Hero = () => {
               {tHero("description")}
             </Typography>
           </MobileContainer>
+          <Button variant="default" />
         </MainContainer>
         <SocialsBox>
           <SocialWrapper>
