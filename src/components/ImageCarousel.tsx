@@ -43,15 +43,10 @@ const ImageWrapper = styled.div`
   overflow: hidden;
   flex-shrink: 0;
   transition: transform 0.3s ease;
-  cursor: pointer;
 
   @media screen and (max-width: 768px) {
     width: 240px;
     height: 160px;
-
-    &:hover {
-      transform: scale(2);
-    }
   }
 `;
 

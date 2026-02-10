@@ -7,10 +7,10 @@ import { useTranslations } from "next-intl";
 import LogoSmallIcon from "../icons/LogoSmallIcon";
 import MailIcon from "../icons/MailIcon";
 import LocationIcon from "../icons/LocationIcon";
-import WhatsappGreyIcon from "../icons/WhatsappGreyIcon";
-import InstaGreyIcon from "../icons/InstaGreyIcon";
-import MessengerGreyIcon from "../icons/MessengerGreyIcon";
 import { DesktopContainer, MobileContainer } from "./Responsive";
+import WhatsappIcon from "../icons/WhatsappIcon";
+import MessengerIcon from "../icons/MessengerIcon";
+import InstaIcon from "../icons/InstaIcon";
 
 const FooterWrapper = styled.footer`
   background-color: ${colors.background.light};
@@ -281,7 +281,12 @@ const Footer = () => {
               </MobileContainer>
             </Title>
             <ContactItem>
-              <MailIcon />
+              <DesktopContainer>
+                <MailIcon />
+              </DesktopContainer>
+              <MobileContainer>
+                <MailIcon width={16} height={18} />
+              </MobileContainer>
               <DesktopContainer>
                 <Typography
                   variant="text-mdOneline"
@@ -302,7 +307,12 @@ const Footer = () => {
               </MobileContainer>
             </ContactItem>
             <ContactItem>
-              <LocationIcon />
+              <DesktopContainer>
+                <LocationIcon />
+              </DesktopContainer>
+              <MobileContainer>
+                <LocationIcon width={16} height={18} />
+              </MobileContainer>
               <DesktopContainer>
                 <Typography
                   variant="text-mdOneline"
@@ -331,21 +341,44 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <WhatsappGreyIcon />
+                <DesktopContainer>
+                  <WhatsappIcon color={colors.text.light} />
+                </DesktopContainer>
+                <MobileContainer>
+                  <WhatsappIcon
+                    color={colors.text.light}
+                    width={26}
+                    height={26}
+                  />
+                </MobileContainer>
               </SocialLink>
               <SocialLink
                 href="https://instagram.com/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <InstaGreyIcon />
+                <DesktopContainer>
+                  <InstaIcon color={colors.text.light} />
+                </DesktopContainer>
+                <MobileContainer>
+                  <InstaIcon color={colors.text.light} width={26} height={26} />
+                </MobileContainer>
               </SocialLink>
               <SocialLink
                 href="https://messenger.com/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <MessengerGreyIcon />
+                <DesktopContainer>
+                  <MessengerIcon color={colors.text.light} />
+                </DesktopContainer>
+                <MobileContainer>
+                  <MessengerIcon
+                    color={colors.text.light}
+                    width={26}
+                    height={26}
+                  />
+                </MobileContainer>
               </SocialLink>
             </SocialIcons>
           </SocialSection>

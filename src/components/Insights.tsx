@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Container from "./Container";
 import { colors } from "../styles/colors";
 import Typography from "./Typography";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import { DesktopContainer, MobileContainer } from "./Responsive";
 import Button from "./Button";
@@ -102,17 +102,21 @@ const CardImage = styled.div`
 
 const Insights = () => {
   const tInsights = useTranslations("Insights");
+  const locale = useLocale();
 
   return (
     <InsightsWrapper>
       <Container>
         <Title>
           <DesktopContainer>
-            <Typography variant="text-mdOneline" color={colors.text.light}>
+            <Typography
+              variant={locale === "ka" ? "text-mdUppercase" : "text-mdOneline"}
+              color={colors.text.light}
+            >
               {tInsights("description")}
             </Typography>
             <Typography
-              variant="display-md"
+              variant={locale === "ka" ? "display-mdUppercase" : "display-md"}
               color={colors.text.dark}
               weight="bold"
             >
@@ -120,11 +124,14 @@ const Insights = () => {
             </Typography>
           </DesktopContainer>
           <MobileContainer>
-            <Typography variant="text-sm" color={colors.text.light}>
+            <Typography
+              variant={locale === "ka" ? "text-smUppercase" : "text-sm"}
+              color={colors.text.light}
+            >
               {tInsights("description")}
             </Typography>
             <Typography
-              variant="display-xs"
+              variant={locale === "ka" ? "display-xsUppercase" : "display-xs"}
               color={colors.text.dark}
               weight="bold"
             >
@@ -160,7 +167,7 @@ const Insights = () => {
                 <CardBottomContent>
                   <DesktopContainer>
                     <Typography
-                      variant="text-lg"
+                      variant={locale === "ka" ? "text-lgUppercase" : "text-lg"}
                       color={colors.text.dark}
                       weight="semibold"
                     >
@@ -169,7 +176,7 @@ const Insights = () => {
                   </DesktopContainer>
                   <MobileContainer>
                     <Typography
-                      variant="text-lg"
+                      variant={locale === "ka" ? "text-lgUppercase" : "text-lg"}
                       color={colors.text.dark}
                       weight="semibold"
                     >
@@ -234,7 +241,7 @@ const Insights = () => {
                 <CardBottomContent>
                   <DesktopContainer>
                     <Typography
-                      variant="text-lg"
+                      variant={locale === "ka" ? "text-lgUppercase" : "text-lg"}
                       color={colors.text.dark}
                       weight="semibold"
                     >
@@ -243,7 +250,7 @@ const Insights = () => {
                   </DesktopContainer>
                   <MobileContainer>
                     <Typography
-                      variant="text-lg"
+                      variant={locale === "ka" ? "text-lgUppercase" : "text-lg"}
                       color={colors.text.dark}
                       weight="semibold"
                     >

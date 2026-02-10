@@ -3,12 +3,12 @@ import styled from "styled-components";
 import Container from "./Container";
 import { colors } from "../styles/colors";
 import Typography from "./Typography";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import Button from "./Button";
 import { DesktopContainer, MobileContainer } from "./Responsive";
 
-const ServicesWrapper = styled.div`
+const ServicesWrapper = styled.section`
   background-color: ${colors.background.light};
   border-top-left-radius: 100px;
   border-top-right-radius: 100px;
@@ -107,18 +107,22 @@ const DescriptionWrapper = styled.div`
 
 const Services = () => {
   const tServices = useTranslations("Services");
+  const locale = useLocale();
   return (
-    <ServicesWrapper>
+    <ServicesWrapper id="services">
       <DecorativeLine />
 
       <Container>
         <Title>
           <DesktopContainer>
-            <Typography variant="text-mdOneline" color={colors.text.light}>
+            <Typography
+              variant={locale === "ka" ? "text-mdUppercase" : "text-md"}
+              color={colors.text.light}
+            >
               {tServices("description")}
             </Typography>
             <Typography
-              variant="display-md"
+              variant={locale === "ka" ? "display-mdUppercase" : "display-md"}
               color={colors.text.dark}
               weight="bold"
             >
@@ -126,11 +130,14 @@ const Services = () => {
             </Typography>
           </DesktopContainer>
           <MobileContainer>
-            <Typography variant="text-sm" color={colors.text.light}>
+            <Typography
+              variant={locale === "ka" ? "text-smUppercase" : "text-sm"}
+              color={colors.text.light}
+            >
               {tServices("description")}
             </Typography>
             <Typography
-              variant="display-xs"
+              variant={locale === "ka" ? "display-xsUppercase" : "display-xs"}
               color={colors.text.dark}
               weight="bold"
             >
@@ -153,7 +160,9 @@ const Services = () => {
                 <CardTitle>
                   <DesktopContainer>
                     <Typography
-                      variant="display-sm"
+                      variant={
+                        locale === "ka" ? "display-smUppercase" : "display-sm"
+                      }
                       color={colors.text.dark}
                       weight="semibold"
                     >
@@ -162,7 +171,7 @@ const Services = () => {
                   </DesktopContainer>
                   <MobileContainer>
                     <Typography
-                      variant="text-lg"
+                      variant={locale === "ka" ? "text-lgUppercase" : "text-lg"}
                       color={colors.text.dark}
                       weight="semibold"
                     >
@@ -224,7 +233,9 @@ const Services = () => {
                 <CardTitle>
                   <DesktopContainer>
                     <Typography
-                      variant="display-sm"
+                      variant={
+                        locale === "ka" ? "display-smUppercase" : "display-sm"
+                      }
                       color={colors.text.dark}
                       weight="semibold"
                     >
@@ -233,7 +244,7 @@ const Services = () => {
                   </DesktopContainer>
                   <MobileContainer>
                     <Typography
-                      variant="text-lg"
+                      variant={locale === "ka" ? "text-lgUppercase" : "text-lg"}
                       color={colors.text.dark}
                       weight="semibold"
                     >

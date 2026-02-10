@@ -91,5 +91,27 @@
       "email": "info@atour.ge",
       "location": "Tbilisi, Georgia"
     }
+  },
+  "Blog": {
+    "time": "7 min read",
+    "title": "How to Plan a Successful Corporate Event",
+    "description": "Planning a successful corporate event requires careful attention to detail, strategic thinking, and flawless execution. Whether you're organizing a small team meeting or a large international conference, following a structured approach can make the difference between a good event and a great one.",
+    "subtitle1": "Define Clear Objectives",
+    "description1": "UndersBefore diving into logistics, establish what you want to achieve. Are you launching a product, building team cohesion, or hosting client appreciation? Clear objectives will guide every decision you make throughout the planning process.tanding your goals will guide every decision you make throughout the planning process.",
+    "subtitle2": "Select the Right Venue",
+    "description2": "The venue sets the tone for your entire event. Consider factors like location accessibility, capacity, technical capabilities, catering options, and ambiance. Visit potential venues in person when possible, and don't forget to check reviews from other event organizers.",
+    "subtitle3": "Create a Detailed Timeline",
+    "description3": "Develop a comprehensive timeline that includes all major milestones from initial planning to post-event follow-up. Start planning at least 3-6 months in advance for major events. Break down tasks into manageable chunks and assign clear responsibilities to team members.",
+    "subtitle4": "Manage Your Budget Wisely",
+    "description4": "Create a realistic budget that accounts for all expenses including venue, catering, technology, entertainment, marketing, and a contingency fund (typically 10-15% of total budget). Track expenses closely and be prepared to make adjustments as needed.",
+    "subtitle5": "Focus on Attendee Experience",
+    "description5": "Consider every touchpoint from registration to post-event communications. Make registration simple, provide clear event information, ensure comfortable seating, offer quality refreshments, and create networking opportunities. Small details like signage, temperature control, and timing can significantly impact attendee satisfaction.",
+    "subtitle6": "Leverage Technology",
+    "description6": "Use event management platforms for registration, mobile apps for schedules and networking, live polling for engagement, and hybrid capabilities if needed. Technology should enhance, not complicate, the attendee experience.",
+    "subtitle7": "Plan for the Unexpected",
+    "description7": "Have contingency plans for common issues like technical difficulties, vendor no-shows, or weather problems. Keep key vendors' contact information handy and designate team members to handle emergencies.",
+    "subtitle8": "Plan for the Unexpected",
+    "description8": "After the event, gather feedback through surveys, analyze attendance and engagement metrics, and calculate ROI. Use these insights to improve future events and demonstrate value to stakeholders.",
+    "button": "Get Back"
   }
 }

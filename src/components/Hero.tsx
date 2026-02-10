@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import styled from "styled-components";
 import { Typography } from "./Typography";
 import { colors } from "../styles/colors";
@@ -67,13 +67,12 @@ const SocialsBox = styled.div`
 `;
 
 const SocialWrapper = styled.div`
-  width: 46px;
-  height: 46px;
+  padding: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 99px;
-  background-color: ${colors.background.light};
+  background-color: ${colors.background.light}60;
   cursor: pointer;
   @media screen and (max-width: 1080px) {
     width: 42px;
@@ -83,6 +82,7 @@ const SocialWrapper = styled.div`
 
 const Hero = () => {
   const tHero = useTranslations("Hero");
+  const locale = useLocale();
 
   return (
     <>
@@ -119,7 +119,7 @@ const Hero = () => {
           </TagWrapper>
           <DesktopContainer>
             <Typography
-              variant="display-lg"
+              variant={locale === "ka" ? "display-lgUppercase" : "display-lg"}
               weight="bold"
               color={colors.text.dark}
             >
@@ -135,7 +135,7 @@ const Hero = () => {
           </DesktopContainer>
           <MobileContainer>
             <Typography
-              variant="display-sm"
+              variant={locale === "ka" ? "display-smUppercase" : "display-sm"}
               weight="bold"
               color={colors.text.dark}
             >
@@ -153,13 +153,28 @@ const Hero = () => {
         </MainContainer>
         <SocialsBox>
           <SocialWrapper>
-            <WhatsappIcon />
+            <DesktopContainer>
+              <WhatsappIcon />
+            </DesktopContainer>
+            <MobileContainer>
+              <WhatsappIcon width={26} height={26} />
+            </MobileContainer>
           </SocialWrapper>
           <SocialWrapper>
-            <InstaIcon />
+            <DesktopContainer>
+              <InstaIcon />
+            </DesktopContainer>
+            <MobileContainer>
+              <InstaIcon width={26} height={26} />
+            </MobileContainer>
           </SocialWrapper>
           <SocialWrapper>
-            <MessengerIcon />
+            <DesktopContainer>
+              <MessengerIcon />
+            </DesktopContainer>
+            <MobileContainer>
+              <MessengerIcon width={26} height={26} />
+            </MobileContainer>
           </SocialWrapper>
         </SocialsBox>
       </Container>

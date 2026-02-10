@@ -3,9 +3,10 @@
  */
 
 export const getFontFamily = (locale: string): string => {
-  return locale === "ka"
-    ? "var(--font-noto-sans-georgian), sans-serif"
-    : "var(--font-inter), sans-serif";
+  if (locale === "ka") {
+    return "Helvetica, Arial, sans-serif";
+  }
+  return "'Noto Sans', Helvetica, Arial, sans-serif";
 };
 
 export const getFontFamilyCSS = (locale: string): string => {

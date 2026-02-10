@@ -3,7 +3,7 @@ import Container from "./Container";
 import { styled } from "styled-components";
 import { colors } from "../styles/colors";
 import Typography from "./Typography";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import AptosLogoIcon from "../icons/AptosLogoIcon";
 import DotsIcon from "../icons/DotsIcon";
 import ImageCarousel from "./ImageCarousel";
@@ -21,6 +21,47 @@ const MainContainer = styled.div`
   @media screen and (max-width: 1080px) {
     padding: 48px 0 0 0;
     margin-bottom: 32px;
+  }
+`;
+
+const PartnersSection = styled.section`
+  position: relative;
+
+  &::before,
+  &::after,
+  &::partner-top-right,
+  &::partner-bottom-left {
+    content: "";
+    position: absolute;
+    width: 863px;
+    height: 863px;
+    border-radius: 50%;
+    background: #3f5fbf;
+    opacity: 0.1;
+    filter: blur(500px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Top Left */
+  &::before {
+    top: 200px;
+    left: -256px;
+  }
+  /* Top Right */
+  &::after {
+    top: 200px;
+    right: -256px;
+  }
+  /* Bottom Left */
+  &::partner-bottom-left {
+    bottom: -200px;
+    left: -256px;
+  }
+  /* Bottom Right */
+  &::partner-top-right {
+    bottom: -200px;
+    right: -256px;
   }
 `;
 
@@ -120,9 +161,70 @@ const bottomRowImages = [
 
 const Partners = () => {
   const tPartners = useTranslations("Partners");
+  const locale = useLocale();
 
   return (
-    <>
+    <PartnersSection>
+      <span
+        style={{
+          position: "absolute",
+          bottom: "-200px",
+          left: "-256px",
+          width: "564px",
+          height: "564px",
+          borderRadius: "50%",
+          background: "#3f5fbf",
+          opacity: 0.1,
+          filter: "blur(500px)",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+      <span
+        style={{
+          position: "absolute",
+          top: "-200px",
+          right: "-256px",
+          width: "863px",
+          height: "863px",
+          borderRadius: "50%",
+          background: "#3f5fbf",
+          opacity: 0.1,
+          filter: "blur(500px)",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+      <span
+        style={{
+          position: "absolute",
+          bottom: "-200px",
+          right: "-256px",
+          width: "564px",
+          height: "564px",
+          borderRadius: "50%",
+          background: "#3f5fbf",
+          opacity: 0.1,
+          filter: "blur(500px)",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+      <span
+        style={{
+          position: "absolute",
+          top: "-200px",
+          left: "-256px",
+          width: "863px",
+          height: "863px",
+          borderRadius: "50%",
+          background: "#3f5fbf",
+          opacity: 0.1,
+          filter: "blur(500px)",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
       <Container>
         <MainContainer>
           <DecorativeLine />
@@ -136,19 +238,29 @@ const Partners = () => {
           </DotsWrapper>
           <Title>
             <DesktopContainer>
-              <Typography variant="text-mdOneline" color={colors.text.light}>
+              <Typography
+                variant={
+                  locale === "ka" ? "text-mdUppercase" : "text-mdOneline"
+                }
+                color={colors.text.light}
+              >
                 {tPartners("title")}
               </Typography>
             </DesktopContainer>
             <MobileContainer>
-              <Typography variant="text-sm" color={colors.text.light}>
+              <Typography
+                variant={locale === "ka" ? "text-smUppercase" : "text-sm"}
+                color={colors.text.light}
+              >
                 {tPartners("title")}
               </Typography>
             </MobileContainer>
             <DesktopContainer>
               <PartnersWrapper>
                 <Typography
-                  variant="display-md"
+                  variant={
+                    locale === "ka" ? "display-mdUppercase" : "display-md"
+                  }
                   weight="bold"
                   color={colors.text.dark}
                 >
@@ -160,7 +272,9 @@ const Partners = () => {
             <MobileContainer>
               <PartnersWrapper>
                 <Typography
-                  variant="display-xs"
+                  variant={
+                    locale === "ka" ? "display-xsUppercase" : "display-xs"
+                  }
                   weight="bold"
                   color={colors.text.dark}
                 >
@@ -181,7 +295,7 @@ const Partners = () => {
       <DecorativeLineBottomWrapper>
         <DecorativeLineBottom />
       </DecorativeLineBottomWrapper>
-    </>
+    </PartnersSection>
   );
 };
 

@@ -1,8 +1,25 @@
 import * as React from "react";
-const LocationIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={25} height={24} fill="none">
+
+interface LocationIconProps {
+  color?: string;
+  width?: number;
+  height?: number;
+}
+
+const LocationIcon = ({
+  color = "#6B7280",
+  width = 25,
+  height = 24,
+}: LocationIconProps) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={width}
+    height={height}
+    viewBox="0 0 25 24"
+    fill="none"
+  >
     <path
-      fill="#6B7280"
+      fill={color}
       d="M12.5 0c-5.514 0-10 4.38-10 9.762 0 3.914 5.002 10.043 7.984 13.348.51.565 1.246.89 2.016.89a2.72 2.72 0 0 0 2.016-.89c2.982-3.304 7.984-9.434 7.984-13.348C22.5 4.379 18.014 0 12.5 0Zm0 5.53c2.398 0 4.348 1.899 4.348 4.232s-1.95 4.232-4.348 4.232c-2.397 0-4.348-1.9-4.348-4.232 0-2.333 1.95-4.232 4.348-4.232Z"
     />
   </svg>

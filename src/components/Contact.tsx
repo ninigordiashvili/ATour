@@ -3,15 +3,12 @@ import styled from "styled-components";
 import Container from "./Container";
 import { colors } from "../styles/colors";
 import Typography from "./Typography";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { DesktopContainer, MobileContainer } from "./Responsive";
 import PhoneIcon from "../icons/PhoneIcon";
 import MailIcon from "../icons/MailIcon";
 import PenIcon from "../icons/PenIcon";
 import Button from "./Button";
-import PenMobIcon from "../icons/PenMobIcon";
-import PhoneMobIcon from "../icons/PhoneMobIcon";
-import MailMobIcon from "../icons/MailMobIcon";
 
 const ContactWrapper = styled.div`
   background-color: ${colors.background.light};
@@ -162,6 +159,7 @@ const ButtonWrapper = styled.div`
 
 const Contact = () => {
   const tContact = useTranslations("Contact");
+  const locale = useLocale();
   return (
     <ContactWrapper>
       <DecorativeLine />
@@ -169,7 +167,7 @@ const Contact = () => {
         <Title>
           <DesktopContainer>
             <Typography
-              variant="display-md"
+              variant={locale === "ka" ? "display-mdUppercase" : "display-md"}
               color={colors.text.dark}
               weight="bold"
             >
@@ -178,7 +176,7 @@ const Contact = () => {
           </DesktopContainer>
           <MobileContainer>
             <Typography
-              variant="display-xs"
+              variant={locale === "ka" ? "display-xsUppercase" : "display-xs"}
               color={colors.text.dark}
               weight="bold"
             >
@@ -206,12 +204,12 @@ const Contact = () => {
               />
               <IconsWrapper>
                 <DesktopContainer>
-                  <PhoneIcon />
+                  <PhoneIcon width={24} height={24} />
                   <MailIcon />
                 </DesktopContainer>
                 <MobileContainer>
-                  <PhoneMobIcon />
-                  <MailMobIcon />
+                  <PhoneIcon width={18} height={18} />
+                  <MailIcon width={24} height={18} />
                 </MobileContainer>
               </IconsWrapper>
             </InputWrapper>
@@ -237,7 +235,7 @@ const Contact = () => {
                   <PenIcon />
                 </DesktopContainer>
                 <MobileContainer>
-                  <PenMobIcon />
+                  <PenIcon width={18} height={18} />
                 </MobileContainer>
               </SingleIconWrapper>
             </InputWrapper>

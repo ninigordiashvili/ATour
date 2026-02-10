@@ -23,6 +23,7 @@ const HeaderWrapper = styled.header`
     background-color: ${colors.background.light};
     border-radius: 24px;
     margin-top: 16px;
+    box-shadow: ${colors.shadow.header};
   }
 `;
 
@@ -101,6 +102,33 @@ const Header = () => {
 
   const handleLinkClick = (link: string) => {
     setSelectedLink(link);
+
+    if (link === "blog") {
+      router.push("/Blog");
+      return;
+    }
+
+    if (link === "home") {
+      if (pathname !== "/") {
+        router.push("/");
+      }
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    if (pathname !== "/") {
+      router.push("/");
+      setTimeout(() => {
+        const element = document.getElementById(link);
+        if (element) {
+          element.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      }, 100);
+      return;
+    }
 
     const element = document.getElementById(link);
     if (element) {

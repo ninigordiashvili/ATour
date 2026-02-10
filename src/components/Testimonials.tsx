@@ -3,7 +3,7 @@ import Container from "./Container";
 import { styled, keyframes } from "styled-components";
 import { colors } from "../styles/colors";
 import Typography from "./Typography";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import DotsIcon from "../icons/DotsIcon";
 import CommentIcon from "../icons/CommentIcon";
 import { DesktopContainer, MobileContainer } from "./Responsive";
@@ -18,15 +18,29 @@ const scroll = keyframes`
   }
 `;
 
+const SectionWrapper = styled.section`
+  position: relative;
+`;
+
 const MainContainer = styled.div`
   padding: 100px 0 0 0;
-  position: relative;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   @media screen and (max-width: 1080px) {
     padding: 48px 0 0 0;
   }
+`;
+
+const BlurredEllipse = styled.span`
+  position: absolute;
+  width: 863px;
+  height: 863px;
+  border-radius: 50%;
+  background: #3f5fbf;
+  opacity: 0.1;
+  filter: blur(500px);
+  pointer-events: none;
+  z-index: 0;
 `;
 
 const DecorativeLine = styled.div`
@@ -39,7 +53,7 @@ const DecorativeLine = styled.div`
   top: 0px;
   opacity: 0.4;
   @media screen and (max-width: 1080px) {
-    border: 1px solid ${colors.state.focus.ring};
+    border: 1px solid ${colors.state.focus.ring}40;
     width: 100%;
   }
 `;
@@ -145,6 +159,7 @@ const testimonialCards = ["Card1", "Card2", "Card1", "Card2"] as const;
 
 const Testimonials = () => {
   const tTestimonials = useTranslations("Testimonials");
+  const locale = useLocale();
 
   const testimonials = testimonialCards.map((cardKey, index) => ({
     id: index + 1,
@@ -161,9 +176,17 @@ const Testimonials = () => {
   ];
 
   return (
-    <>
-      <Container>
-        <MainContainer>
+    <SectionWrapper id="testimonials">
+      {/* Top Left */}
+      <BlurredEllipse style={{ top: 200, left: -256 }} />
+      {/* Top Right */}
+      <BlurredEllipse style={{ top: 200, right: -256 }} />
+      {/* Bottom Left */}
+      <BlurredEllipse style={{ bottom: -200, left: -256 }} />
+      {/* Bottom Right */}
+      <BlurredEllipse style={{ bottom: -200, right: -256 }} />
+      <MainContainer>
+        <Container>
           <DecorativeLine />
           <DotsWrapper>
             <DesktopContainer>
@@ -175,19 +198,29 @@ const Testimonials = () => {
           </DotsWrapper>
           <Title>
             <DesktopContainer>
-              <Typography variant="text-mdOneline" color={colors.text.light}>
+              <Typography
+                variant={
+                  locale === "ka" ? "text-mdUppercase" : "text-mdOneline"
+                }
+                color={colors.text.light}
+              >
                 {tTestimonials("description")}
               </Typography>
             </DesktopContainer>
             <MobileContainer>
-              <Typography variant="text-sm" color={colors.text.light}>
+              <Typography
+                variant={locale === "ka" ? "text-smUppercase" : "text-sm"}
+                color={colors.text.light}
+              >
                 {tTestimonials("description")}
               </Typography>
             </MobileContainer>
             <TagWrapper>
               <DesktopContainer>
                 <Typography
-                  variant="display-md"
+                  variant={
+                    locale === "ka" ? "display-mdUppercase" : "display-md"
+                  }
                   weight="bold"
                   color={colors.text.dark}
                 >
@@ -196,7 +229,9 @@ const Testimonials = () => {
               </DesktopContainer>
               <MobileContainer>
                 <Typography
-                  variant="display-xs"
+                  variant={
+                    locale === "ka" ? "display-xsUppercase" : "display-xs"
+                  }
                   weight="bold"
                   color={colors.text.dark}
                 >
@@ -205,8 +240,8 @@ const Testimonials = () => {
               </MobileContainer>
             </TagWrapper>
           </Title>
-        </MainContainer>
-      </Container>
+        </Container>
+      </MainContainer>
       <CarouselContainer>
         <CarouselTrack>
           {duplicatedTestimonials.map((testimonial, index) => (
@@ -236,7 +271,7 @@ const Testimonials = () => {
           ))}
         </CarouselTrack>
       </CarouselContainer>
-    </>
+    </SectionWrapper>
   );
 };
 

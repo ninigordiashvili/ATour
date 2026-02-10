@@ -57,6 +57,7 @@ export const colors = {
     light: "-4px 6px 28px 0px #1F29374D",
     medium: "0px 6px 28px 0px #1F29374D",
     dark: "0 4px 8px rgba(10, 13, 18, 0.1)",
+    header: "0px 2px 16px 0px #0000001A",
   },
 
   // Overlay colors

@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import ArrowIcon from "../icons/ArrowIcon";
+import BackArrowIcon from "../icons/BackArrowIcon";
 import BlueArrowIcon from "../icons/BlueArrowIcon";
 import { colors } from "../styles/colors";
 import Typography from "./Typography";
@@ -12,7 +13,7 @@ import ArrowMobileIcon from "../icons/ArrowMobileIcon";
 interface ButtonProps {
   children?: React.ReactNode;
   onClick?: () => void;
-  variant?: "default" | "iconOnly" | "transparent" | "bookButton";
+  variant?: "default" | "iconOnly" | "transparent" | "bookButton" | "back";
 }
 
 const StyledButton = styled.button<{ $isActive: boolean; $variant?: string }>`
@@ -92,13 +93,37 @@ const ArrowContainer = styled.div<{
   }
 `;
 
-const StyledArrowIcon = styled.div<{ $isActive: boolean; $isHovered: boolean }>`
+const BackButtonContainer = styled.button`
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: ${colors.state.focus.ring};
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+  font-family: "Noto Sans", Helvetica, Arial, sans-serif;
+  white-space: nowrap;
+  &:hover {
+    background: ${colors.state.focus.active};
+  }
+
+  &:active {
+    background: ${colors.state.focus.active};
+  }
+`;
+
+const StyledArrowIcon = styled.div<{
+  $isActive: boolean;
+  $isHovered: boolean;
+  $variant?: string;
+}>`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: ${(props) => (props.$variant === "bookButton" ? "1px" : "0")};
   transform: ${(props) => (props.$isActive ? "rotate(45deg)" : "rotate(0deg)")};
   transition: transform 0.3s ease-in-out;
-
   ${StyledButton}:hover & {
     transform: rotate(45deg);
   }
@@ -117,6 +142,33 @@ const Button: React.FC<ButtonProps> = ({ onClick, variant = "default" }) => {
     setIsActive(true);
     onClick?.();
   };
+
+  // Back button variant
+  if (variant === "back") {
+    return (
+      <BackButtonContainer onClick={onClick}>
+        <BackArrowIcon />
+        <DesktopContainer>
+          <Typography
+            variant="text-mdOneline"
+            color={colors.text.primary}
+            weight="regular"
+          >
+            {tButtons("back")}
+          </Typography>
+        </DesktopContainer>
+        <MobileContainer>
+          <Typography
+            variant="text-smUppercase"
+            color={colors.text.primary}
+            weight="regular"
+          >
+            {tButtons("back")}
+          </Typography>
+        </MobileContainer>
+      </BackButtonContainer>
+    );
+  }
 
   // Icon-only variant
   if (variant === "iconOnly") {
@@ -203,7 +255,11 @@ const Button: React.FC<ButtonProps> = ({ onClick, variant = "default" }) => {
           $isHovered={isHovered}
           $variant="bookButton"
         >
-          <StyledArrowIcon $isActive={true} $isHovered={isHovered}>
+          <StyledArrowIcon
+            $isActive={true}
+            $isHovered={isHovered}
+            $variant="bookButton"
+          >
             <ArrowMobileIcon />
           </StyledArrowIcon>
         </ArrowContainer>

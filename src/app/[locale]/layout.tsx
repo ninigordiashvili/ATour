@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Noto_Sans_Georgian } from "next/font/google";
+import { Noto_Sans } from "next/font/google";
 import "../globals.css";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
@@ -7,16 +7,12 @@ import { getMessages } from "next-intl/server";
 
 import { routing, type Locale } from "../../i18n/routing";
 import StyledComponentsRegistry from "../components/StyledComponentRegistry";
+import Header from "@/src/components/Header";
+import Footer from "@/src/components/Footer";
 
-const inter = Inter({
-  variable: "--font-inter",
+const notoSans = Noto_Sans({
+  variable: "--font-noto-sans",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const notoSansGeorgian = Noto_Sans_Georgian({
-  variable: "--font-noto-sans-georgian",
-  subsets: ["georgian"],
   weight: ["400", "500", "600", "700"],
 });
 
@@ -75,19 +71,21 @@ export default async function LocaleLayout({
 
   const fontFamily =
     locale === "ka"
-      ? "var(--font-noto-sans-georgian), sans-serif"
-      : "var(--font-inter), sans-serif";
+      ? "Helvetica, Arial, sans-serif"
+      : "var(--font-noto-sans), Helvetica, Arial, sans-serif";
 
   return (
     <html lang={locale} className={locale === "ka" ? "locale-ka" : "locale-en"}>
       <body
-        className={`${inter.variable} ${notoSansGeorgian.variable}`}
+        className={notoSans.variable}
         style={{ fontFamily }}
         suppressHydrationWarning
       >
         <StyledComponentsRegistry>
           <NextIntlClientProvider messages={messages}>
+            <Header />
             {children}
+            <Footer />
           </NextIntlClientProvider>
         </StyledComponentsRegistry>
       </body>

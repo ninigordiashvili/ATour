@@ -10,7 +10,15 @@ export type TypographyVariant =
   | "text-mdOneline"
   | "text-sm"
   | "text-xs"
-  | "display-xs";
+  | "display-xs"
+  | "display-lgUppercase"
+  | "display-mdUppercase"
+  | "display-smUppercase"
+  | "text-smOneline"
+  | "display-xsUppercase"
+  | "text-mdUppercase"
+  | "text-lgUppercase"
+  | "text-smUppercase";
 
 export type TypographyWeight = "regular" | "medium" | "semibold" | "bold";
 
@@ -40,21 +48,51 @@ const variantStyles = {
     font-size: 48px;
     line-height: 52px;
   `,
+  "display-lgUppercase": css`
+    font-size: 48px;
+    line-height: 52px;
+    font-family:
+      "Helvetica Georgian Caps", "Noto Sans", Helvetica, Arial, sans-serif;
+  `,
   "display-md": css`
     font-size: 32px;
     line-height: 40px;
+  `,
+  "display-mdUppercase": css`
+    font-size: 32px;
+    line-height: 40px;
+    font-family:
+      "Helvetica Georgian Caps", "Noto Sans", Helvetica, Arial, sans-serif;
   `,
   "display-sm": css`
     font-size: 24px;
     line-height: 34px;
   `,
+  "display-smUppercase": css`
+    font-size: 24px;
+    line-height: 34px;
+    font-family:
+      "Helvetica Georgian Caps", "Noto Sans", Helvetica, Arial, sans-serif;
+  `,
   "display-xs": css`
     font-size: 22px;
     line-height: 26px;
   `,
+  "display-xsUppercase": css`
+    font-size: 22px;
+    line-height: 26px;
+    font-family:
+      "Helvetica Georgian Caps", "Noto Sans", Helvetica, Arial, sans-serif;
+  `,
   "text-lg": css`
     font-size: 18px;
     line-height: 24px;
+  `,
+  "text-lgUppercase": css`
+    font-size: 18px;
+    line-height: 24px;
+    font-family:
+      "Helvetica Georgian Caps", "Noto Sans", Helvetica, Arial, sans-serif;
   `,
   "text-md": css`
     font-size: 16px;
@@ -64,9 +102,26 @@ const variantStyles = {
     font-size: 16px;
     line-height: 20px;
   `,
+  "text-mdUppercase": css`
+    font-size: 16px;
+    line-height: 20px;
+
+    font-family:
+      "Helvetica Georgian Caps", "Noto Sans", Helvetica, Arial, sans-serif;
+  `,
   "text-sm": css`
     font-size: 14px;
+    line-height: 20px;
+  `,
+  "text-smOneline": css`
+    font-size: 14px;
+    line-height: 16px;
+  `,
+  "text-smUppercase": css`
+    font-size: 14px;
     line-height: 18px;
+    font-family:
+      "Helvetica Georgian Caps", "Noto Sans", Helvetica, Arial, sans-serif;
   `,
   "text-xs": css`
     font-size: 12px;
