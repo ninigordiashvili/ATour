@@ -209,14 +209,6 @@ const Services = () => {
               variant={locale === "ka" ? "text-mdUppercase" : "text-md"}
               color="#fff"
               weight="semibold"
-              style={{
-                background: colors.state.focus.ring,
-                borderRadius: 12,
-                padding: "4px 16px",
-                fontSize: 16,
-                display: "inline-block",
-                alignSelf: "flex-start",
-              }}
             >
               {badge}
             </Typography>
