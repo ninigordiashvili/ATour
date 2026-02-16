@@ -14,40 +14,9 @@ import Image from "next/image";
 import Button from "@/src/components/Button";
 
 const BlogWrapper = styled.main`
-  padding: 114px 0 100px;
+  padding: 100px 130px;
   position: relative;
   overflow: hidden;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: -351px;
-    left: -256px;
-    width: 863px;
-    height: 863px;
-    border-radius: 50%;
-    background: #3f5fbf;
-    opacity: 0.1;
-    filter: blur(250px);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    top: -351px;
-    right: -256px;
-    width: 863px;
-    height: 863px;
-    border-radius: 50%;
-    background: #3f5fbf;
-    opacity: 0.1;
-    filter: blur(250px);
-    pointer-events: none;
-    z-index: 0;
-  }
-
   @media (max-width: 1080px) {
     padding: 24px 0 48px;
   }
@@ -125,8 +94,9 @@ const SectionTitle = styled.h2`
 
 const ButtonWrapper = styled.div`
   max-width: 133px;
-
+  margin-top: 32px;
   @media (max-width: 1080px) {
+    margin-top: 0;
     max-width: 127px;
   }
 `;

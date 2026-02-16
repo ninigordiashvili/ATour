@@ -88,8 +88,8 @@ const ArrowContainer = styled.div<{
       props.$variant === "bookButton"
         ? "16px"
         : props.$variant === "iconOnly"
-          ? "16px 32px"
-          : "18px"};
+          ? "16px 36px"
+          : "16px"};
   }
 `;
 
@@ -243,7 +243,7 @@ const Button: React.FC<ButtonProps> = ({ onClick, variant = "default" }) => {
       >
         <TextContainer $isActive={true} $variant="bookButton">
           <Typography
-            variant="text-sm"
+            variant="text-mdOneline"
             color={colors.text.primary}
             weight="semibold"
           >
@@ -279,7 +279,7 @@ const Button: React.FC<ButtonProps> = ({ onClick, variant = "default" }) => {
     >
       <TextContainer $isActive={isActive}>
         <Typography
-          variant="text-md"
+          variant="text-mdOneline"
           color={colors.text.primary}
           weight="semibold"
         >

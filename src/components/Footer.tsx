@@ -4,18 +4,18 @@ import Container from "./Container";
 import { colors } from "../styles/colors";
 import { Typography } from "./Typography";
 import { useTranslations } from "next-intl";
-import LogoSmallIcon from "../icons/LogoSmallIcon";
 import MailIcon from "../icons/MailIcon";
 import LocationIcon from "../icons/LocationIcon";
 import { DesktopContainer, MobileContainer } from "./Responsive";
 import WhatsappIcon from "../icons/WhatsappIcon";
 import MessengerIcon from "../icons/MessengerIcon";
 import InstaIcon from "../icons/InstaIcon";
+import LogoIcon from "../icons/LogoIcon";
 
 const FooterWrapper = styled.footer`
   background-color: ${colors.background.light};
   position: relative;
-  padding: 100px 0 40px;
+  padding: 100px 0;
   @media screen and (max-width: 1080px) {
     padding: 48px 0 32px;
   }
@@ -155,7 +155,7 @@ const Footer = () => {
       <Container>
         <FooterContent>
           <BrandSection>
-            <LogoSmallIcon />
+            <LogoIcon />
             <DesktopContainer>
               <Typography
                 variant="text-md"
@@ -200,7 +200,7 @@ const Footer = () => {
             <LinkItem href="#blog">
               <DesktopContainer>
                 <Typography
-                  variant="text-md"
+                  variant="text-mdOneline"
                   color={colors.text.light}
                   weight="regular"
                 >
@@ -220,7 +220,7 @@ const Footer = () => {
             <LinkItem href="#testimonials">
               <DesktopContainer>
                 <Typography
-                  variant="text-md"
+                  variant="text-mdOneline"
                   color={colors.text.light}
                   weight="regular"
                 >
@@ -240,7 +240,7 @@ const Footer = () => {
             <LinkItem href="#contact">
               <DesktopContainer>
                 <Typography
-                  variant="text-md"
+                  variant="text-mdOneline"
                   color={colors.text.light}
                   weight="regular"
                 >
@@ -386,7 +386,7 @@ const Footer = () => {
 
         <CopyrightSection>
           <DesktopContainer>
-            <Typography variant="text-sm" color={colors.text.light}>
+            <Typography variant="text-smUppercase" color={colors.text.light}>
               {tFooter("rights")}
             </Typography>
           </DesktopContainer>

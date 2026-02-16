@@ -67,7 +67,7 @@ const SocialsBox = styled.div`
 `;
 
 const SocialWrapper = styled.div`
-  padding: 8px;
+  padding: 6.5px 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -100,7 +100,7 @@ const Hero = () => {
           <TagWrapper>
             <DesktopContainer>
               <Typography
-                variant="text-sm"
+                variant="text-smOneline"
                 weight="regular"
                 color={colors.text.light}
               >

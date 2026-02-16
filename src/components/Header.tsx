@@ -60,14 +60,14 @@ const Link = styled.div<{ $isSelected: boolean }>`
 const LanguageSwitcher = styled.div`
   display: flex;
   gap: 8px;
-  padding: 4px;
+  padding: 3px;
   background-color: ${colors.background.light};
   border-radius: 24px;
 `;
 
 const LanguageButton = styled.button<{ $isSelected: boolean }>`
   cursor: pointer;
-  padding: 8px 16px;
+  padding: 8px 18px;
   border-radius: 24px;
   border: none;
   background-color: ${(props) =>

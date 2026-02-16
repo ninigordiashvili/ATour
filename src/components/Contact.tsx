@@ -44,7 +44,10 @@ const Title = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-bottom: 48px;
+  margin-bottom: 64px;
+  max-width: 747px;
+  margin-left: auto;
+  margin-right: auto;
   @media screen and (max-width: 1080px) {
     margin-bottom: 32px;
   }
@@ -77,7 +80,7 @@ const InputWrapper = styled.div`
   align-items: center;
 `;
 
-const StyledInput = styled.input`
+const StyledInput = styled.input<{ $locale?: string }>`
   width: 100%;
   padding: 16px;
   padding-right: 80px;
@@ -87,10 +90,19 @@ const StyledInput = styled.input`
   background: ${colors.background.light};
   outline: none;
   transition: border-color 0.2s ease;
-  font-family: inherit;
+  font-family: ${({ $locale }) =>
+    $locale === "ka"
+      ? "'Noto Sans Georgian', sans-serif"
+      : "Helvetica, Arial, sans-serif"};
 
   &::placeholder {
     color: ${colors.text.light};
+    font-size: 14px;
+    line-height: 18px;
+    font-family: ${({ $locale }) =>
+      $locale === "ka"
+        ? "'Noto Sans Georgian', sans-serif"
+        : "Helvetica, Arial, sans-serif"};
   }
 
   @media screen and (max-width: 1080px) {
@@ -100,7 +112,7 @@ const StyledInput = styled.input`
   }
 `;
 
-const StyledTextarea = styled.textarea`
+const StyledTextarea = styled.textarea<{ $locale?: string }>`
   width: 100%;
   padding: 16px;
   padding-right: 80px;
@@ -112,10 +124,17 @@ const StyledTextarea = styled.textarea`
   resize: none;
   min-height: 98px;
   transition: border-color 0.2s ease;
-  font-family: inherit;
+  font-family: ${({ $locale }) =>
+    $locale === "ka"
+      ? "'Noto Sans Georgian', sans-serif"
+      : "Helvetica, Arial, sans-serif"};
   &::placeholder {
     color: ${colors.text.light};
     font-size: 14px;
+    font-family: ${({ $locale }) =>
+      $locale === "ka"
+        ? "'Noto Sans Georgian', sans-serif"
+        : "Helvetica, Arial, sans-serif"};
   }
 
   @media screen and (max-width: 1080px) {
@@ -189,9 +208,9 @@ const Contact = () => {
           <FormGroup>
             <Label>
               <Typography
-                variant="text-md"
+                variant="text-mdOneline"
                 color={colors.text.dark}
-                weight="medium"
+                weight="regular"
               >
                 {tContact("form.emailTitle")}
               </Typography>
@@ -200,16 +219,16 @@ const Contact = () => {
               <StyledInput
                 type="text"
                 placeholder={tContact("form.emailPlaceholder")}
-                color={colors.text.light}
+                $locale={locale}
               />
               <IconsWrapper>
                 <DesktopContainer>
                   <PhoneIcon width={24} height={24} />
-                  <MailIcon />
+                  <MailIcon width={24} height={24} />
                 </DesktopContainer>
                 <MobileContainer>
                   <PhoneIcon width={18} height={18} />
-                  <MailIcon width={24} height={18} />
+                  <MailIcon width={18} height={18} />
                 </MobileContainer>
               </IconsWrapper>
             </InputWrapper>
@@ -218,9 +237,9 @@ const Contact = () => {
           <FormGroup>
             <Label>
               <Typography
-                variant="text-md"
+                variant="text-mdOneline"
                 color={colors.text.dark}
-                weight="medium"
+                weight="regular"
               >
                 {tContact("form.messageTitle")}
               </Typography>
@@ -229,10 +248,11 @@ const Contact = () => {
               <StyledTextarea
                 placeholder={tContact("form.messagePlaceholder")}
                 rows={1}
+                $locale={locale}
               />
               <SingleIconWrapper>
                 <DesktopContainer>
-                  <PenIcon />
+                  <PenIcon width={24} height={24} />
                 </DesktopContainer>
                 <MobileContainer>
                   <PenIcon width={18} height={18} />

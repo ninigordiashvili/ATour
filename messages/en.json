@@ -29,11 +29,17 @@
     "description": "Tailored solutions for your business travel and event needs",
     "Card1": {
       "title": "Business Travel",
-      "description": "Complete corporate travel management including flights, accommodations, and ground transportation. We handle every detail so you can focus on your business."
+      "description": "Complete corporate travel management including flights, accommodations, and ground transportation. We handle every detail so you can focus on your business.",
+      "titleDetails": "Complete Business Travel Solutions",
+      "descriptionDetails": "Our Business Travel service provides complete support for all your corporate travel needs from global flight and hotel bookings to transfers, visas, insurance, and conference registration. We tailor accommodations and travel solutions to your preferences and offer 24/7 assistance, ensuring a smooth and efficient journey anywhere in the world."
     },
     "Card2": {
       "title": "MICE & DMC",
-      "description": "Meetings, Incentives, Conferences, and Events. Full destination management services for corporate gatherings of any scale."
+      "description": "Meetings, Incentives, Conferences, and Events. Full destination management services for corporate gatherings of any scale.",
+      "DmcDetails": "DMC - Domestic Management Company",
+      "DmcDescription": "Our MICE & DMC services cover every aspect of corporate event planning, from initial concept to execution, ensuring a seamless and memorable experience for all attendees.",
+      "MiceDetails": "MICE Tourism – Meetings, Incentives, Conferences, Events& Exhibitions",
+      "MiceDescription": "MICE Tourism covers all types of business-related travel from meetings and incentive trips to conferences, events, and exhibitions. It brings together planning, organization, and on-site management to ensure every corporate gathering is efficient, engaging, and professionally executed."
     }
   },
   "Partners": {

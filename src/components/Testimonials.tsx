@@ -256,7 +256,7 @@ const Testimonials = () => {
                 <Avatar src={testimonial.avatar} alt={testimonial.name} />
                 <AuthorInfo>
                   <Typography
-                    variant="text-md"
+                    variant="text-mdOneline"
                     weight="semibold"
                     color={colors.text.dark}
                   >

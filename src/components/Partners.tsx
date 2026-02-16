@@ -118,7 +118,7 @@ const PartnersWrapper = styled.div`
   display: flex;
   gap: 8px;
   align-items: center;
-  padding: 12px 8px;
+  padding: 8px;
   backdrop-filter: blur(40px);
   border-radius: 24px;
   background-color: ${colors.background.light};

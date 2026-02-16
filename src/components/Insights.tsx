@@ -167,7 +167,9 @@ const Insights = () => {
                 <CardBottomContent>
                   <DesktopContainer>
                     <Typography
-                      variant={locale === "ka" ? "text-lgUppercase" : "text-lg"}
+                      variant={
+                        locale === "ka" ? "display-smUppercase" : "display-sm"
+                      }
                       color={colors.text.dark}
                       weight="semibold"
                     >
@@ -241,7 +243,9 @@ const Insights = () => {
                 <CardBottomContent>
                   <DesktopContainer>
                     <Typography
-                      variant={locale === "ka" ? "text-lgUppercase" : "text-lg"}
+                      variant={
+                        locale === "ka" ? "display-smUppercase" : "display-sm"
+                      }
                       color={colors.text.dark}
                       weight="semibold"
                     >

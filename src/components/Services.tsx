@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Container from "./Container";
 import { colors } from "../styles/colors";
@@ -41,7 +41,7 @@ const Title = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
-  margin-bottom: 48px;
+  margin-bottom: 64px;
   @media screen and (max-width: 1080px) {
     margin-bottom: 32px;
     gap: 16px;
@@ -78,7 +78,6 @@ const CardImage = styled.div`
 
 const CardContent = styled.div`
   padding: 24px;
-
   @media screen and (max-width: 1080px) {
     padding: 16px;
   }
@@ -87,7 +86,7 @@ const CardContent = styled.div`
 const CardHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 16px;
 `;
 
@@ -105,9 +104,142 @@ const DescriptionWrapper = styled.div`
   gap: 16px;
 `;
 
+// Popup styles
+const PopupOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 16, 61, 0.32);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const PopupCard = styled.div`
+  background: #fff;
+  border-radius: 32px;
+  box-shadow: 0 8px 32px 0 rgba(0, 16, 61, 0.16);
+  max-width: 800px;
+  width: 90vw;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  @media (max-width: 600px) {
+    border-radius: 24px;
+    max-width: 95vw;
+  }
+`;
+
+const PopupImage = styled.div`
+  width: 100%;
+  height: 260px;
+  position: relative;
+  background-image: url("/images/insights/tfls.png");
+  background-size: cover;
+  background-position: center;
+  @media (max-width: 600px) {
+    height: 180px;
+  }
+`;
+
+const PopupContent = styled.div`
+  padding: 32px 40px 32px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  @media (max-width: 600px) {
+    padding: 16px;
+    gap: 12px;
+  }
+`;
+
+const PopupClose = styled.button`
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: #f5f7fa;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  font-size: 24px;
+  @media (max-width: 600px) {
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    font-size: 20px;
+  }
+`;
+
 const Services = () => {
   const tServices = useTranslations("Services");
   const locale = useLocale();
+  const [openCard, setOpenCard] = useState<null | "Card1" | "Card2">(null);
+
+  // Popup content for Card1 (TFLS)
+  const renderPopup = () => {
+    if (!openCard) return null;
+    let title = tServices("Card1.titleDetails");
+    let description = tServices("Card1.descriptionDetails");
+    let badge = tServices("Card1.title");
+    if (openCard === "Card2") {
+      title = tServices("Card2.DmcDetails");
+      description = tServices("Card2.DmcDescription");
+      badge = tServices("Card2.title");
+    }
+    return (
+      <PopupOverlay>
+        <PopupCard>
+          <PopupClose aria-label="Close" onClick={() => setOpenCard(null)}>
+            ×
+          </PopupClose>
+          <PopupImage />
+          <PopupContent>
+            <Typography
+              as="span"
+              variant={locale === "ka" ? "text-mdUppercase" : "text-md"}
+              color="#fff"
+              weight="semibold"
+              style={{
+                background: colors.state.focus.ring,
+                borderRadius: 12,
+                padding: "4px 16px",
+                fontSize: 16,
+                display: "inline-block",
+                alignSelf: "flex-start",
+              }}
+            >
+              {badge}
+            </Typography>
+            <Typography
+              variant={locale === "ka" ? "display-mdUppercase" : "display-md"}
+              color={colors.text.dark}
+              weight="bold"
+            >
+              {title}
+            </Typography>
+            <Typography
+              variant={locale === "ka" ? "text-mdUppercase" : "text-md"}
+              color={colors.text.dark}
+              weight="regular"
+            >
+              {description}
+            </Typography>
+          </PopupContent>
+        </PopupCard>
+      </PopupOverlay>
+    );
+  };
+
   return (
     <ServicesWrapper id="services">
       <DecorativeLine />
@@ -179,7 +311,10 @@ const Services = () => {
                     </Typography>
                   </MobileContainer>
                 </CardTitle>
-                <Button variant="iconOnly" />
+                <Button
+                  variant="iconOnly"
+                  onClick={() => setOpenCard("Card1")}
+                />
               </CardHeader>
               <DescriptionWrapper>
                 <DesktopContainer>
@@ -252,7 +387,10 @@ const Services = () => {
                     </Typography>
                   </MobileContainer>
                 </CardTitle>
-                <Button variant="iconOnly" />
+                <Button
+                  variant="iconOnly"
+                  onClick={() => setOpenCard("Card2")}
+                />
               </CardHeader>
               <DescriptionWrapper>
                 <DesktopContainer>
@@ -292,6 +430,7 @@ const Services = () => {
           </ServiceCard>
         </CardsGrid>
       </Container>
+      {renderPopup()}
     </ServicesWrapper>
   );
 };
