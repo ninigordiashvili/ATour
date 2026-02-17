@@ -70,7 +70,7 @@ const variantStyles = {
   `,
   "display-smUppercase": css`
     font-size: 24px;
-    line-height: 34px;
+    line-height: 30px;
     font-family:
       "Helvetica Georgian Caps", "Noto Sans", Helvetica, Arial, sans-serif;
   `,

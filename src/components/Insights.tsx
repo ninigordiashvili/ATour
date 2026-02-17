@@ -24,7 +24,7 @@ const Title = styled.div`
   margin-bottom: 64px;
   @media screen and (max-width: 1080px) {
     margin-bottom: 32px;
-    gap: 16px;
+    gap: 8px;
   }
 `;
 
@@ -65,8 +65,7 @@ const CardBody = styled.div`
   display: flex;
   gap: 16px;
   @media screen and (max-width: 1080px) {
-    gap: 12px;
-
+    gap: 20px;
     display: flex;
     flex-direction: column;
   }
@@ -131,7 +130,7 @@ const Insights = () => {
               {tInsights("description")}
             </Typography>
             <Typography
-              variant={locale === "ka" ? "display-xsUppercase" : "display-xs"}
+              variant={locale === "ka" ? "text-lgUppercase" : "text-lg"}
               color={colors.text.dark}
               weight="bold"
             >
@@ -156,7 +155,7 @@ const Insights = () => {
                   </DesktopContainer>
                   <MobileContainer>
                     <Typography
-                      variant="text-sm"
+                      variant="text-smUppercase"
                       color={colors.text.light}
                       weight="regular"
                     >
@@ -178,7 +177,7 @@ const Insights = () => {
                   </DesktopContainer>
                   <MobileContainer>
                     <Typography
-                      variant={locale === "ka" ? "text-lgUppercase" : "text-lg"}
+                      variant={locale === "ka" ? "text-mdUppercase" : "text-md"}
                       color={colors.text.dark}
                       weight="semibold"
                     >
@@ -232,7 +231,7 @@ const Insights = () => {
                   </DesktopContainer>
                   <MobileContainer>
                     <Typography
-                      variant="text-sm"
+                      variant="text-smUppercase"
                       color={colors.text.light}
                       weight="regular"
                     >
@@ -254,7 +253,7 @@ const Insights = () => {
                   </DesktopContainer>
                   <MobileContainer>
                     <Typography
-                      variant={locale === "ka" ? "text-lgUppercase" : "text-lg"}
+                      variant={locale === "ka" ? "text-mdUppercase" : "text-md"}
                       color={colors.text.dark}
                       weight="semibold"
                     >

@@ -54,6 +54,7 @@ const DecorativeLine = styled.div`
   opacity: 0.4;
   @media screen and (max-width: 1080px) {
     border: 1px solid ${colors.state.focus.ring}40;
+    display: none;
     width: 100%;
   }
 `;
@@ -76,7 +77,8 @@ const Title = styled.div`
   margin-bottom: 64px;
   @media screen and (max-width: 1080px) {
     margin-bottom: 32px;
-    gap: 16px;
+    gap: 8px;
+    text-align: center;
   }
 `;
 
@@ -229,9 +231,7 @@ const Testimonials = () => {
               </DesktopContainer>
               <MobileContainer>
                 <Typography
-                  variant={
-                    locale === "ka" ? "display-xsUppercase" : "display-xs"
-                  }
+                  variant={locale === "ka" ? "text-lgUppercase" : "text-lg"}
                   weight="bold"
                   color={colors.text.dark}
                 >
@@ -248,23 +248,47 @@ const Testimonials = () => {
             <TestimonialCard key={`testimonial-${index}`}>
               <QuoteSection>
                 <CommentIcon />
-                <Typography variant="text-md" color={colors.text.light}>
-                  {testimonial.quote}
-                </Typography>
+                <DesktopContainer>
+                  <Typography variant="text-md" color={colors.text.light}>
+                    {testimonial.quote}
+                  </Typography>
+                </DesktopContainer>
+                <MobileContainer>
+                  <Typography variant="text-sm" color={colors.text.light}>
+                    {testimonial.quote}
+                  </Typography>
+                </MobileContainer>
               </QuoteSection>
               <AuthorSection>
                 <Avatar src={testimonial.avatar} alt={testimonial.name} />
                 <AuthorInfo>
-                  <Typography
-                    variant="text-mdOneline"
-                    weight="semibold"
-                    color={colors.text.dark}
-                  >
-                    {testimonial.name}
-                  </Typography>
-                  <Typography variant="text-sm" color={colors.text.dark}>
-                    {testimonial.title}
-                  </Typography>
+                  <DesktopContainer>
+                    <Typography
+                      variant="text-mdOneline"
+                      weight="semibold"
+                      color={colors.text.dark}
+                    >
+                      {testimonial.name}
+                    </Typography>
+                    <Typography
+                      variant="text-mdOneline"
+                      color={colors.text.dark}
+                    >
+                      {testimonial.title}
+                    </Typography>
+                  </DesktopContainer>
+                  <MobileContainer>
+                    <Typography
+                      variant="text-sm"
+                      weight="semibold"
+                      color={colors.text.dark}
+                    >
+                      {testimonial.name}
+                    </Typography>
+                    <Typography variant="text-sm" color={colors.text.dark}>
+                      {testimonial.title}
+                    </Typography>
+                  </MobileContainer>
                 </AuthorInfo>
               </AuthorSection>
             </TestimonialCard>

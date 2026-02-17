@@ -11,13 +11,14 @@ import WhatsappIcon from "../icons/WhatsappIcon";
 import MessengerIcon from "../icons/MessengerIcon";
 import InstaIcon from "../icons/InstaIcon";
 import LogoIcon from "../icons/LogoIcon";
+import LogoSmallIcon from "../icons/LogoSmallIcon";
 
 const FooterWrapper = styled.footer`
   background-color: ${colors.background.light};
   position: relative;
   padding: 100px 0;
   @media screen and (max-width: 1080px) {
-    padding: 48px 0 32px;
+    padding: 48px 0;
   }
 `;
 
@@ -136,13 +137,14 @@ const CopyrightSection = styled.div`
 
   @media screen and (max-width: 1080px) {
     padding-top: 16px;
+    text-align: left;
   }
 `;
 
 const Title = styled.div`
   margin-bottom: 8px;
   @media screen and (max-width: 1080px) {
-    margin-bottom: 4px;
+    margin-bottom: 8px;
   }
 `;
 
@@ -155,7 +157,12 @@ const Footer = () => {
       <Container>
         <FooterContent>
           <BrandSection>
-            <LogoIcon />
+            <DesktopContainer>
+              <LogoIcon />
+            </DesktopContainer>
+            <MobileContainer>
+              <LogoSmallIcon />
+            </MobileContainer>
             <DesktopContainer>
               <Typography
                 variant="text-md"
@@ -189,7 +196,7 @@ const Footer = () => {
               </DesktopContainer>
               <MobileContainer>
                 <Typography
-                  variant="text-sm"
+                  variant="text-smUppercase"
                   color={colors.text.dark}
                   weight="semibold"
                 >
@@ -272,7 +279,7 @@ const Footer = () => {
               </DesktopContainer>
               <MobileContainer>
                 <Typography
-                  variant="text-sm"
+                  variant="text-smUppercase"
                   color={colors.text.dark}
                   weight="semibold"
                 >

@@ -61,7 +61,6 @@ const FormCard = styled.div`
   margin: 0 auto;
   box-shadow: ${colors.shadow.medium};
   @media screen and (max-width: 1080px) {
-    padding: 16px;
   }
 `;
 
@@ -106,7 +105,7 @@ const StyledInput = styled.input<{ $locale?: string }>`
   }
 
   @media screen and (max-width: 1080px) {
-    padding: 12px;
+    padding: 17px;
     padding-right: 70px;
     font-size: 12px;
   }
@@ -195,7 +194,7 @@ const Contact = () => {
           </DesktopContainer>
           <MobileContainer>
             <Typography
-              variant={locale === "ka" ? "display-xsUppercase" : "display-xs"}
+              variant={locale === "ka" ? "text-lgUppercase" : "text-lg"}
               color={colors.text.dark}
               weight="bold"
             >
@@ -207,13 +206,24 @@ const Contact = () => {
         <FormCard>
           <FormGroup>
             <Label>
-              <Typography
-                variant="text-mdOneline"
-                color={colors.text.dark}
-                weight="regular"
-              >
-                {tContact("form.emailTitle")}
-              </Typography>
+              <DesktopContainer>
+                <Typography
+                  variant="text-mdOneline"
+                  color={colors.text.dark}
+                  weight="regular"
+                >
+                  {tContact("form.emailTitle")}
+                </Typography>
+              </DesktopContainer>
+              <MobileContainer>
+                <Typography
+                  variant="text-sm"
+                  color={colors.text.dark}
+                  weight="regular"
+                >
+                  {tContact("form.emailTitle")}
+                </Typography>
+              </MobileContainer>
             </Label>
             <InputWrapper>
               <StyledInput
@@ -236,13 +246,24 @@ const Contact = () => {
 
           <FormGroup>
             <Label>
-              <Typography
-                variant="text-mdOneline"
-                color={colors.text.dark}
-                weight="regular"
-              >
-                {tContact("form.messageTitle")}
-              </Typography>
+              <DesktopContainer>
+                <Typography
+                  variant="text-mdOneline"
+                  color={colors.text.dark}
+                  weight="regular"
+                >
+                  {tContact("form.messageTitle")}
+                </Typography>
+              </DesktopContainer>
+              <MobileContainer>
+                <Typography
+                  variant="text-sm"
+                  color={colors.text.dark}
+                  weight="regular"
+                >
+                  {tContact("form.messageTitle")}
+                </Typography>
+              </MobileContainer>
             </Label>
             <InputWrapper>
               <StyledTextarea

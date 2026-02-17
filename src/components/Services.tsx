@@ -17,7 +17,7 @@ const ServicesWrapper = styled.section`
   @media screen and (max-width: 1080px) {
     border-top-left-radius: 32px;
     border-top-right-radius: 32px;
-    padding: 48px 0;
+    padding: 48px 0 58px 0;
   }
 `;
 
@@ -44,7 +44,7 @@ const Title = styled.div`
   margin-bottom: 64px;
   @media screen and (max-width: 1080px) {
     margin-bottom: 32px;
-    gap: 16px;
+    gap: 8px;
   }
 `;
 
@@ -88,6 +88,9 @@ const CardHeader = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 16px;
+  @media screen and (max-width: 1080px) {
+    margin-bottom: 24px;
+  }
 `;
 
 const CardTitle = styled.div`
@@ -261,7 +264,7 @@ const Services = () => {
               {tServices("description")}
             </Typography>
             <Typography
-              variant={locale === "ka" ? "display-xsUppercase" : "display-xs"}
+              variant={locale === "ka" ? "text-lgUppercase" : "text-lg"}
               color={colors.text.dark}
               weight="bold"
             >

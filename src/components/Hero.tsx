@@ -31,8 +31,9 @@ const TagWrapper = styled.div`
   max-width: 184px;
   text-align: center;
   @media screen and (max-width: 1080px) {
-    max-width: 160px;
+    width: 160px;
     margin-bottom: 16px;
+    padding: 7px;
   }
 `;
 
@@ -77,6 +78,12 @@ const SocialWrapper = styled.div`
   @media screen and (max-width: 1080px) {
     width: 42px;
     height: 42px;
+  }
+`;
+
+const ButtonWrapper = styled.div`
+  @media screen and (max-width: 1080px) {
+    margin-top: 16px;
   }
 `;
 
@@ -149,7 +156,9 @@ const Hero = () => {
               {tHero("description")}
             </Typography>
           </MobileContainer>
-          <Button variant="default" />
+          <ButtonWrapper>
+            <Button variant="default" />
+          </ButtonWrapper>
         </MainContainer>
         <SocialsBox>
           <SocialWrapper>

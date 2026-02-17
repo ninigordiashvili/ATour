@@ -18,7 +18,7 @@ const BlogWrapper = styled.main`
   position: relative;
   overflow: hidden;
   @media (max-width: 1080px) {
-    padding: 24px 0 48px;
+    padding: 48px 0;
   }
 `;
 
@@ -41,6 +41,9 @@ const MetaItem = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
+  @media (max-width: 1080px) {
+    gap: 8px;
+  }
 `;
 
 const Title = styled.h1`
@@ -71,13 +74,10 @@ const ArticleContent = styled.article`
   gap: 32px;
 
   @media (max-width: 1080px) {
-    gap: 24px;
   }
 `;
 
-const IntroText = styled.div`
-  margin-bottom: 16px;
-`;
+const IntroText = styled.div``;
 
 const Section = styled.section`
   display: flex;
@@ -130,7 +130,7 @@ const BlogPage = () => {
               </DesktopContainer>
               <MobileContainer>
                 <Typography
-                  variant="text-sm"
+                  variant="text-smUppercase"
                   color={colors.text.light}
                   weight="regular"
                 >
@@ -151,7 +151,7 @@ const BlogPage = () => {
               </DesktopContainer>
               <MobileContainer>
                 <Typography
-                  variant="text-sm"
+                  variant="text-smUppercase"
                   color={colors.text.light}
                   weight="regular"
                 >
@@ -174,7 +174,7 @@ const BlogPage = () => {
             </DesktopContainer>
             <MobileContainer>
               <Typography
-                variant="display-sm"
+                variant="display-xs"
                 color={colors.text.dark}
                 weight="bold"
               >

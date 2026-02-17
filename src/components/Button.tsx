@@ -50,6 +50,9 @@ const TextContainer = styled.div<{ $isActive: boolean; $variant?: string }>`
   ${StyledButton}:active & {
     background: ${colors.state.focus.active};
   }
+  @media screen {
+    padding: 15px;
+  }
 `;
 
 const ArrowContainer = styled.div<{
@@ -86,10 +89,10 @@ const ArrowContainer = styled.div<{
   @media screen {
     padding: ${(props) =>
       props.$variant === "bookButton"
-        ? "16px"
+        ? "15px"
         : props.$variant === "iconOnly"
-          ? "16px 36px"
-          : "16px"};
+          ? "16px 32px"
+          : "15px"};
   }
 `;
 
@@ -152,7 +155,7 @@ const Button: React.FC<ButtonProps> = ({ onClick, variant = "default" }) => {
           <Typography
             variant="text-mdOneline"
             color={colors.text.primary}
-            weight="regular"
+            weight="semibold"
           >
             {tButtons("back")}
           </Typography>
@@ -161,7 +164,7 @@ const Button: React.FC<ButtonProps> = ({ onClick, variant = "default" }) => {
           <Typography
             variant="text-smUppercase"
             color={colors.text.primary}
-            weight="regular"
+            weight="semibold"
           >
             {tButtons("back")}
           </Typography>
@@ -217,7 +220,7 @@ const Button: React.FC<ButtonProps> = ({ onClick, variant = "default" }) => {
         </DesktopContainer>
         <MobileContainer>
           <Typography
-            variant="text-sm"
+            variant="text-smUppercase"
             color={colors.state.focus.active}
             weight="regular"
           >
@@ -242,13 +245,24 @@ const Button: React.FC<ButtonProps> = ({ onClick, variant = "default" }) => {
         onMouseEnter={() => setIsHovered(true)}
       >
         <TextContainer $isActive={true} $variant="bookButton">
-          <Typography
-            variant="text-mdOneline"
-            color={colors.text.primary}
-            weight="semibold"
-          >
-            {tButtons("bookACall")}
-          </Typography>
+          <DesktopContainer>
+            <Typography
+              variant="text-mdOneline"
+              color={colors.text.primary}
+              weight="semibold"
+            >
+              {tButtons("bookACall")}
+            </Typography>
+          </DesktopContainer>
+          <MobileContainer>
+            <Typography
+              variant="text-sm"
+              color={colors.text.primary}
+              weight="semibold"
+            >
+              {tButtons("bookACall")}
+            </Typography>
+          </MobileContainer>
         </TextContainer>
         <ArrowContainer
           $isActive={true}
@@ -278,13 +292,24 @@ const Button: React.FC<ButtonProps> = ({ onClick, variant = "default" }) => {
       onMouseEnter={() => setIsHovered(true)}
     >
       <TextContainer $isActive={isActive}>
-        <Typography
-          variant="text-mdOneline"
-          color={colors.text.primary}
-          weight="semibold"
-        >
-          {tButtons("bookNow")}
-        </Typography>
+        <DesktopContainer>
+          <Typography
+            variant="text-mdOneline"
+            color={colors.text.primary}
+            weight="semibold"
+          >
+            {tButtons("bookNow")}
+          </Typography>
+        </DesktopContainer>
+        <MobileContainer>
+          <Typography
+            variant="text-smUppercase"
+            color={colors.text.primary}
+            weight="semibold"
+          >
+            {tButtons("bookNow")}
+          </Typography>
+        </MobileContainer>
       </TextContainer>
       <ArrowContainer
         $isActive={isActive}

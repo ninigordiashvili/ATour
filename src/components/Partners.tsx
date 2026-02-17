@@ -108,7 +108,7 @@ const Title = styled.div`
   gap: 24px;
   align-items: center;
   @media screen and (max-width: 1080px) {
-    gap: 16px;
+    gap: 8px;
     max-width: 326px;
     text-align: center;
   }
@@ -272,9 +272,7 @@ const Partners = () => {
             <MobileContainer>
               <PartnersWrapper>
                 <Typography
-                  variant={
-                    locale === "ka" ? "display-xsUppercase" : "display-xs"
-                  }
+                  variant={locale === "ka" ? "text-lgUppercase" : "text-lg"}
                   weight="bold"
                   color={colors.text.dark}
                 >
