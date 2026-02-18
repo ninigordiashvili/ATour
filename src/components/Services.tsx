@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Container from "./Container";
 import { colors } from "../styles/colors";
@@ -7,6 +7,8 @@ import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import Button from "./Button";
 import { DesktopContainer, MobileContainer } from "./Responsive";
+import CloseIcon from "../icons/CloseIcon";
+import { relative } from "path/win32";
 
 const ServicesWrapper = styled.section`
   background-color: ${colors.background.light};
@@ -114,72 +116,114 @@ const PopupOverlay = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 16, 61, 0.32);
+  background: ${colors.overlay.dark};
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
+  @media (max-width: 1080px) {
+  }
 `;
 
-const PopupCard = styled.div`
-  background: #fff;
-  border-radius: 32px;
-  box-shadow: 0 8px 32px 0 rgba(0, 16, 61, 0.16);
+interface PopupCardProps {
+  $bg: string;
+}
+
+const PopupCard = styled.div<PopupCardProps>`
+  border-radius: 24px;
   max-width: 800px;
-  width: 90vw;
-  padding: 0;
   position: relative;
   overflow: hidden;
-  @media (max-width: 600px) {
-    border-radius: 24px;
-    max-width: 95vw;
+  background: ${({ $bg }) => `url(${$bg}) center center / cover no-repeat`};
+  padding: 32px;
+  height: 509px;
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 1080px) {
+    margin: 0 16px;
+    min-width: 343px;
+    padding: 16px;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    bottom: 0;
+    width: 100%;
+    height: 60%; /* Adjust height as needed */
+    pointer-events: none;
+    background: linear-gradient(
+      to top,
+      ${colors.background.white} 0%,
+      ${colors.background.white}00 100%
+    );
   }
 `;
 
-const PopupImage = styled.div`
-  width: 100%;
-  height: 260px;
-  position: relative;
-  background-image: url("/images/insights/tfls.png");
-  background-size: cover;
-  background-position: center;
-  @media (max-width: 600px) {
-    height: 180px;
+const PopupHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  @media (max-width: 1080px) {
   }
+`;
+
+const BadgeWrapper = styled.div`
+  background: ${colors.state.focus.ring};
+  padding: 6px 12px;
+  border-radius: 53px;
+  display: inline-block;
+`;
+
+const BadgeSwitcher = styled.div`
+  display: flex;
+  background: ${colors.background.light};
+  border-radius: 53px;
+`;
+
+const BadgeButton = styled.button<{ active?: boolean }>`
+  background: ${({ active }) =>
+    active ? colors.state.focus.ring : "transparent"};
+  color: ${({ active }) => (active ? colors.text.primary : colors.text.light)};
+  border: none;
+  border-radius: 53px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition:
+    background 300ms ease-out,
+    color 300ms ease-out;
 `;
 
 const PopupContent = styled.div`
-  padding: 32px 40px 32px 40px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  @media (max-width: 600px) {
-    padding: 16px;
-    gap: 12px;
+  gap: 24px;
+  margin-top: auto;
+  z-index: 10;
+
+  @media (max-width: 1080px) {
+    gap: 16px;
+    margin: 8px;
   }
 `;
 
 const PopupClose = styled.button`
   position: absolute;
-  top: 24px;
-  right: 24px;
-  background: #f5f7fa;
+  top: 32px;
+  right: 42px;
+  background: ${colors.background.light}50;
   border: none;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 10;
-  font-size: 24px;
-  @media (max-width: 600px) {
-    top: 12px;
-    right: 12px;
-    width: 32px;
-    height: 32px;
-    font-size: 20px;
+  @media (max-width: 1080px) {
+    top: 16px;
+    right: 16px;
   }
 `;
 
@@ -187,52 +231,165 @@ const Services = () => {
   const tServices = useTranslations("Services");
   const locale = useLocale();
   const [openCard, setOpenCard] = useState<null | "Card1" | "Card2">(null);
+  const [miceDmcMode, setMiceDmcMode] = useState<"MICE" | "DMC">("DMC");
+  // Close popup on Esc key
+  useEffect(() => {
+    if (!openCard) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpenCard(null);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [openCard]);
 
   // Popup content for Card1 (TFLS)
   const renderPopup = () => {
     if (!openCard) return null;
-    let title = tServices("Card1.titleDetails");
-    let description = tServices("Card1.descriptionDetails");
-    let badge = tServices("Card1.title");
-    if (openCard === "Card2") {
-      title = tServices("Card2.DmcDetails");
-      description = tServices("Card2.DmcDescription");
-      badge = tServices("Card2.title");
+
+    if (openCard === "Card1") {
+      // Card1 popup
+      const title = tServices("Card1.titleDetails");
+      const description = tServices("Card1.descriptionDetails");
+      const badge = tServices("Card1.title");
+      const imageSrc = "/images/services/tfls.png";
+      return (
+        <PopupOverlay>
+          <PopupCard $bg={imageSrc}>
+            <PopupHeader>
+              <PopupClose aria-label="Close" onClick={() => setOpenCard(null)}>
+                <CloseIcon />
+              </PopupClose>
+              <BadgeWrapper>
+                <Typography
+                  as="span"
+                  variant={"text-sm"}
+                  color={`${colors.background.white}`}
+                  weight="regular"
+                >
+                  {badge}
+                </Typography>
+              </BadgeWrapper>
+            </PopupHeader>
+            <PopupContent>
+              <DesktopContainer>
+                <Typography
+                  variant={
+                    locale === "ka" ? "display-smUppercase" : "display-sm"
+                  }
+                  color={colors.text.dark}
+                  weight="semibold"
+                >
+                  {title}
+                </Typography>
+                <Typography
+                  variant="text-md"
+                  color={colors.text.dark}
+                  weight="regular"
+                >
+                  {description}
+                </Typography>
+              </DesktopContainer>
+              <MobileContainer>
+                <Typography
+                  variant={locale === "ka" ? "text-lgUppercase" : "text-lg"}
+                  color={colors.text.dark}
+                  weight="semibold"
+                >
+                  {title}
+                </Typography>
+                <Typography
+                  variant="text-sm"
+                  color={colors.text.dark}
+                  weight="regular"
+                >
+                  {description}
+                </Typography>
+              </MobileContainer>
+            </PopupContent>
+          </PopupCard>
+        </PopupOverlay>
+      );
     }
-    return (
-      <PopupOverlay>
-        <PopupCard>
-          <PopupClose aria-label="Close" onClick={() => setOpenCard(null)}>
-            ×
-          </PopupClose>
-          <PopupImage />
-          <PopupContent>
-            <Typography
-              as="span"
-              variant={locale === "ka" ? "text-mdUppercase" : "text-md"}
-              color="#fff"
-              weight="semibold"
-            >
-              {badge}
-            </Typography>
-            <Typography
-              variant={locale === "ka" ? "display-mdUppercase" : "display-md"}
-              color={colors.text.dark}
-              weight="bold"
-            >
-              {title}
-            </Typography>
-            <Typography
-              variant={locale === "ka" ? "text-mdUppercase" : "text-md"}
-              color={colors.text.dark}
-              weight="regular"
-            >
-              {description}
-            </Typography>
-          </PopupContent>
-        </PopupCard>
-      </PopupOverlay>
-    );
+
+    if (openCard === "Card2") {
+      // Card2 popup with badge switcher
+      const badge = tServices("Card2.title");
+      const imageSrc = "/images/services/dmc.png";
+      const title =
+        miceDmcMode === "DMC"
+          ? tServices("Card2.DmcDetails")
+          : tServices("Card2.MiceDetails");
+      const description =
+        miceDmcMode === "DMC"
+          ? tServices("Card2.DmcDescription")
+          : tServices("Card2.MiceDescription");
+
+      return (
+        <PopupOverlay>
+          <PopupCard $bg={imageSrc}>
+            <PopupHeader>
+              <PopupClose aria-label="Close" onClick={() => setOpenCard(null)}>
+                <CloseIcon />
+              </PopupClose>
+              <BadgeSwitcher>
+                <BadgeButton
+                  active={miceDmcMode === "MICE"}
+                  onClick={() => setMiceDmcMode("MICE")}
+                >
+                  MICE
+                </BadgeButton>
+                <BadgeButton
+                  active={miceDmcMode === "DMC"}
+                  onClick={() => setMiceDmcMode("DMC")}
+                >
+                  DMC
+                </BadgeButton>
+              </BadgeSwitcher>
+            </PopupHeader>
+            <PopupContent>
+              <DesktopContainer>
+                <Typography
+                  variant={
+                    locale === "ka" ? "display-smUppercase" : "display-sm"
+                  }
+                  color={colors.text.dark}
+                  weight="semibold"
+                >
+                  {title}
+                </Typography>
+                <Typography
+                  variant="text-md"
+                  color={colors.text.dark}
+                  weight="regular"
+                >
+                  {description}
+                </Typography>
+              </DesktopContainer>
+              <MobileContainer>
+                <Typography
+                  variant={locale === "ka" ? "text-lgUppercase" : "text-lg"}
+                  color={colors.text.dark}
+                  weight="semibold"
+                >
+                  {title}
+                </Typography>
+                <Typography
+                  variant="text-sm"
+                  color={colors.text.dark}
+                  weight="regular"
+                >
+                  {description}
+                </Typography>
+              </MobileContainer>
+            </PopupContent>
+          </PopupCard>
+        </PopupOverlay>
+      );
+    }
+
+    return null;
   };
 
   return (
