@@ -51,6 +51,8 @@ const DecorativeLine = styled.div`
   align-self: center;
   position: absolute;
   top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
   opacity: 0.4;
   @media screen and (max-width: 1080px) {
     border: 1px solid ${colors.state.focus.ring}40;

@@ -23,6 +23,20 @@ const HeroImageWrapper = styled.div`
   }
 `;
 
+const HeroDesktopImageWrapper = styled.div`
+  display: none;
+  @media (min-width: 426px) {
+    display: block;
+  }
+`;
+
+const HeroMobileImageWrapper = styled.div`
+  display: none;
+  @media (max-width: 425px) {
+    display: block;
+  }
+`;
+
 const TagWrapper = styled.div`
   display: inline-block;
   padding: 8px;
@@ -94,13 +108,26 @@ const Hero = () => {
   return (
     <>
       <HeroImageWrapper>
-        <Image
-          src="/images/hero.jpg"
-          alt="Hero Background"
-          fill
-          style={{ objectFit: "cover" }}
-          priority
-        />
+        <HeroDesktopImageWrapper>
+          <Image
+            src="/images/hero.jpg"
+            alt="Hero Background"
+            fill
+            style={{ objectFit: "cover" }}
+            priority
+          />
+        </HeroDesktopImageWrapper>
+        <HeroMobileImageWrapper>
+          <MobileContainer>
+            <Image
+              src="/images/heroMobImage.png"
+              alt="Hero Background"
+              fill
+              style={{ objectFit: "cover" }}
+              priority
+            />
+          </MobileContainer>
+        </HeroMobileImageWrapper>
       </HeroImageWrapper>
       <Container>
         <MainContainer>

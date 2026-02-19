@@ -92,7 +92,7 @@ const ArrowContainer = styled.div<{
         ? "15px"
         : props.$variant === "iconOnly"
           ? "16px 32px"
-          : "15px"};
+          : "14px"};
   }
 `;
 

@@ -50,9 +50,9 @@ const InsightCard = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-
   @media screen and (max-width: 1080px) {
     padding: 16px;
+    min-height: 400px;
   }
 `;
 
@@ -63,7 +63,7 @@ const CardDate = styled.div`
 
 const CardBody = styled.div`
   display: flex;
-  gap: 16px;
+  gap: 8px;
   @media screen and (max-width: 1080px) {
     gap: 20px;
     display: flex;
@@ -77,6 +77,13 @@ const CardTextContent = styled.div`
   gap: 16px;
   flex: 1;
   justify-content: space-between;
+  @media screen and (max-width: 1080px) {
+    order: 1;
+    min-height: 210px;
+  }
+  @media screen and (max-width: 738px) {
+    min-height: auto;
+  }
 `;
 
 const CardBottomContent = styled.div`
@@ -96,6 +103,7 @@ const CardImage = styled.div`
     width: 100%;
     height: 194px;
     margin-top: 4px;
+    order: 2;
   }
 `;
 
@@ -167,7 +175,7 @@ const Insights = () => {
                   <DesktopContainer>
                     <Typography
                       variant={
-                        locale === "ka" ? "display-smUppercase" : "display-sm"
+                        locale === "ka" ? "text-lgUppercase" : "display-sm"
                       }
                       color={colors.text.dark}
                       weight="semibold"
@@ -243,7 +251,7 @@ const Insights = () => {
                   <DesktopContainer>
                     <Typography
                       variant={
-                        locale === "ka" ? "display-smUppercase" : "display-sm"
+                        locale === "ka" ? "text-lgUppercase" : "display-sm"
                       }
                       color={colors.text.dark}
                       weight="semibold"

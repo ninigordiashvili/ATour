@@ -8,7 +8,6 @@ import Image from "next/image";
 import Button from "./Button";
 import { DesktopContainer, MobileContainer } from "./Responsive";
 import CloseIcon from "../icons/CloseIcon";
-import { relative } from "path/win32";
 
 const ServicesWrapper = styled.section`
   background-color: ${colors.background.light};
@@ -143,6 +142,7 @@ const PopupCard = styled.div<PopupCardProps>`
     margin: 0 16px;
     min-width: 343px;
     padding: 16px;
+    justify-content: space-between;
   }
   &::after {
     content: "";
@@ -151,11 +151,12 @@ const PopupCard = styled.div<PopupCardProps>`
     z-index: 1;
     bottom: 0;
     width: 100%;
-    height: 60%; /* Adjust height as needed */
+    height: 509px;
     pointer-events: none;
     background: linear-gradient(
       to top,
       ${colors.background.white} 0%,
+      ${colors.background.white} 10%,
       ${colors.background.white}00 100%
     );
   }
@@ -325,7 +326,6 @@ const Services = () => {
         miceDmcMode === "DMC"
           ? tServices("Card2.DmcDescription")
           : tServices("Card2.MiceDescription");
-
       return (
         <PopupOverlay>
           <PopupCard $bg={imageSrc}>
@@ -335,13 +335,13 @@ const Services = () => {
               </PopupClose>
               <BadgeSwitcher>
                 <BadgeButton
-                  active={miceDmcMode === "MICE"}
+                  active={miceDmcMode === "MICE" ? true : undefined}
                   onClick={() => setMiceDmcMode("MICE")}
                 >
                   MICE
                 </BadgeButton>
                 <BadgeButton
-                  active={miceDmcMode === "DMC"}
+                  active={miceDmcMode === "DMC" ? true : undefined}
                   onClick={() => setMiceDmcMode("DMC")}
                 >
                   DMC

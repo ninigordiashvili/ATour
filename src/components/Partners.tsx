@@ -10,6 +10,7 @@ import ImageCarousel from "./ImageCarousel";
 import { DesktopContainer, MobileContainer } from "./Responsive";
 import DotsMobileIcon from "../icons/DotsMobileIcon";
 import AptosMobileIcon from "../icons/AptosMobileIcon";
+import Image from "next/image";
 
 const MainContainer = styled.div`
   padding: 100px 0 0 0;
@@ -107,6 +108,8 @@ const Title = styled.div`
   flex-direction: column;
   gap: 24px;
   align-items: center;
+  margin-left: auto;
+  margin-right: auto;
   @media screen and (max-width: 1080px) {
     gap: 8px;
     max-width: 326px;
@@ -266,7 +269,12 @@ const Partners = () => {
                 >
                   {tPartners("partner")}
                 </Typography>
-                <AptosLogoIcon />
+                <Image
+                  src="/images/aptosLogo.png"
+                  alt="Aptos Logo"
+                  width={153}
+                  height={32}
+                />
               </PartnersWrapper>
             </DesktopContainer>
             <MobileContainer>
@@ -278,7 +286,12 @@ const Partners = () => {
                 >
                   {tPartners("partner")}
                 </Typography>
-                <AptosMobileIcon />
+                <Image
+                  src="/images/aptosLogo.png"
+                  alt="Aptos Logo"
+                  width={124}
+                  height={26}
+                />
               </PartnersWrapper>
             </MobileContainer>
           </Title>
