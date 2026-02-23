@@ -75,9 +75,11 @@ const SocialsBox = styled.div`
   backdrop-filter: blur(40px);
   border-radius: 24px;
   margin-bottom: 100px;
+  max-width: 218px;
   @media screen and (max-width: 1080px) {
     justify-self: center;
     margin-bottom: 48px;
+    max-width: 206px;
   }
 `;
 
@@ -188,7 +190,12 @@ const Hero = () => {
           </ButtonWrapper>
         </MainContainer>
         <SocialsBox>
-          <SocialWrapper>
+          <SocialWrapper
+            as="a"
+            href="https://wa.me/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <DesktopContainer>
               <WhatsappIcon />
             </DesktopContainer>
@@ -196,7 +203,12 @@ const Hero = () => {
               <WhatsappIcon width={26} height={26} />
             </MobileContainer>
           </SocialWrapper>
-          <SocialWrapper>
+          <SocialWrapper
+            as="a"
+            href="https://instagram.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <DesktopContainer>
               <InstaIcon />
             </DesktopContainer>
@@ -204,7 +216,12 @@ const Hero = () => {
               <InstaIcon width={26} height={26} />
             </MobileContainer>
           </SocialWrapper>
-          <SocialWrapper>
+          <SocialWrapper
+            as="a"
+            href="https://messenger.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <DesktopContainer>
               <MessengerIcon />
             </DesktopContainer>

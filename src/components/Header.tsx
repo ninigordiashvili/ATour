@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import { Typography } from "./Typography";
 import { colors } from "../styles/colors";
@@ -14,7 +14,7 @@ import BurgerMenuIcon from "../icons/BurgerMenuIcon";
 
 const MobileMenuOverlay = styled.div`
   position: fixed;
-  top: 0;
+  top: 16px;
   left: 0;
   z-index: 1000;
   display: flex;
@@ -27,7 +27,6 @@ const MobileMenu = styled.div`
   margin: 58px 16px 0 16px;
   background: ${colors.background.light};
   border-radius: 0 0 24px 24px;
-  box-shadow: ${colors.shadow.header};
   padding: 32px 0 32px 0;
   display: flex;
   flex-direction: column;
@@ -48,7 +47,23 @@ const HeaderWrapper = styled.header<{ $isMobileMenuOpen?: boolean }>`
     border-radius: ${({ $isMobileMenuOpen }) =>
       $isMobileMenuOpen ? "24px 24px 0 0" : "24px"};
     margin-top: 16px;
-    box-shadow: ${colors.shadow.header};
+    box-shadow: none;
+  }
+`;
+
+const MobileHeaderShadow = styled.div`
+  position: fixed;
+  top: 16px;
+  left: 0;
+  width: calc(100% - 32px);
+  border-radius: 24px 24px 0 0;
+  height: 56px;
+  z-index: 1101;
+  pointer-events: none;
+  box-shadow: ${colors.shadow.header};
+  margin: 0 16px;
+  @media (min-width: 1081px) {
+    display: none;
   }
 `;
 
@@ -187,20 +202,12 @@ const Header = () => {
     }
 
     if (pathname !== "/") {
-      router.push("/");
-      setTimeout(() => {
-        const element = document.getElementById(link);
-        if (element) {
-          element.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
-        }
-      }, 100);
+      router.push(`/#${link}`);
       if (isMobile) setIsMobileMenuOpen(false);
       return;
     }
 
+    // If already on home page, scroll to section
     const element = document.getElementById(link);
     if (element) {
       element.scrollIntoView({
@@ -214,10 +221,12 @@ const Header = () => {
   return (
     <>
       {isFixed && showHeader && <div style={{ height: 96 }} />}
+      {/* Render shadow above overlay when mobile menu is open */}
+      {isMobileMenuOpen && <MobileHeaderShadow />}
       <div
         style={{
           position: isFixed ? "fixed" : "sticky",
-          top: 0,
+          top: isDesktop ? 0 : 16,
           left: 0,
           width: "100vw",
           zIndex: 100,

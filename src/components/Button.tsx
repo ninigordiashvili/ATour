@@ -50,8 +50,14 @@ const TextContainer = styled.div<{ $isActive: boolean; $variant?: string }>`
   ${StyledButton}:active & {
     background: ${colors.state.focus.active};
   }
-  @media screen {
-    padding: 15px;
+  @media screen and (max-width: 1080px) {
+    padding: 16px;
+    padding: ${(props) =>
+      props.$variant === "bookButton"
+        ? "15px"
+        : props.$variant === "iconOnly"
+          ? "16px 32px"
+          : "16px"};
   }
 `;
 
@@ -69,7 +75,7 @@ const ArrowContainer = styled.div<{
       ? "16px"
       : props.$variant === "iconOnly"
         ? "16px 36px"
-        : "18px"};
+        : "16px"};
   background: ${(props) =>
     props.$variant === "bookButton"
       ? `${colors.state.focus.ring}`
@@ -86,13 +92,13 @@ const ArrowContainer = styled.div<{
   ${StyledButton}:active & {
     background: ${colors.state.focus.active};
   }
-  @media screen {
+  @media screen and (max-width: 1080px) {
     padding: ${(props) =>
       props.$variant === "bookButton"
         ? "15px"
         : props.$variant === "iconOnly"
           ? "16px 32px"
-          : "14px"};
+          : "15px"};
   }
 `;
 

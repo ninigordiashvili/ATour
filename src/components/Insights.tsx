@@ -210,7 +210,10 @@ const Insights = () => {
                       {tInsights("Card1.description")}
                     </Typography>
                   </MobileContainer>
-                  <Button variant="transparent" />
+                  <Button
+                    variant="transparent"
+                    onClick={() => (window.location.href = "/Blog")}
+                  />
                 </CardBottomContent>
               </CardTextContent>
               <CardImage>
@@ -286,7 +289,10 @@ const Insights = () => {
                       {tInsights("Card2.description")}
                     </Typography>
                   </MobileContainer>
-                  <Button variant="transparent" />
+                  <Button
+                    variant="transparent"
+                    onClick={() => (window.location.href = "/Blog")}
+                  />
                 </CardBottomContent>
               </CardTextContent>
               <CardImage>

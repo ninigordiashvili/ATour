@@ -130,35 +130,26 @@ interface PopupCardProps {
 
 const PopupCard = styled.div<PopupCardProps>`
   border-radius: 24px;
-  max-width: 800px;
+  max-width: 891px;
+  width: 100%;
+  height: 509px;
   position: relative;
   overflow: hidden;
   background: ${({ $bg }) => `url(${$bg}) center center / cover no-repeat`};
-  padding: 32px;
-  height: 509px;
   display: flex;
   flex-direction: column;
+  padding-top: 32px;
+  padding-left: 32px;
+  padding-right: 32px;
   @media (max-width: 1080px) {
     margin: 0 16px;
     min-width: 343px;
-    padding: 16px;
+    max-width: 100%;
+    height: 414px;
+    padding-top: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
     justify-content: space-between;
-  }
-  &::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    z-index: 1;
-    bottom: 0;
-    width: 100%;
-    height: 509px;
-    pointer-events: none;
-    background: linear-gradient(
-      to top,
-      ${colors.background.white} 0%,
-      ${colors.background.white} 10%,
-      ${colors.background.white}00 100%
-    );
   }
 `;
 
@@ -183,9 +174,10 @@ const BadgeSwitcher = styled.div`
 `;
 
 const BadgeButton = styled.button<{ active?: boolean }>`
-  background: ${({ active }) =>
-    active ? colors.state.focus.ring : "transparent"};
-  color: ${({ active }) => (active ? colors.text.primary : colors.text.light)};
+  background: ${({ $active }) =>
+    $active ? colors.state.focus.ring : "transparent"};
+  color: ${({ $active }) =>
+    $active ? colors.text.primary : colors.text.light};
   border: none;
   border-radius: 53px;
   padding: 8px 16px;
@@ -196,22 +188,40 @@ const BadgeButton = styled.button<{ active?: boolean }>`
 `;
 
 const PopupContent = styled.div`
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(
+    180deg,
+    ${colors.background.linear} 0%,
+    ${colors.background.light} 100%
+  );
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  padding: 32px;
   display: flex;
   flex-direction: column;
   gap: 24px;
-  margin-top: auto;
   z-index: 10;
-
+  box-sizing: border-box;
   @media (max-width: 1080px) {
+    position: absolute;
+    border-radius: 24px;
     gap: 16px;
-    margin: 8px;
+    padding: 16px;
+    background: linear-gradient(
+      180deg,
+      ${colors.background.linear} 0%,
+      ${colors.background.light} 100%
+    );
   }
 `;
 
 const PopupClose = styled.button`
   position: absolute;
   top: 32px;
-  right: 42px;
+  right: 32px;
   background: ${colors.background.light}50;
   border: none;
   border-radius: 50%;
@@ -249,6 +259,13 @@ const Services = () => {
   const renderPopup = () => {
     if (!openCard) return null;
 
+    // Handler to close modal on click outside
+    const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
+      if (e.target === e.currentTarget) {
+        setOpenCard(null);
+      }
+    };
+
     if (openCard === "Card1") {
       // Card1 popup
       const title = tServices("Card1.titleDetails");
@@ -256,7 +273,7 @@ const Services = () => {
       const badge = tServices("Card1.title");
       const imageSrc = "/images/services/tfls.png";
       return (
-        <PopupOverlay>
+        <PopupOverlay onClick={handleOverlayClick}>
           <PopupCard $bg={imageSrc}>
             <PopupHeader>
               <PopupClose aria-label="Close" onClick={() => setOpenCard(null)}>
@@ -273,6 +290,7 @@ const Services = () => {
                 </Typography>
               </BadgeWrapper>
             </PopupHeader>
+            {/* Content at the bottom, absolutely positioned */}
             <PopupContent>
               <DesktopContainer>
                 <Typography
@@ -327,7 +345,7 @@ const Services = () => {
           ? tServices("Card2.DmcDescription")
           : tServices("Card2.MiceDescription");
       return (
-        <PopupOverlay>
+        <PopupOverlay onClick={handleOverlayClick}>
           <PopupCard $bg={imageSrc}>
             <PopupHeader>
               <PopupClose aria-label="Close" onClick={() => setOpenCard(null)}>
@@ -335,19 +353,20 @@ const Services = () => {
               </PopupClose>
               <BadgeSwitcher>
                 <BadgeButton
-                  active={miceDmcMode === "MICE" ? true : undefined}
+                  $active={miceDmcMode === "MICE"}
                   onClick={() => setMiceDmcMode("MICE")}
                 >
                   MICE
                 </BadgeButton>
                 <BadgeButton
-                  active={miceDmcMode === "DMC" ? true : undefined}
+                  $active={miceDmcMode === "DMC"}
                   onClick={() => setMiceDmcMode("DMC")}
                 >
                   DMC
                 </BadgeButton>
               </BadgeSwitcher>
             </PopupHeader>
+            {/* Content at the bottom, absolutely positioned */}
             <PopupContent>
               <DesktopContainer>
                 <Typography

@@ -20,6 +20,7 @@ export const colors = {
     white: "#ffffff",
     light: "#F4F7FF",
     transparent: "transparent",
+    linear: "#DCE5FF",
   },
 
   // Border colors

@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import styled from "styled-components";
 import Container from "./Container";
@@ -204,7 +205,7 @@ const Footer = () => {
                 </Typography>
               </MobileContainer>
             </Title>
-            <LinkItem href="#blog">
+            <LinkItem href="/Blog">
               <DesktopContainer>
                 <Typography
                   variant="text-mdOneline"
@@ -244,7 +245,16 @@ const Footer = () => {
                 </Typography>
               </MobileContainer>
             </LinkItem>
-            <LinkItem href="#contact">
+            <LinkItem
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                const section = document.getElementById("contact");
+                if (section) {
+                  section.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
+            >
               <DesktopContainer>
                 <Typography
                   variant="text-mdOneline"
