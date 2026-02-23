@@ -173,7 +173,7 @@ const BadgeSwitcher = styled.div`
   border-radius: 53px;
 `;
 
-const BadgeButton = styled.button<{ active?: boolean }>`
+const BadgeButton = styled.button<{ $active?: boolean }>`
   background: ${({ $active }) =>
     $active ? colors.state.focus.ring : "transparent"};
   color: ${({ $active }) =>
