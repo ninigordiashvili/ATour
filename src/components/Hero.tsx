@@ -76,6 +76,10 @@ const SocialsBox = styled.div`
   border-radius: 24px;
   margin-bottom: 100px;
   max-width: 218px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); /* Safari */
+  border: 1px solid rgba(255, 255, 255, 0.2);
   @media screen and (max-width: 1080px) {
     justify-content: center;
     justify-self: center;

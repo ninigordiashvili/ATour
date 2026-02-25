@@ -4,12 +4,10 @@ import { styled } from "styled-components";
 import { colors } from "../styles/colors";
 import Typography from "./Typography";
 import { useTranslations, useLocale } from "next-intl";
-import AptosLogoIcon from "../icons/AptosLogoIcon";
 import DotsIcon from "../icons/DotsIcon";
 import ImageCarousel from "./ImageCarousel";
 import { DesktopContainer, MobileContainer } from "./Responsive";
 import DotsMobileIcon from "../icons/DotsMobileIcon";
-import AptosMobileIcon from "../icons/AptosMobileIcon";
 import Image from "next/image";
 
 const MainContainer = styled.div`
@@ -125,6 +123,10 @@ const PartnersWrapper = styled.div`
   backdrop-filter: blur(40px);
   border-radius: 24px;
   background-color: ${colors.background.light};
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); /* Safari */
+  border: 1px solid rgba(255, 255, 255, 0.8);
 `;
 
 const ImageCarouselWrapper = styled.div`

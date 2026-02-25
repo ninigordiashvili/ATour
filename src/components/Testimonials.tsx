@@ -92,6 +92,11 @@ const TagWrapper = styled.div`
   backdrop-filter: blur(40px);
   border-radius: 24px;
   background-color: ${colors.background.light};
+  background-color: ${colors.background.light};
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); /* Safari */
+  border: 1px solid rgba(255, 255, 255, 0.8);
 `;
 
 const CarouselContainer = styled.div`
