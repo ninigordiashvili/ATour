@@ -40,10 +40,7 @@ const MetaInfo = styled.div`
 const MetaItem = styled.div`
   display: flex;
   align-items: center;
-  gap: 16px;
-  @media (max-width: 1080px) {
-    gap: 8px;
-  }
+  gap: 8px;
 `;
 
 const Title = styled.h1`

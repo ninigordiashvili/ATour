@@ -247,7 +247,12 @@ const Header = () => {
             }}
           >
             <DesktopContainer>
-              <LogoIcon />
+              <div
+                style={{ cursor: "pointer" }}
+                onClick={() => handleLinkClick("home")}
+              >
+                <LogoIcon />
+              </div>
               <LinksWrapper $isFixed={isFixed}>
                 {links.map((link) => (
                   <Link
@@ -292,7 +297,12 @@ const Header = () => {
               </LanguageSwitcher>
             </DesktopContainer>
             <MobileContainer>
-              <LogoSmallIcon />
+              <div
+                style={{ cursor: "pointer" }}
+                onClick={() => handleLinkClick("home", true)}
+              >
+                <LogoSmallIcon />
+              </div>
               <BurgerMenuWrapper onClick={() => setIsMobileMenuOpen(true)}>
                 <BurgerMenuIcon />
               </BurgerMenuWrapper>
@@ -303,6 +313,12 @@ const Header = () => {
       {isMobileMenuOpen && (
         <MobileMenuOverlay onClick={() => setIsMobileMenuOpen(false)}>
           <MobileMenu onClick={(e) => e.stopPropagation()}>
+            <div
+              style={{ cursor: "pointer" }}
+              onClick={() => handleLinkClick("home", true)}
+            >
+              <LogoSmallIcon />
+            </div>
             {links.map((link) => (
               <Link
                 key={link}

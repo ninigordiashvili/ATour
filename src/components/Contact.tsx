@@ -72,6 +72,12 @@ const Label = styled.label`
   display: block;
   margin-bottom: 16px;
 `;
+const RequiredAsterisk = styled.span`
+  color: #ff3b3b;
+  margin-left: 4px;
+  font-size: 18px;
+  vertical-align: middle;
+`;
 
 const InputWrapper = styled.div`
   position: relative;
@@ -213,6 +219,7 @@ const Contact = () => {
                   weight="regular"
                 >
                   {tContact("form.emailTitle")}
+                  <RequiredAsterisk>*</RequiredAsterisk>
                 </Typography>
               </DesktopContainer>
               <MobileContainer>
@@ -222,6 +229,7 @@ const Contact = () => {
                   weight="regular"
                 >
                   {tContact("form.emailTitle")}
+                  <RequiredAsterisk>*</RequiredAsterisk>
                 </Typography>
               </MobileContainer>
             </Label>

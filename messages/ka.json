@@ -77,7 +77,7 @@
   "Contact": {
     "title": "გაინტერესებთ ჩვენი სერვისები ან გაქვთ კითხვა? ",
     "form": {
-      "emailTitle": "თქვენი ელ.ფოსტა ან ტელეფონი*",
+      "emailTitle": "თქვენი ელ.ფოსტა ან ტელეფონი",
       "emailPlaceholder": "დაწერეთ აქ...",
       "messageTitle": "მესიჯი",
       "messagePlaceholder": "დაწერეთ აქ.."

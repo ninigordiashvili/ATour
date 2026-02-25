@@ -24,7 +24,18 @@ const StyledButton = styled.button<{ $isActive: boolean; $variant?: string }>`
   background: transparent;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  white-space: nowrap;
+  filter: url(#buttonFilter);
+  justify-content: flex-start;
+  align-items: stretch;
+  text-decoration: none;
+  transition-property: all;
+  transition-duration: 0.9s;
+  transition-timing-function: cubic-bezier(0.135, 2, 0.15, 1);
+  display: flex;
+  position: relative;
+  background: none;
+  border: none;
   overflow: visible;
   width: ${(props) => (props.$variant === "bookButton" ? "100%" : "auto")};
 `;
@@ -142,8 +153,11 @@ const StyledArrowIcon = styled.div<{
   }
 `;
 
+import { useLocale } from "next-intl";
+
 const Button: React.FC<ButtonProps> = ({ onClick, variant = "default" }) => {
   const tButtons = useTranslations("Buttons");
+  const locale = useLocale();
   const [isActive, setIsActive] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -159,7 +173,7 @@ const Button: React.FC<ButtonProps> = ({ onClick, variant = "default" }) => {
         <BackArrowIcon />
         <DesktopContainer>
           <Typography
-            variant="text-mdOneline"
+            variant={locale === "ka" ? "text-mdUppercase" : "text-mdOneline"}
             color={colors.text.primary}
             weight="semibold"
           >
@@ -168,7 +182,7 @@ const Button: React.FC<ButtonProps> = ({ onClick, variant = "default" }) => {
         </DesktopContainer>
         <MobileContainer>
           <Typography
-            variant="text-smUppercase"
+            variant={locale === "ka" ? "text-smUppercase" : "text-smOneline"}
             color={colors.text.primary}
             weight="semibold"
           >
@@ -253,7 +267,7 @@ const Button: React.FC<ButtonProps> = ({ onClick, variant = "default" }) => {
         <TextContainer $isActive={true} $variant="bookButton">
           <DesktopContainer>
             <Typography
-              variant="text-mdOneline"
+              variant={locale === "ka" ? "text-mdUppercase" : "text-mdOneline"}
               color={colors.text.primary}
               weight="semibold"
             >
@@ -262,7 +276,7 @@ const Button: React.FC<ButtonProps> = ({ onClick, variant = "default" }) => {
           </DesktopContainer>
           <MobileContainer>
             <Typography
-              variant="text-sm"
+              variant={locale === "ka" ? "text-smUppercase" : "text-smOneline"}
               color={colors.text.primary}
               weight="semibold"
             >
@@ -300,7 +314,7 @@ const Button: React.FC<ButtonProps> = ({ onClick, variant = "default" }) => {
       <TextContainer $isActive={isActive}>
         <DesktopContainer>
           <Typography
-            variant="text-mdOneline"
+            variant={locale === "ka" ? "text-mdUppercase" : "text-mdOneline"}
             color={colors.text.primary}
             weight="semibold"
           >
@@ -309,7 +323,7 @@ const Button: React.FC<ButtonProps> = ({ onClick, variant = "default" }) => {
         </DesktopContainer>
         <MobileContainer>
           <Typography
-            variant="text-smUppercase"
+            variant={locale === "ka" ? "text-smUppercase" : "text-smOneline"}
             color={colors.text.primary}
             weight="semibold"
           >

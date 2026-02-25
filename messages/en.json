@@ -77,7 +77,7 @@
   "Contact": {
     "title": "Interested In Our Services or Have a Question? ",
     "form": {
-      "emailTitle": "Your Email or phone*",
+      "emailTitle": "Your Email or phone",
       "emailPlaceholder": "Write here...",
       "messageTitle": "Message",
       "messagePlaceholder": "Write here.."

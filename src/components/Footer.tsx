@@ -159,10 +159,14 @@ const Footer = () => {
         <FooterContent>
           <BrandSection>
             <DesktopContainer>
-              <LogoIcon />
+              <a href="/" style={{ cursor: "pointer" }}>
+                <LogoIcon />
+              </a>
             </DesktopContainer>
             <MobileContainer>
-              <LogoSmallIcon />
+              <a href="/" style={{ cursor: "pointer" }}>
+                <LogoSmallIcon />
+              </a>
             </MobileContainer>
             <DesktopContainer>
               <Typography
