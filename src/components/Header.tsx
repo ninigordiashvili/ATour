@@ -220,7 +220,7 @@ const Header = () => {
 
   return (
     <>
-      {isFixed && showHeader && <div style={{ height: 96 }} />}
+      {isFixed && showHeader}
       {/* Render shadow above overlay when mobile menu is open */}
       {isMobileMenuOpen && <MobileHeaderShadow />}
       <div

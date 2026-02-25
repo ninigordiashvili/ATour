@@ -77,7 +77,9 @@ const SocialsBox = styled.div`
   margin-bottom: 100px;
   max-width: 218px;
   @media screen and (max-width: 1080px) {
+    justify-content: center;
     justify-self: center;
+    margin-left: auto;
     margin-bottom: 48px;
     max-width: 206px;
   }
