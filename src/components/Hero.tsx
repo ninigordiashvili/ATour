@@ -54,7 +54,7 @@ const TagWrapper = styled.div`
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 100px 0 0 0;
+  padding: 190px 0 0 0;
   gap: 32px;
   max-width: 648px;
   @media screen and (max-width: 1080px) {
@@ -62,7 +62,7 @@ const MainContainer = styled.div`
     gap: 16px;
     text-align: center;
     align-items: center;
-    padding: 48px 0;
+    padding: 124px 0 48px 0;
   }
 `;
 
@@ -79,7 +79,6 @@ const SocialsBox = styled.div`
   @media screen and (max-width: 1080px) {
     justify-content: center;
     justify-self: center;
-    margin-left: auto;
     margin-bottom: 48px;
     max-width: 206px;
   }

@@ -225,7 +225,7 @@ const Header = () => {
       {isMobileMenuOpen && <MobileHeaderShadow />}
       <div
         style={{
-          position: isFixed ? "fixed" : "sticky",
+          position: "fixed",
           top: isDesktop ? 0 : 16,
           left: 0,
           width: "100vw",
