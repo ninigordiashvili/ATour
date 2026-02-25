@@ -71,7 +71,7 @@ const SocialsBox = styled.div`
   flex-direction: row;
   gap: 32px;
   padding: 8px;
-  justify-self: flex-end;
+  margin-left: auto;
   backdrop-filter: blur(40px);
   border-radius: 24px;
   margin-bottom: 100px;
@@ -82,8 +82,8 @@ const SocialsBox = styled.div`
   border: 1px solid rgba(255, 255, 255, 0.2);
   @media screen and (max-width: 1080px) {
     justify-content: center;
-    justify-self: center;
-    margin-bottom: 48px;
+    align-items: center;
+    margin: 0 auto 48px auto;
     max-width: 206px;
   }
 `;
