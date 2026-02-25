@@ -8,9 +8,9 @@
 }
 
 @font-face {
-  font-family: "Helvetica Georgian Caps";
-  src: url("/fonts/helvetica-neue-lt-geo-55-roman-caps.ttf") format("truetype");
-  font-weight: normal;
+  font-family: "Helvetica Neue Custom";
+  src: url("/fonts/HelveticaNeueMedium.otf") format("opentype");
+  font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
