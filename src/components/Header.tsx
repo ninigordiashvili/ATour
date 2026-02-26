@@ -196,11 +196,7 @@ const Header = () => {
   const handleLinkClick = (link: string, isMobile = false) => {
     setSelectedLink(link);
 
-    if (link === "blog") {
-      router.push("/Blog");
-      if (isMobile) setIsMobileMenuOpen(false);
-      return;
-    }
+    const sectionId = link === "blog" ? "insights" : link;
 
     if (link === "home") {
       if (pathname !== "/") {
@@ -212,18 +208,14 @@ const Header = () => {
     }
 
     if (pathname !== "/") {
-      router.push(`/#${link}`);
+      router.push(`/#${sectionId}`);
       if (isMobile) setIsMobileMenuOpen(false);
       return;
     }
 
-    // If already on home page, scroll to section
-    const element = document.getElementById(link);
+    const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
     if (isMobile) setIsMobileMenuOpen(false);
   };

@@ -112,7 +112,7 @@ const Insights = () => {
   const locale = useLocale();
 
   return (
-    <InsightsWrapper>
+    <InsightsWrapper id="insights">
       <Container>
         <Title>
           <DesktopContainer>

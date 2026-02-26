@@ -196,7 +196,7 @@ const Hero = () => {
       <HeroImageWrapper>
         <HeroDesktopImageWrapper>
           <Image
-            src="/images/hero.jpg"
+            src="/images/hero.png"
             alt="Hero Background"
             fill
             style={{ objectFit: "cover" }}
