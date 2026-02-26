@@ -109,17 +109,27 @@ const DescriptionWrapper = styled.div`
 `;
 
 // Popup styles
-const PopupOverlay = styled.div`
+const PopupOverlay = styled.div<{
+  $show: boolean;
+}>`
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: ${colors.overlay.dark};
+  background: linear-gradient(
+    167.92deg,
+    rgba(31, 41, 55, 0.8) -8.86%,
+    rgba(12, 42, 84, 0.8) 32.93%,
+    rgba(19, 46, 85, 0.8) 74.73%
+  );
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
+  opacity: ${({ $show }) => ($show ? 1 : 0)};
+  pointer-events: ${({ $show }) => ($show ? "auto" : "none")};
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   @media (max-width: 1080px) {
   }
 `;
@@ -128,7 +138,7 @@ interface PopupCardProps {
   $bg: string;
 }
 
-const PopupCard = styled.div<PopupCardProps>`
+const PopupCard = styled.div<PopupCardProps & { $show: boolean }>`
   border-radius: 24px;
   max-width: 891px;
   width: 100%;
@@ -141,6 +151,11 @@ const PopupCard = styled.div<PopupCardProps>`
   padding-top: 32px;
   padding-left: 32px;
   padding-right: 32px;
+  transform: ${({ $show }) => ($show ? "scale(1)" : "scale(0.96)")};
+  opacity: ${({ $show }) => ($show ? 1 : 0)};
+  transition:
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   @media (max-width: 1080px) {
     margin: 0 16px;
     min-width: 343px;
@@ -243,6 +258,15 @@ const Services = () => {
   const locale = useLocale();
   const [openCard, setOpenCard] = useState<null | "Card1" | "Card2">(null);
   const [miceDmcMode, setMiceDmcMode] = useState<"MICE" | "DMC">("DMC");
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [buttonResetKey, setButtonResetKey] = useState(0);
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    setButtonResetKey((prev) => prev + 1);
+  };
+
   // Close popup on Esc key
   useEffect(() => {
     if (!openCard) return;
@@ -273,8 +297,8 @@ const Services = () => {
       const badge = tServices("Card1.title");
       const imageSrc = "/images/services/tfls.png";
       return (
-        <PopupOverlay onClick={handleOverlayClick}>
-          <PopupCard $bg={imageSrc}>
+        <PopupOverlay $show={!!openCard} onClick={handleOverlayClick}>
+          <PopupCard $bg={imageSrc} $show={!!openCard}>
             <PopupHeader>
               <PopupClose aria-label="Close" onClick={() => setOpenCard(null)}>
                 <CloseIcon />
@@ -282,7 +306,7 @@ const Services = () => {
               <BadgeWrapper>
                 <Typography
                   as="span"
-                  variant={"text-sm"}
+                  variant={locale === "ka" ? "text-smUppercase" : "text-sm"}
                   color={`${colors.background.white}`}
                   weight="regular"
                 >
@@ -345,8 +369,8 @@ const Services = () => {
           ? tServices("Card2.DmcDescription")
           : tServices("Card2.MiceDescription");
       return (
-        <PopupOverlay onClick={handleOverlayClick}>
-          <PopupCard $bg={imageSrc}>
+        <PopupOverlay $show={!!openCard} onClick={handleOverlayClick}>
+          <PopupCard $bg={imageSrc} $show={!!openCard}>
             <PopupHeader>
               <PopupClose aria-label="Close" onClick={() => setOpenCard(null)}>
                 <CloseIcon />

@@ -11,6 +11,9 @@ import WhatsappIcon from "../icons/WhatsappIcon";
 import InstaIcon from "../icons/InstaIcon";
 import MessengerIcon from "../icons/MessengerIcon";
 import Button from "./Button";
+import React, { useState } from "react";
+import { ContactFormCard } from "./Contact";
+import CloseIcon from "../icons/CloseIcon";
 
 const HeroImageWrapper = styled.div`
   position: absolute;
@@ -72,14 +75,35 @@ const SocialsBox = styled.div`
   gap: 32px;
   padding: 8px;
   margin-left: auto;
-  backdrop-filter: blur(40px);
-  border-radius: 24px;
   margin-bottom: 100px;
   max-width: 218px;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px); /* Safari */
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  /* Glassmorphism effect */
+  background: transparent;
+  backdrop-filter: blur(40px) saturate(80%) brightness(1.1);
+  -webkit-backdrop-filter: blur(80px) saturate(80%) brightness(1.1);
+
+  /* Frosted overlay */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  /* Subtle edge highlight */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.7);
+    pointer-events: none;
+  }
+
   @media screen and (max-width: 1080px) {
     justify-content: center;
     align-items: center;
@@ -108,9 +132,64 @@ const ButtonWrapper = styled.div`
   }
 `;
 
+const ModalOverlay = styled.div<{
+  $show: boolean;
+}>`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    167.92deg,
+    rgba(31, 41, 55, 0.8) -8.86%,
+    rgba(12, 42, 84, 0.8) 32.93%,
+    rgba(19, 46, 85, 0.8) 74.73%
+  );
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: ${({ $show }) => ($show ? 1 : 0)};
+  pointer-events: ${({ $show }) => ($show ? "auto" : "none")};
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+`;
+
+const ModalContent = styled.div<{
+  $show: boolean;
+}>`
+  border-radius: 24px;
+  width: 747px;
+  overflow-y: auto;
+  position: relative;
+  transform: ${({ $show }) => ($show ? "scale(1)" : "scale(0.96)")};
+  opacity: ${({ $show }) => ($show ? 1 : 0)};
+  transition:
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  @media screen and (max-width: 1080px) {
+    margin: 0 16px;
+  }
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 2;
+`;
+
 const Hero = () => {
   const tHero = useTranslations("Hero");
   const locale = useLocale();
+  const [showModal, setShowModal] = useState(false);
+
+  const handleOpenModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
 
   return (
     <>
@@ -191,7 +270,11 @@ const Hero = () => {
             </Typography>
           </MobileContainer>
           <ButtonWrapper>
-            <Button variant="default" />
+            <Button
+              variant="default"
+              onClick={handleOpenModal}
+              active={showModal}
+            />{" "}
           </ButtonWrapper>
         </MainContainer>
         <SocialsBox>
@@ -236,6 +319,15 @@ const Hero = () => {
           </SocialWrapper>
         </SocialsBox>
       </Container>
+      {/* Modal with animation */}
+      <ModalOverlay $show={showModal} onClick={handleCloseModal}>
+        <ModalContent $show={showModal} onClick={(e) => e.stopPropagation()}>
+          <CloseButton onClick={handleCloseModal} aria-label="Close">
+            <CloseIcon />
+          </CloseButton>
+          <ContactFormCard />
+        </ModalContent>
+      </ModalOverlay>
     </>
   );
 };

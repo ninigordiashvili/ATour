@@ -2,7 +2,7 @@
 
 import React from "react";
 import styled from "styled-components";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Container from "@/src/components/Container";
 import { Typography } from "@/src/components/Typography";
 import { colors } from "@/src/styles/colors";
@@ -14,11 +14,37 @@ import Image from "next/image";
 import Button from "@/src/components/Button";
 
 const BlogWrapper = styled.main`
-  padding: 100px 130px;
+  padding: 134px 130px;
   position: relative;
   overflow: hidden;
+  &::before,
+  &::after,
+  &::partner-top-right,
+  &::partner-bottom-left {
+    content: "";
+    position: absolute;
+    width: 863px;
+    height: 863px;
+    border-radius: 50%;
+    background: #3f5fbf;
+    opacity: 0.1;
+    filter: blur(500px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Top Left */
+  &::before {
+    top: 200px;
+    left: -256px;
+  }
+  /* Top Right */
+  &::after {
+    top: 200px;
+    right: -256px;
+  }
   @media (max-width: 1080px) {
-    padding: 48px 0;
+    padding: 122px 0 48px 0;
   }
 `;
 
@@ -102,6 +128,7 @@ const BlogPage = () => {
   const tBlog = useTranslations("Blog");
   const tInsights = useTranslations("Insights");
   const router = useRouter();
+  const locale = useLocale();
 
   const handleBack = () => {
     router.push("/");
@@ -111,6 +138,36 @@ const BlogPage = () => {
 
   return (
     <BlogWrapper>
+      <span
+        style={{
+          position: "absolute",
+          top: "-200px",
+          right: "-256px",
+          width: "863px",
+          height: "863px",
+          borderRadius: "50%",
+          background: "#3f5fbf",
+          opacity: 0.1,
+          filter: "blur(500px)",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+      <span
+        style={{
+          position: "absolute",
+          top: "-200px",
+          left: "-256px",
+          width: "863px",
+          height: "863px",
+          borderRadius: "50%",
+          background: "#3f5fbf",
+          opacity: 0.1,
+          filter: "blur(500px)",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
       <Container>
         <ContentWrapper>
           <MetaInfo>
@@ -162,7 +219,7 @@ const BlogPage = () => {
           <Title>
             <DesktopContainer>
               <Typography
-                variant="display-lg"
+                variant={locale === "ka" ? "display-lgUppercase" : "display-lg"}
                 color={colors.text.dark}
                 weight="bold"
               >
@@ -171,7 +228,7 @@ const BlogPage = () => {
             </DesktopContainer>
             <MobileContainer>
               <Typography
-                variant="display-xs"
+                variant={locale === "ka" ? "display-xsUppercase" : "display-xs"}
                 color={colors.text.dark}
                 weight="bold"
               >
@@ -182,7 +239,7 @@ const BlogPage = () => {
 
           <HeroImage>
             <Image
-              src="/images/insights/card2.jpg"
+              src="/images/blogHero.png"
               alt={tInsights("Card2.title")}
               fill
               style={{ objectFit: "cover" }}
@@ -217,7 +274,9 @@ const BlogPage = () => {
                 <SectionTitle>
                   <DesktopContainer>
                     <Typography
-                      variant="text-mdOneline"
+                      variant={
+                        locale === "ka" ? "text-mdUppercase" : "text-mdOneline"
+                      }
                       color={colors.text.dark}
                       weight="semibold"
                     >
@@ -226,7 +285,9 @@ const BlogPage = () => {
                   </DesktopContainer>
                   <MobileContainer>
                     <Typography
-                      variant="text-smOneline"
+                      variant={
+                        locale === "ka" ? "text-smUppercase" : "text-smOneline"
+                      }
                       color={colors.text.dark}
                       weight="semibold"
                     >

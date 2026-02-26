@@ -91,12 +91,35 @@ const TagWrapper = styled.div`
   padding: 8px;
   backdrop-filter: blur(40px);
   border-radius: 24px;
-  background-color: ${colors.background.light};
-  background-color: ${colors.background.light};
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px); /* Safari */
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.35) 0%,
+      rgba(255, 255, 255, 0.1) 40%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.7);
+      pointer-events: none;
+    }
+  }
 `;
 
 const CarouselContainer = styled.div`

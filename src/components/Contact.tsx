@@ -181,6 +181,98 @@ const ButtonWrapper = styled.div`
   margin-top: 32px;
 `;
 
+export const ContactFormCard = () => {
+  const tContact = useTranslations("Contact");
+  const locale = useLocale();
+  return (
+    <FormCard>
+      <FormGroup>
+        <Label>
+          <DesktopContainer>
+            <Typography
+              variant="text-mdOneline"
+              color={colors.text.dark}
+              weight="regular"
+            >
+              {tContact("form.emailTitle")}
+              <RequiredAsterisk>*</RequiredAsterisk>
+            </Typography>
+          </DesktopContainer>
+          <MobileContainer>
+            <Typography
+              variant="text-sm"
+              color={colors.text.dark}
+              weight="regular"
+            >
+              {tContact("form.emailTitle")}
+              <RequiredAsterisk>*</RequiredAsterisk>
+            </Typography>
+          </MobileContainer>
+        </Label>
+        <InputWrapper>
+          <StyledInput
+            type="text"
+            placeholder={tContact("form.emailPlaceholder")}
+            $locale={locale}
+          />
+          <IconsWrapper>
+            <DesktopContainer>
+              <PhoneIcon width={24} height={24} />
+              <MailIcon width={24} height={24} />
+            </DesktopContainer>
+            <MobileContainer>
+              <PhoneIcon width={18} height={18} />
+              <MailIcon width={18} height={18} />
+            </MobileContainer>
+          </IconsWrapper>
+        </InputWrapper>
+      </FormGroup>
+
+      <FormGroup>
+        <Label>
+          <DesktopContainer>
+            <Typography
+              variant="text-mdOneline"
+              color={colors.text.dark}
+              weight="regular"
+            >
+              {tContact("form.messageTitle")}
+            </Typography>
+          </DesktopContainer>
+          <MobileContainer>
+            <Typography
+              variant="text-sm"
+              color={colors.text.dark}
+              weight="regular"
+            >
+              {tContact("form.messageTitle")}
+            </Typography>
+          </MobileContainer>
+        </Label>
+        <InputWrapper>
+          <StyledTextarea
+            placeholder={tContact("form.messagePlaceholder")}
+            rows={1}
+            $locale={locale}
+          />
+          <SingleIconWrapper>
+            <DesktopContainer>
+              <PenIcon width={24} height={24} />
+            </DesktopContainer>
+            <MobileContainer>
+              <PenIcon width={18} height={18} />
+            </MobileContainer>
+          </SingleIconWrapper>
+        </InputWrapper>
+      </FormGroup>
+
+      <ButtonWrapper>
+        <Button variant="bookButton" />
+      </ButtonWrapper>
+    </FormCard>
+  );
+};
+
 const Contact = () => {
   const tContact = useTranslations("Contact");
   const locale = useLocale();
@@ -208,92 +300,7 @@ const Contact = () => {
             </Typography>
           </MobileContainer>
         </Title>
-
-        <FormCard>
-          <FormGroup>
-            <Label>
-              <DesktopContainer>
-                <Typography
-                  variant="text-mdOneline"
-                  color={colors.text.dark}
-                  weight="regular"
-                >
-                  {tContact("form.emailTitle")}
-                  <RequiredAsterisk>*</RequiredAsterisk>
-                </Typography>
-              </DesktopContainer>
-              <MobileContainer>
-                <Typography
-                  variant="text-sm"
-                  color={colors.text.dark}
-                  weight="regular"
-                >
-                  {tContact("form.emailTitle")}
-                  <RequiredAsterisk>*</RequiredAsterisk>
-                </Typography>
-              </MobileContainer>
-            </Label>
-            <InputWrapper>
-              <StyledInput
-                type="text"
-                placeholder={tContact("form.emailPlaceholder")}
-                $locale={locale}
-              />
-              <IconsWrapper>
-                <DesktopContainer>
-                  <PhoneIcon width={24} height={24} />
-                  <MailIcon width={24} height={24} />
-                </DesktopContainer>
-                <MobileContainer>
-                  <PhoneIcon width={18} height={18} />
-                  <MailIcon width={18} height={18} />
-                </MobileContainer>
-              </IconsWrapper>
-            </InputWrapper>
-          </FormGroup>
-
-          <FormGroup>
-            <Label>
-              <DesktopContainer>
-                <Typography
-                  variant="text-mdOneline"
-                  color={colors.text.dark}
-                  weight="regular"
-                >
-                  {tContact("form.messageTitle")}
-                </Typography>
-              </DesktopContainer>
-              <MobileContainer>
-                <Typography
-                  variant="text-sm"
-                  color={colors.text.dark}
-                  weight="regular"
-                >
-                  {tContact("form.messageTitle")}
-                </Typography>
-              </MobileContainer>
-            </Label>
-            <InputWrapper>
-              <StyledTextarea
-                placeholder={tContact("form.messagePlaceholder")}
-                rows={1}
-                $locale={locale}
-              />
-              <SingleIconWrapper>
-                <DesktopContainer>
-                  <PenIcon width={24} height={24} />
-                </DesktopContainer>
-                <MobileContainer>
-                  <PenIcon width={18} height={18} />
-                </MobileContainer>
-              </SingleIconWrapper>
-            </InputWrapper>
-          </FormGroup>
-
-          <ButtonWrapper>
-            <Button variant="bookButton" />
-          </ButtonWrapper>
-        </FormCard>
+        <ContactFormCard />
       </Container>
     </ContactWrapper>
   );

@@ -14,6 +14,7 @@ interface ButtonProps {
   children?: React.ReactNode;
   onClick?: () => void;
   variant?: "default" | "iconOnly" | "transparent" | "bookButton" | "back";
+  active?: boolean;
 }
 
 const StyledButton = styled.button<{ $isActive: boolean; $variant?: string }>`
@@ -137,6 +138,7 @@ const StyledArrowIcon = styled.div<{
   $isActive: boolean;
   $isHovered: boolean;
   $variant?: string;
+  active?: boolean;
 }>`
   display: flex;
   align-items: center;
@@ -155,16 +157,14 @@ const StyledArrowIcon = styled.div<{
 
 import { useLocale } from "next-intl";
 
-const Button: React.FC<ButtonProps> = ({ onClick, variant = "default" }) => {
+const Button: React.FC<ButtonProps> = ({
+  onClick,
+  variant = "default",
+  active = false,
+}) => {
   const tButtons = useTranslations("Buttons");
   const locale = useLocale();
-  const [isActive, setIsActive] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-
-  const handleClick = () => {
-    setIsActive(true);
-    onClick?.();
-  };
 
   // Back button variant
   if (variant === "back") {
@@ -229,25 +229,27 @@ const Button: React.FC<ButtonProps> = ({ onClick, variant = "default" }) => {
         onMouseLeave={() => setIsHovered(false)}
         onMouseEnter={() => setIsHovered(true)}
       >
-        <DesktopContainer>
-          <Typography
-            variant="text-mdOneline"
-            color={colors.state.focus.active}
-            weight="regular"
-          >
-            {tButtons("readMore")}
-          </Typography>
-        </DesktopContainer>
-        <MobileContainer>
-          <Typography
-            variant="text-smUppercase"
-            color={colors.state.focus.active}
-            weight="regular"
-          >
-            {tButtons("readMore")}
-          </Typography>
-        </MobileContainer>
-        <BlueArrowIcon />
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <DesktopContainer>
+            <Typography
+              variant={locale === "ka" ? "text-mdUppercase" : "text-mdOneline"}
+              color={colors.state.focus.active}
+              weight="regular"
+            >
+              {tButtons("readMore")}
+            </Typography>
+          </DesktopContainer>
+          <MobileContainer>
+            <Typography
+              variant={locale === "ka" ? "text-smUppercase" : "text-smOneline"}
+              color={colors.state.focus.active}
+              weight="regular"
+            >
+              {tButtons("readMore")}
+            </Typography>
+          </MobileContainer>
+          <BlueArrowIcon />
+        </div>
       </StyledButton>
     );
   }
@@ -304,14 +306,12 @@ const Button: React.FC<ButtonProps> = ({ onClick, variant = "default" }) => {
   // Default variant with text
   return (
     <StyledButton
-      $isActive={isActive}
-      onClick={handleClick}
-      onMouseLeave={() => {
-        setIsHovered(false);
-      }}
+      $isActive={!!active}
+      onClick={onClick}
+      onMouseLeave={() => setIsHovered(false)}
       onMouseEnter={() => setIsHovered(true)}
     >
-      <TextContainer $isActive={isActive}>
+      <TextContainer $isActive={!!active}>
         <DesktopContainer>
           <Typography
             variant={locale === "ka" ? "text-mdUppercase" : "text-mdOneline"}
@@ -331,12 +331,13 @@ const Button: React.FC<ButtonProps> = ({ onClick, variant = "default" }) => {
           </Typography>
         </MobileContainer>
       </TextContainer>
+
       <ArrowContainer
-        $isActive={isActive}
+        $isActive={!!active}
         $isHovered={isHovered}
         $variant="default"
       >
-        <StyledArrowIcon $isActive={isActive} $isHovered={isHovered}>
+        <StyledArrowIcon $isActive={!!active} $isHovered={isHovered}>
           <ArrowIcon />
         </StyledArrowIcon>
       </ArrowContainer>

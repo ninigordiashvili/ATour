@@ -129,6 +129,16 @@ const Header = () => {
   const locale = useLocale();
 
   const [selectedLink, setSelectedLink] = useState("home");
+
+  // Update selectedLink based on pathname
+  useEffect(() => {
+    if (pathname === "/Blog") {
+      setSelectedLink("blog");
+    } else if (pathname === "/") {
+      setSelectedLink("home");
+    }
+    // Optionally, handle other routes if needed
+  }, [pathname]);
   const [selectedLanguage, setSelectedLanguage] = useState(locale);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showHeader, setShowHeader] = useState(true);

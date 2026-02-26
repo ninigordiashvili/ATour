@@ -1,10 +1,11 @@
 "use client";
 import React from "react";
+import { usePathname, useRouter } from "../i18n/routing";
 import styled from "styled-components";
 import Container from "./Container";
 import { colors } from "../styles/colors";
 import { Typography } from "./Typography";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import MailIcon from "../icons/MailIcon";
 import LocationIcon from "../icons/LocationIcon";
 import { DesktopContainer, MobileContainer } from "./Responsive";
@@ -138,6 +139,8 @@ const CopyrightSection = styled.div`
 
   @media screen and (max-width: 1080px) {
     padding-top: 16px;
+  }
+  @media screen and (max-width: 710px) {
     text-align: left;
   }
 `;
@@ -151,6 +154,9 @@ const Title = styled.div`
 
 const Footer = () => {
   const tFooter = useTranslations("Footer");
+  const locale = useLocale();
+  const pathname = usePathname();
+  const router = useRouter();
 
   return (
     <FooterWrapper>
@@ -192,7 +198,9 @@ const Footer = () => {
             <Title>
               <DesktopContainer>
                 <Typography
-                  variant="text-mdOneline"
+                  variant={
+                    locale === "ka" ? "text-mdUppercase" : "text-mdOneline"
+                  }
                   color={colors.text.dark}
                   weight="semibold"
                 >
@@ -201,7 +209,9 @@ const Footer = () => {
               </DesktopContainer>
               <MobileContainer>
                 <Typography
-                  variant="text-smUppercase"
+                  variant={
+                    locale === "ka" ? "text-smUppercase" : "text-smOneline"
+                  }
                   color={colors.text.dark}
                   weight="semibold"
                 >
@@ -209,7 +219,13 @@ const Footer = () => {
                 </Typography>
               </MobileContainer>
             </Title>
-            <LinkItem href="/Blog">
+            <LinkItem
+              href="/Blog"
+              onClick={(e) => {
+                e.preventDefault();
+                router.push("/Blog");
+              }}
+            >
               <DesktopContainer>
                 <Typography
                   variant="text-mdOneline"
@@ -229,7 +245,20 @@ const Footer = () => {
                 </Typography>
               </MobileContainer>
             </LinkItem>
-            <LinkItem href="#testimonials">
+            <LinkItem
+              href="#testimonials"
+              onClick={(e) => {
+                e.preventDefault();
+                if (pathname === "/Blog") {
+                  router.push("/#testimonials");
+                } else {
+                  const section = document.getElementById("testimonials");
+                  if (section) {
+                    section.scrollIntoView({ behavior: "smooth" });
+                  }
+                }
+              }}
+            >
               <DesktopContainer>
                 <Typography
                   variant="text-mdOneline"
@@ -237,7 +266,7 @@ const Footer = () => {
                   weight="regular"
                 >
                   {tFooter("Links.testimonials")}
-                </Typography>{" "}
+                </Typography>
               </DesktopContainer>
               <MobileContainer>
                 <Typography
@@ -250,12 +279,16 @@ const Footer = () => {
               </MobileContainer>
             </LinkItem>
             <LinkItem
-              href="#contact"
+              href="/#contact"
               onClick={(e) => {
                 e.preventDefault();
-                const section = document.getElementById("contact");
-                if (section) {
-                  section.scrollIntoView({ behavior: "smooth" });
+                if (pathname === "/Blog") {
+                  router.push("/#contact");
+                } else {
+                  const section = document.getElementById("contact");
+                  if (section) {
+                    section.scrollIntoView({ behavior: "smooth" });
+                  }
                 }
               }}
             >
@@ -284,7 +317,9 @@ const Footer = () => {
             <Title>
               <DesktopContainer>
                 <Typography
-                  variant="text-mdOneline"
+                  variant={
+                    locale === "ka" ? "text-mdUppercase" : "text-mdOneline"
+                  }
                   color={colors.text.dark}
                   weight="semibold"
                 >
@@ -293,7 +328,9 @@ const Footer = () => {
               </DesktopContainer>
               <MobileContainer>
                 <Typography
-                  variant="text-smUppercase"
+                  variant={
+                    locale === "ka" ? "text-smUppercase" : "text-smOneline"
+                  }
                   color={colors.text.dark}
                   weight="semibold"
                 >

@@ -218,7 +218,7 @@ const Insights = () => {
               </CardTextContent>
               <CardImage>
                 <Image
-                  src="/images/insights/card1.jpg"
+                  src="/images/insights/card1.png"
                   alt={tInsights("Card1.title")}
                   fill
                   style={{ objectFit: "cover" }}
@@ -297,7 +297,7 @@ const Insights = () => {
               </CardTextContent>
               <CardImage>
                 <Image
-                  src="/images/insights/card2.jpg"
+                  src="/images/insights/card2.png"
                   alt={tInsights("Card2.title")}
                   fill
                   style={{ objectFit: "cover" }}
