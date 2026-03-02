@@ -295,7 +295,7 @@ const Services = () => {
       const title = tServices("Card1.titleDetails");
       const description = tServices("Card1.descriptionDetails");
       const badge = tServices("Card1.title");
-      const imageSrc = "/images/services/tfls.png";
+      const imageSrc = "/images/services/tfls.webp";
       return (
         <PopupOverlay $show={!!openCard} onClick={handleOverlayClick}>
           <PopupCard $bg={imageSrc} $show={!!openCard}>
@@ -359,7 +359,7 @@ const Services = () => {
     if (openCard === "Card2") {
       // Card2 popup with badge switcher
       const badge = tServices("Card2.title");
-      const imageSrc = "/images/services/dmc.png";
+      const imageSrc = "/images/services/dmc.webp";
       const title =
         miceDmcMode === "DMC"
           ? tServices("Card2.DmcDetails")
@@ -476,7 +476,7 @@ const Services = () => {
           <ServiceCard>
             <CardImage>
               <Image
-                src="/images/services/serviceCard1.png"
+                src="/images/services/serviceCard1.webp"
                 alt={tServices("Card1.title")}
                 fill
                 style={{ objectFit: "cover" }}
@@ -552,7 +552,7 @@ const Services = () => {
           <ServiceCard>
             <CardImage>
               <Image
-                src="/images/services/serviceCard2.png"
+                src="/images/services/serviceCard2.webp"
                 alt={tServices("Card2.title")}
                 fill
                 style={{ objectFit: "cover" }}

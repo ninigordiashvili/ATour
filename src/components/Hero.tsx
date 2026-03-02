@@ -12,7 +12,7 @@ import InstaIcon from "../icons/InstaIcon";
 import MessengerIcon from "../icons/MessengerIcon";
 import Button from "./Button";
 import React, { useState } from "react";
-import { ContactFormCard } from "./Contact";
+import dynamic from "next/dynamic";
 import CloseIcon from "../icons/CloseIcon";
 
 const HeroImageWrapper = styled.div`
@@ -35,6 +35,7 @@ const HeroDesktopImageWrapper = styled.div`
 
 const HeroMobileImageWrapper = styled.div`
   display: none;
+
   @media (max-width: 425px) {
     display: block;
   }
@@ -83,7 +84,6 @@ const SocialsBox = styled.div`
   /* Glassmorphism effect */
   background: transparent;
   backdrop-filter: blur(40px) saturate(80%) brightness(1.1);
-  -webkit-backdrop-filter: blur(80px) saturate(80%) brightness(1.1);
 
   /* Frosted overlay */
   &::before {
@@ -132,9 +132,7 @@ const ButtonWrapper = styled.div`
   }
 `;
 
-const ModalOverlay = styled.div<{
-  $show: boolean;
-}>`
+const ModalOverlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -150,23 +148,36 @@ const ModalOverlay = styled.div<{
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: ${({ $show }) => ($show ? 1 : 0)};
-  pointer-events: ${({ $show }) => ($show ? "auto" : "none")};
-  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;
 
-const ModalContent = styled.div<{
-  $show: boolean;
-}>`
+const ModalContent = styled.div`
   border-radius: 24px;
   width: 747px;
   overflow-y: auto;
   position: relative;
-  transform: ${({ $show }) => ($show ? "scale(1)" : "scale(0.96)")};
-  opacity: ${({ $show }) => ($show ? 1 : 0)};
   transition:
     opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
     transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  @keyframes scaleIn {
+    from {
+      transform: scale(0.96);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
   @media screen and (max-width: 1080px) {
     margin: 0 16px;
   }
@@ -183,6 +194,11 @@ const CloseButton = styled.button`
   z-index: 2;
 `;
 
+const ContactFormCard = dynamic(
+  () => import("./Contact").then((mod) => mod.ContactFormCard),
+  { ssr: false },
+);
+
 const Hero = () => {
   const tHero = useTranslations("Hero");
   const locale = useLocale();
@@ -196,23 +212,24 @@ const Hero = () => {
       <HeroImageWrapper>
         <HeroDesktopImageWrapper>
           <Image
-            src="/images/hero.png"
+            src="/images/hero.webp"
             alt="Hero Background"
             fill
-            style={{ objectFit: "cover" }}
             priority
+            sizes="100vw"
+            style={{ objectFit: "cover" }}
           />
         </HeroDesktopImageWrapper>
+
         <HeroMobileImageWrapper>
-          <MobileContainer>
-            <Image
-              src="/images/heroMobImage.png"
-              alt="Hero Background"
-              fill
-              style={{ objectFit: "cover" }}
-              priority
-            />
-          </MobileContainer>
+          <Image
+            src="/images/heroMobImage.webp"
+            alt="Hero Background"
+            fill
+            priority
+            sizes="100vw"
+            style={{ objectFit: "cover" }}
+          />
         </HeroMobileImageWrapper>
       </HeroImageWrapper>
       <Container>
@@ -320,14 +337,16 @@ const Hero = () => {
         </SocialsBox>
       </Container>
       {/* Modal with animation */}
-      <ModalOverlay $show={showModal} onClick={handleCloseModal}>
-        <ModalContent $show={showModal} onClick={(e) => e.stopPropagation()}>
-          <CloseButton onClick={handleCloseModal} aria-label="Close">
-            <CloseIcon />
-          </CloseButton>
-          <ContactFormCard />
-        </ModalContent>
-      </ModalOverlay>
+      {showModal && (
+        <ModalOverlay onClick={handleCloseModal}>
+          <ModalContent onClick={(e) => e.stopPropagation()}>
+            <CloseButton onClick={handleCloseModal} aria-label="Close">
+              <CloseIcon />
+            </CloseButton>
+            <ContactFormCard />
+          </ModalContent>
+        </ModalOverlay>
+      )}
     </>
   );
 };

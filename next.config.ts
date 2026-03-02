@@ -7,7 +7,10 @@ const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 const nextConfig: NextConfig = withNextIntl({
   reactStrictMode: true,
   compiler: {
-    styledComponents: true,
+    styledComponents: {
+      displayName: true,
+      ssr: true,
+    },
   },
 });
 
