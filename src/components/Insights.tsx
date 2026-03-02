@@ -232,8 +232,8 @@ const Insights = () => {
                     src="/images/insights/card1Mob.png"
                     alt={tInsights("Card1.title")}
                     fill
-                    quality={80}
-                    sizes="(max-width: 1080px) 100vw, 236px"
+                    quality={60}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1080px) 90vw, 236px"
                     style={{ objectFit: "cover" }}
                   />
                 </MobileContainer>
@@ -325,8 +325,8 @@ const Insights = () => {
                     src="/images/insights/card2Mob.png"
                     alt={tInsights("Card2.title")}
                     fill
-                    quality={80}
-                    sizes="(max-width: 1080px) 100vw, 236px"
+                    quality={60}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1080px) 90vw, 236px"
                     style={{ objectFit: "cover" }}
                   />
                 </MobileContainer>

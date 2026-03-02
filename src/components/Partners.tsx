@@ -159,24 +159,24 @@ const DecorativeLineBottomWrapper = styled.div`
 `;
 
 const topRowImages = [
-  { src: "images/partners/image1.png", alt: "Event 1" },
-  { src: "images/partners/image2.png", alt: "Event 2" },
-  { src: "images/partners/image3.png", alt: "Event 3" },
-  { src: "images/partners/image4.png", alt: "Event 4" },
-  { src: "images/partners/image5.png", alt: "Event 5" },
-  { src: "images/partners/image6.png", alt: "Event 6" },
-  { src: "images/partners/image7.png", alt: "Event 7" },
-  { src: "images/partners/image8.png", alt: "Event 8" },
+  { src: "/images/partners/image1.png", alt: "Event 1" },
+  { src: "/images/partners/image2.png", alt: "Event 2" },
+  { src: "/images/partners/image3.png", alt: "Event 3" },
+  { src: "/images/partners/image4.png", alt: "Event 4" },
+  { src: "/images/partners/image5.png", alt: "Event 5" },
+  { src: "/images/partners/image6.png", alt: "Event 6" },
+  { src: "/images/partners/image7.png", alt: "Event 7" },
+  { src: "/images/partners/image8.png", alt: "Event 8" },
 ];
 
 const bottomRowImages = [
-  { src: "images/partners/image9.png", alt: "Event 9" },
-  { src: "images/partners/image10.png", alt: "Event 10" },
-  { src: "images/partners/image11.png", alt: "Event 11" },
-  { src: "images/partners/image12.png", alt: "Event 12" },
-  { src: "images/partners/image13.png", alt: "Event 13" },
-  { src: "images/partners/image14.png", alt: "Event 14" },
-  { src: "images/partners/image15.png", alt: "Event 15" },
+  { src: "/images/partners/image9.png", alt: "Event 9" },
+  { src: "/images/partners/image10.png", alt: "Event 10" },
+  { src: "/images/partners/image11.png", alt: "Event 11" },
+  { src: "/images/partners/image12.png", alt: "Event 12" },
+  { src: "/images/partners/image13.png", alt: "Event 13" },
+  { src: "/images/partners/image14.png", alt: "Event 14" },
+  { src: "/images/partners/image15.png", alt: "Event 15" },
 ];
 
 const Partners = () => {

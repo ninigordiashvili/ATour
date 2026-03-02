@@ -1,18 +1,15 @@
 import React from "react";
+import Image from "next/image";
 import styled, { keyframes } from "styled-components";
 
 const scroll = keyframes`
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-33.333%);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } 
 `;
 
 const scrollReverse = keyframes`
   0% {
-    transform: translateX(-33.333%);
+    transform: translateX(-50%);
   }
   100% {
     transform: translateX(0);
@@ -30,9 +27,28 @@ const CarouselContainer = styled.div`
 const Row = styled.div<{ $reverse?: boolean }>`
   display: flex;
   gap: 8px;
-  animation: ${({ $reverse }) => ($reverse ? scrollReverse : scroll)} 65s linear
-    infinite;
   width: max-content;
+  will-change: transform;
+  transform: translateZ(0);
+
+  /* Desktop - smooth animation */
+  @media (min-width: 769px) {
+    animation: ${({ $reverse }) => ($reverse ? scrollReverse : scroll)} 65s
+      linear infinite;
+  }
+
+  /* Mobile - slower animation to reduce jank */
+  @media (max-width: 768px) {
+    animation: ${({ $reverse }) => ($reverse ? scrollReverse : scroll)} 80s
+      linear infinite;
+  }
+
+  /* Disable animations on very low-end devices */
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+  }
 `;
 
 const ImageWrapper = styled.div`
@@ -50,13 +66,6 @@ const ImageWrapper = styled.div`
   }
 `;
 
-const Image = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 20px;
-`;
-
 interface ImageItem {
   src: string;
   alt: string;
@@ -71,13 +80,22 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
   topRowImages,
   bottomRowImages,
 }) => {
-  // Triple the images to ensure seamless infinite scroll without gaps
-  const duplicatedTopRow = [...topRowImages, ...topRowImages, ...topRowImages];
-  const duplicatedBottomRow = [
-    ...bottomRowImages,
-    ...bottomRowImages,
-    ...bottomRowImages,
-  ];
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const duplicateCount = isMobile ? 2 : 2;
+  const duplicatedTopRow = Array(duplicateCount)
+    .fill(null)
+    .flatMap(() => topRowImages);
+  const duplicatedBottomRow = Array(duplicateCount)
+    .fill(null)
+    .flatMap(() => bottomRowImages);
 
   return (
     <CarouselContainer>
@@ -87,14 +105,13 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
             <Image
               src={image.src}
               alt={image.alt}
+              fill
+              sizes="(max-width: 768px) 240px, 330px"
+              quality={isMobile ? 60 : 75}
+              priority={false}
               style={{
-                width: "100%",
-                height: "100%",
                 objectFit: "cover",
-                borderRadius: "20px",
               }}
-              loading="lazy"
-              decoding="async"
             />
           </ImageWrapper>
         ))}
@@ -105,14 +122,13 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
             <Image
               src={image.src}
               alt={image.alt}
+              fill
+              sizes="(max-width: 768px) 240px, 330px"
+              quality={isMobile ? 60 : 75}
+              priority={false}
               style={{
-                width: "100%",
-                height: "100%",
                 objectFit: "cover",
-                borderRadius: "20px",
               }}
-              loading="lazy"
-              decoding="async"
             />
           </ImageWrapper>
         ))}
