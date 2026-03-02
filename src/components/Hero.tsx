@@ -212,10 +212,11 @@ const Hero = () => {
       <HeroImageWrapper>
         <HeroDesktopImageWrapper>
           <Image
-            src="/images/hero.webp"
+            src="/images/hero.png"
             alt="Hero Background"
             fill
             priority
+            quality={85}
             sizes="100vw"
             style={{ objectFit: "cover" }}
           />
@@ -223,10 +224,11 @@ const Hero = () => {
 
         <HeroMobileImageWrapper>
           <Image
-            src="/images/heroMobImage.webp"
+            src="/images/heroMobImage.png"
             alt="Hero Background"
             fill
             priority
+            quality={85}
             sizes="100vw"
             style={{ objectFit: "cover" }}
           />

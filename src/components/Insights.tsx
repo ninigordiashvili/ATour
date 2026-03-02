@@ -217,12 +217,26 @@ const Insights = () => {
                 </CardBottomContent>
               </CardTextContent>
               <CardImage>
-                <Image
-                  src="/images/insights/card1.png"
-                  alt={tInsights("Card1.title")}
-                  fill
-                  style={{ objectFit: "cover" }}
-                />
+                <DesktopContainer>
+                  <Image
+                    src="/images/insights/card1.png"
+                    alt={tInsights("Card1.title")}
+                    fill
+                    quality={80}
+                    sizes="(max-width: 1080px) 100vw, 236px"
+                    style={{ objectFit: "cover" }}
+                  />
+                </DesktopContainer>
+                <MobileContainer>
+                  <Image
+                    src="/images/insights/card1Mob.png"
+                    alt={tInsights("Card1.title")}
+                    fill
+                    quality={80}
+                    sizes="(max-width: 1080px) 100vw, 236px"
+                    style={{ objectFit: "cover" }}
+                  />
+                </MobileContainer>
               </CardImage>
             </CardBody>
           </InsightCard>
@@ -296,12 +310,26 @@ const Insights = () => {
                 </CardBottomContent>
               </CardTextContent>
               <CardImage>
-                <Image
-                  src="/images/insights/card2.png"
-                  alt={tInsights("Card2.title")}
-                  fill
-                  style={{ objectFit: "cover" }}
-                />
+                <DesktopContainer>
+                  <Image
+                    src="/images/insights/card2.png"
+                    alt={tInsights("Card2.title")}
+                    fill
+                    quality={80}
+                    sizes="(max-width: 1080px) 100vw, 236px"
+                    style={{ objectFit: "cover" }}
+                  />
+                </DesktopContainer>
+                <MobileContainer>
+                  <Image
+                    src="/images/insights/card2Mob.png"
+                    alt={tInsights("Card2.title")}
+                    fill
+                    quality={80}
+                    sizes="(max-width: 1080px) 100vw, 236px"
+                    style={{ objectFit: "cover" }}
+                  />
+                </MobileContainer>
               </CardImage>
             </CardBody>
           </InsightCard>

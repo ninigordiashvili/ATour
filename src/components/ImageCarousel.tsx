@@ -84,14 +84,36 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
       <Row>
         {duplicatedTopRow.map((image, index) => (
           <ImageWrapper key={`top-${index}`}>
-            <Image src={image.src} alt={image.alt} />
+            <Image
+              src={image.src}
+              alt={image.alt}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                borderRadius: "20px",
+              }}
+              loading="lazy"
+              decoding="async"
+            />
           </ImageWrapper>
         ))}
       </Row>
       <Row $reverse>
         {duplicatedBottomRow.map((image, index) => (
           <ImageWrapper key={`bottom-${index}`}>
-            <Image src={image.src} alt={image.alt} />
+            <Image
+              src={image.src}
+              alt={image.alt}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                borderRadius: "20px",
+              }}
+              loading="lazy"
+              decoding="async"
+            />
           </ImageWrapper>
         ))}
       </Row>
