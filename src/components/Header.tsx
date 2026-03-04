@@ -14,13 +14,14 @@ import BurgerMenuIcon from "../icons/BurgerMenuIcon";
 
 const MobileMenuOverlay = styled.div`
   position: fixed;
-  top: 16px;
+  top: 0;
   left: 0;
   z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   width: 100%;
+  height: 100dvh;
 `;
 
 const MobileMenu = styled.div`
@@ -47,44 +48,56 @@ const HeaderWrapper = styled.header<{ $isMobileMenuOpen?: boolean }>`
     border-radius: ${({ $isMobileMenuOpen }) =>
       $isMobileMenuOpen ? "24px 24px 0 0" : "24px"};
     margin-top: 16px;
-    box-shadow: none;
+    box-shadow: ${colors.shadow.header};
   }
 `;
 
 const MobileHeaderShadow = styled.div`
   position: fixed;
   top: 16px;
-  left: 0;
-  width: calc(100% - 32px);
+  left: 16px;
+  right: 16px;
   border-radius: 24px 24px 0 0;
   height: 56px;
   z-index: 1101;
   pointer-events: none;
   box-shadow: ${colors.shadow.header};
-  margin: 0 16px;
   @media (min-width: 1081px) {
     display: none;
   }
 `;
 
 const LinksWrapper = styled.nav<{ $isFixed?: boolean }>`
+  position: relative;
   display: flex;
   gap: 32px;
   padding: 4px;
   background-color: ${colors.background.light};
   border-radius: 24px;
   box-shadow: ${({ $isFixed }) => ($isFixed ? colors.shadow.header : "none")};
+  overflow: hidden;
 `;
 
-const Link = styled.div<{ $isSelected: boolean }>`
+const Link = styled.div<{ $isSelected: boolean; $isMobileVariant?: boolean }>`
+  position: relative;
+  z-index: 1;
   cursor: pointer;
   padding: 8px 16px;
   border-radius: 24px;
   background-color: ${(props) =>
-    props.$isSelected ? colors.state.focus.ring : "transparent"};
-  transition: background-color 0.3s ease-in-out;
-  animation: ${(props) => (props.$isSelected ? "slideIn" : "none")} 0.3s
-    ease-in-out;
+    props.$isMobileVariant && props.$isSelected
+      ? colors.state.focus.outline
+      : "transparent"};
+
+  &:hover {
+    background-color: ${(props) =>
+      props.$isSelected ? "transparent" : colors.links.hover};
+  }
+
+  &:active {
+    background-color: ${(props) =>
+      props.$isSelected ? colors.state.focus.outline : colors.links.hover};
+  }
 
   @keyframes slideIn {
     from {
@@ -98,24 +111,77 @@ const Link = styled.div<{ $isSelected: boolean }>`
   }
 `;
 
-const LanguageSwitcher = styled.div<{ $isFixed?: boolean }>`
+const LanguageSwitcher = styled.div<{
+  $isFixed?: boolean;
+  $isMobileVariant?: boolean;
+}>`
+  position: relative;
   display: flex;
   gap: 8px;
   padding: 3px;
   background-color: ${colors.background.light};
   border-radius: 24px;
-  box-shadow: ${({ $isFixed }) => ($isFixed ? colors.shadow.header : "none")};
+  box-shadow: ${({ $isFixed, $isMobileVariant }) =>
+    $isFixed || $isMobileVariant ? colors.shadow.header : "none"};
+  overflow: hidden;
 `;
 
-const LanguageButton = styled.button<{ $isSelected: boolean }>`
+const LanguageButton = styled.button<{
+  $isSelected: boolean;
+  $isMobileVariant?: boolean;
+}>`
+  position: relative;
+  z-index: 1;
   cursor: pointer;
   padding: 8px 18px;
   border-radius: 24px;
   border: none;
   background-color: ${(props) =>
-    props.$isSelected ? colors.state.focus.ring : "transparent"};
+    props.$isMobileVariant && props.$isSelected
+      ? colors.state.focus.outline
+      : "transparent"};
   transition: background-color 0.2s ease;
   font-size: inherit;
+
+  &:hover {
+    background-color: ${(props) =>
+      props.$isSelected ? "transparent" : colors.links.hover};
+  }
+
+  &:active {
+    background-color: ${(props) =>
+      props.$isSelected ? colors.state.focus.outline : colors.links.hover};
+  }
+`;
+
+const SlidingPill = styled.div`
+  position: absolute;
+  top: 4px;
+  left: 0;
+  height: calc(100% - 8px);
+  border-radius: 24px;
+  background-color: ${colors.state.focus.outline};
+  transition:
+    transform 0.28s ease,
+    width 0.28s ease,
+    opacity 0.2s ease;
+  z-index: 0;
+  pointer-events: none;
+`;
+
+const SlidingLanguagePill = styled.div`
+  position: absolute;
+  top: 3px;
+  left: 0;
+  height: calc(100% - 6px);
+  border-radius: 24px;
+  background-color: ${colors.state.focus.outline};
+  transition:
+    transform 0.28s ease,
+    width 0.28s ease,
+    opacity 0.2s ease;
+  z-index: 0;
+  pointer-events: none;
 `;
 
 const BurgerMenuWrapper = styled.div`
@@ -123,12 +189,15 @@ const BurgerMenuWrapper = styled.div`
 `;
 
 const Header = () => {
+  const PILL_ANIMATION_MS = 280;
   const tHeader = useTranslations("Header");
   const router = useRouter();
   const pathname = usePathname();
   const locale = useLocale();
 
   const [selectedLink, setSelectedLink] = useState("home");
+  const [hoveredLink, setHoveredLink] = useState<string | null>(null);
+  const [hoveredLanguage, setHoveredLanguage] = useState<string | null>(null);
 
   // Update selectedLink based on pathname
   useEffect(() => {
@@ -146,6 +215,23 @@ const Header = () => {
   const [isFixed, setIsFixed] = useState(false);
   const [isAtTop, setIsAtTop] = useState(true);
   const [isDesktop, setIsDesktop] = useState(true);
+  const navigationTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
+    null,
+  );
+  const linksWrapperRef = useRef<HTMLDivElement | null>(null);
+  const languageSwitcherRef = useRef<HTMLDivElement | null>(null);
+  const linkRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const languageRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const [linksPillStyle, setLinksPillStyle] = useState({
+    x: 0,
+    width: 0,
+    opacity: 0,
+  });
+  const [languagePillStyle, setLanguagePillStyle] = useState({
+    x: 0,
+    width: 0,
+    opacity: 0,
+  });
 
   const links = ["home", "services", "blog", "testimonials"];
   const languages = ["en", "ka"];
@@ -162,6 +248,14 @@ const Header = () => {
     checkDesktop();
     window.addEventListener("resize", checkDesktop);
     return () => window.removeEventListener("resize", checkDesktop);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (navigationTimeoutRef.current) {
+        clearTimeout(navigationTimeoutRef.current);
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -188,19 +282,122 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const activeLink = selectedLink;
+    const wrapper = linksWrapperRef.current;
+    const activeElement = linkRefs.current[activeLink];
+
+    if (!wrapper || !activeElement) {
+      setLinksPillStyle((prev) => ({ ...prev, opacity: 0 }));
+      return;
+    }
+
+    const wrapperRect = wrapper.getBoundingClientRect();
+    const activeRect = activeElement.getBoundingClientRect();
+
+    setLinksPillStyle({
+      x: activeRect.left - wrapperRect.left,
+      width: activeRect.width,
+      opacity: 1,
+    });
+  }, [selectedLink, pathname, isMobileMenuOpen]);
+
+  useEffect(() => {
+    const activeLanguage = selectedLanguage;
+    const wrapper = languageSwitcherRef.current;
+    const activeElement = languageRefs.current[activeLanguage];
+
+    if (!wrapper || !activeElement) {
+      setLanguagePillStyle((prev) => ({ ...prev, opacity: 0 }));
+      return;
+    }
+
+    const wrapperRect = wrapper.getBoundingClientRect();
+    const activeRect = activeElement.getBoundingClientRect();
+
+    setLanguagePillStyle({
+      x: activeRect.left - wrapperRect.left,
+      width: activeRect.width,
+      opacity: 1,
+    });
+  }, [selectedLanguage, locale, isMobileMenuOpen]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const activeLink = selectedLink;
+      const linksWrapper = linksWrapperRef.current;
+      const activeLinkElement = linkRefs.current[activeLink];
+
+      if (linksWrapper && activeLinkElement) {
+        const wrapperRect = linksWrapper.getBoundingClientRect();
+        const activeRect = activeLinkElement.getBoundingClientRect();
+        setLinksPillStyle({
+          x: activeRect.left - wrapperRect.left,
+          width: activeRect.width,
+          opacity: 1,
+        });
+      }
+
+      const activeLanguage = selectedLanguage;
+      const languageWrapper = languageSwitcherRef.current;
+      const activeLanguageElement = languageRefs.current[activeLanguage];
+
+      if (languageWrapper && activeLanguageElement) {
+        const wrapperRect = languageWrapper.getBoundingClientRect();
+        const activeRect = activeLanguageElement.getBoundingClientRect();
+        setLanguagePillStyle({
+          x: activeRect.left - wrapperRect.left,
+          width: activeRect.width,
+          opacity: 1,
+        });
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [selectedLink, selectedLanguage]);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) {
+      return;
+    }
+
+    const handleScrollClose = () => {
+      setIsMobileMenuOpen(false);
+    };
+
+    window.addEventListener("scroll", handleScrollClose, { passive: true });
+    return () => window.removeEventListener("scroll", handleScrollClose);
+  }, [isMobileMenuOpen]);
+
+  useEffect(() => {
+    if (isDesktop && isMobileMenuOpen) {
+      setIsMobileMenuOpen(false);
+    }
+  }, [isDesktop, isMobileMenuOpen]);
+
   const handleLanguageChange = (lang: string) => {
-    router.push(pathname, { locale: lang });
+    setSelectedLanguage(lang);
+    router.replace(pathname, { locale: lang });
     setIsMobileMenuOpen(false);
   };
 
   const handleLinkClick = (link: string, isMobile = false) => {
     setSelectedLink(link);
 
+    if (navigationTimeoutRef.current) {
+      clearTimeout(navigationTimeoutRef.current);
+    }
+
     const sectionId = link === "blog" ? "insights" : link;
 
     if (link === "home") {
       if (pathname !== "/") {
-        router.push("/");
+        navigationTimeoutRef.current = setTimeout(() => {
+          router.push("/");
+        }, PILL_ANIMATION_MS);
+        if (isMobile) setIsMobileMenuOpen(false);
+        return;
       }
       window.scrollTo({ top: 0, behavior: "smooth" });
       if (isMobile) setIsMobileMenuOpen(false);
@@ -208,7 +405,9 @@ const Header = () => {
     }
 
     if (pathname !== "/") {
-      router.push(`/#${sectionId}`);
+      navigationTimeoutRef.current = setTimeout(() => {
+        router.push(`/#${sectionId}`);
+      }, PILL_ANIMATION_MS);
       if (isMobile) setIsMobileMenuOpen(false);
       return;
     }
@@ -230,12 +429,14 @@ const Header = () => {
           position: "fixed",
           top: isDesktop ? 0 : 16,
           left: 0,
-          width: "100vw",
+          width: "100%",
           zIndex: 100,
           background:
             isFixed && !isAtTop && isDesktop
               ? `${colors.background.light}`
               : undefined,
+          transition: "transform 0.3s ease",
+          transform: showHeader ? "translateY(0)" : "translateY(-120%)",
         }}
       >
         <Container>
@@ -244,8 +445,6 @@ const Header = () => {
             style={{
               maxWidth: "1280px",
               margin: "0 auto",
-              transition: "transform 0.3s ease",
-              transform: showHeader ? "translateY(0)" : "translateY(-120%)",
             }}
           >
             <DesktopContainer>
@@ -255,12 +454,29 @@ const Header = () => {
               >
                 <LogoIcon />
               </div>
-              <LinksWrapper $isFixed={isFixed}>
+              <LinksWrapper
+                as="div"
+                ref={linksWrapperRef}
+                role="navigation"
+                $isFixed={isFixed}
+              >
+                <SlidingPill
+                  style={{
+                    transform: `translateX(${linksPillStyle.x}px)`,
+                    width: `${linksPillStyle.width}px`,
+                    opacity: linksPillStyle.opacity,
+                  }}
+                />
                 {links.map((link) => (
                   <Link
                     key={link}
+                    ref={(element) => {
+                      linkRefs.current[link] = element;
+                    }}
                     $isSelected={selectedLink === link}
                     onClick={() => handleLinkClick(link)}
+                    onMouseEnter={() => setHoveredLink(link)}
+                    onMouseLeave={() => setHoveredLink(null)}
                   >
                     <Typography
                       variant="text-mdOneline"
@@ -268,7 +484,9 @@ const Header = () => {
                       color={
                         selectedLink === link
                           ? colors.text.primary
-                          : colors.text.light
+                          : hoveredLink === link
+                            ? colors.links.hoverText
+                            : colors.text.light
                       }
                     >
                       {tHeader(`links.${link}`)}
@@ -276,12 +494,24 @@ const Header = () => {
                   </Link>
                 ))}
               </LinksWrapper>
-              <LanguageSwitcher $isFixed={isFixed}>
+              <LanguageSwitcher ref={languageSwitcherRef} $isFixed={isFixed}>
+                <SlidingLanguagePill
+                  style={{
+                    transform: `translateX(${languagePillStyle.x}px)`,
+                    width: `${languagePillStyle.width}px`,
+                    opacity: languagePillStyle.opacity,
+                  }}
+                />
                 {languages.map((lang) => (
                   <LanguageButton
                     key={lang}
+                    ref={(element) => {
+                      languageRefs.current[lang] = element;
+                    }}
                     $isSelected={selectedLanguage === lang}
                     onClick={() => handleLanguageChange(lang)}
+                    onMouseEnter={() => setHoveredLanguage(lang)}
+                    onMouseLeave={() => setHoveredLanguage(null)}
                   >
                     <Typography
                       variant="text-sm"
@@ -289,7 +519,9 @@ const Header = () => {
                       color={
                         selectedLanguage === lang
                           ? colors.text.primary
-                          : colors.text.light
+                          : hoveredLanguage === lang
+                            ? colors.links.hoverText
+                            : colors.text.light
                       }
                     >
                       {tHeader(`languageSwitcher.${lang}`).toUpperCase()}
@@ -315,17 +547,14 @@ const Header = () => {
       {isMobileMenuOpen && (
         <MobileMenuOverlay onClick={() => setIsMobileMenuOpen(false)}>
           <MobileMenu onClick={(e) => e.stopPropagation()}>
-            <div
-              style={{ cursor: "pointer" }}
-              onClick={() => handleLinkClick("home", true)}
-            >
-              <LogoSmallIcon />
-            </div>
             {links.map((link) => (
               <Link
                 key={link}
+                $isMobileVariant
                 $isSelected={selectedLink === link}
                 onClick={() => handleLinkClick(link, true)}
+                onMouseEnter={() => setHoveredLink(link)}
+                onMouseLeave={() => setHoveredLink(null)}
               >
                 <Typography
                   variant="text-mdOneline"
@@ -333,19 +562,24 @@ const Header = () => {
                   color={
                     selectedLink === link
                       ? colors.text.primary
-                      : colors.text.light
+                      : hoveredLink === link
+                        ? colors.links.hoverText
+                        : colors.text.light
                   }
                 >
                   {tHeader(`links.${link}`)}
                 </Typography>
               </Link>
             ))}
-            <LanguageSwitcher $isFixed={isFixed}>
+            <LanguageSwitcher $isFixed={isFixed} $isMobileVariant>
               {languages.map((lang) => (
                 <LanguageButton
                   key={lang}
+                  $isMobileVariant
                   $isSelected={selectedLanguage === lang}
                   onClick={() => handleLanguageChange(lang)}
+                  onMouseEnter={() => setHoveredLanguage(lang)}
+                  onMouseLeave={() => setHoveredLanguage(null)}
                 >
                   <Typography
                     variant="text-sm"
@@ -353,7 +587,9 @@ const Header = () => {
                     color={
                       selectedLanguage === lang
                         ? colors.text.primary
-                        : colors.text.light
+                        : hoveredLanguage === lang
+                          ? colors.links.hoverText
+                          : colors.text.light
                     }
                   >
                     {tHeader(`languageSwitcher.${lang}`).toUpperCase()}

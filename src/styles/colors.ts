@@ -1,10 +1,8 @@
 export const colors = {
   // Primary brand colors
-  brand: {
-    primary: "#662d91",
-    secondary: "#302e9c",
-    gradientStart: "#662d91",
-    gradientEnd: "#302e9c",
+  links: {
+    hover: "#E8F0FE",
+    hoverText: "#3A6BDF",
   },
 
   // Text colors
@@ -47,9 +45,9 @@ export const colors = {
       backgroundMedium: "rgba(255, 255, 255, 0.12)",
     },
     focus: {
-      outline: "#4285f4",
-      ring: "#6A8FE7",
-      active: "#3F5FBF",
+      outline: "#2F5ED1",
+      ring: "#244FB8",
+      active: "#1C3E95",
     },
   },
 

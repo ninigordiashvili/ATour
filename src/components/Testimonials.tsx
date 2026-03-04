@@ -1,6 +1,7 @@
 import React from "react";
 import Container from "./Container";
 import { styled, keyframes } from "styled-components";
+import Image from "next/image";
 import { colors } from "../styles/colors";
 import Typography from "./Typography";
 import { useTranslations, useLocale } from "next-intl";
@@ -92,7 +93,7 @@ const TagWrapper = styled.div`
   backdrop-filter: blur(40px);
   border-radius: 24px;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(24px);
 
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -103,13 +104,6 @@ const TagWrapper = styled.div`
     inset: 0;
     border-radius: inherit;
     pointer-events: none;
-
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.35) 0%,
-      rgba(255, 255, 255, 0.1) 40%,
-      rgba(255, 255, 255, 0.02) 100%
-    );
 
     &::after {
       content: "";
@@ -173,7 +167,7 @@ const AuthorSection = styled.div`
   gap: 24px;
 `;
 
-const Avatar = styled.img`
+const Avatar = styled(Image)`
   width: 58px;
   height: 58px;
   border-radius: 50%;
@@ -289,7 +283,14 @@ const Testimonials = () => {
                 </MobileContainer>
               </QuoteSection>
               <AuthorSection>
-                <Avatar src={testimonial.avatar} alt={testimonial.name} />
+                <Avatar
+                  src={testimonial.avatar}
+                  alt={testimonial.name}
+                  width={58}
+                  height={58}
+                  quality={75}
+                  style={{ borderRadius: "50%" }}
+                />
                 <AuthorInfo>
                   <DesktopContainer>
                     <Typography

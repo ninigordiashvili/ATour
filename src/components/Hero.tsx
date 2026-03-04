@@ -118,8 +118,10 @@ const SocialWrapper = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 99px;
-  background-color: ${colors.background.light}60;
   cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+
   @media screen and (max-width: 1080px) {
     width: 42px;
     height: 42px;
@@ -203,6 +205,7 @@ const Hero = () => {
   const tHero = useTranslations("Hero");
   const locale = useLocale();
   const [showModal, setShowModal] = useState(false);
+  const [hoveredSocial, setHoveredSocial] = useState<string | null>(null);
 
   const handleOpenModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
@@ -216,7 +219,8 @@ const Hero = () => {
             alt="Hero Background"
             fill
             priority
-            quality={85}
+            fetchPriority="high"
+            quality={75}
             sizes="100vw"
             style={{ objectFit: "cover" }}
           />
@@ -228,7 +232,8 @@ const Hero = () => {
             alt="Hero Background"
             fill
             priority
-            quality={85}
+            fetchPriority="high"
+            quality={70}
             sizes="100vw"
             style={{ objectFit: "cover" }}
           />
@@ -302,12 +307,21 @@ const Hero = () => {
             href="https://wa.me/"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Contact us on WhatsApp"
+            onMouseEnter={() => setHoveredSocial("whatsapp")}
+            onMouseLeave={() => setHoveredSocial(null)}
           >
             <DesktopContainer>
-              <WhatsappIcon />
+              <WhatsappIcon
+                color={hoveredSocial === "whatsapp" ? "#7AD06D" : undefined}
+              />
             </DesktopContainer>
             <MobileContainer>
-              <WhatsappIcon width={26} height={26} />
+              <WhatsappIcon
+                color={hoveredSocial === "whatsapp" ? "#7AD06D" : undefined}
+                width={26}
+                height={26}
+              />
             </MobileContainer>
           </SocialWrapper>
           <SocialWrapper
@@ -315,12 +329,21 @@ const Hero = () => {
             href="https://instagram.com/"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Follow us on Instagram"
+            onMouseEnter={() => setHoveredSocial("instagram")}
+            onMouseLeave={() => setHoveredSocial(null)}
           >
             <DesktopContainer>
-              <InstaIcon />
+              <InstaIcon
+                color={hoveredSocial === "instagram" ? "#8C3AAA" : undefined}
+              />
             </DesktopContainer>
             <MobileContainer>
-              <InstaIcon width={26} height={26} />
+              <InstaIcon
+                color={hoveredSocial === "instagram" ? "#8C3AAA" : undefined}
+                width={26}
+                height={26}
+              />
             </MobileContainer>
           </SocialWrapper>
           <SocialWrapper
@@ -328,12 +351,21 @@ const Hero = () => {
             href="https://messenger.com/"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Message us on Messenger"
+            onMouseEnter={() => setHoveredSocial("messenger")}
+            onMouseLeave={() => setHoveredSocial(null)}
           >
             <DesktopContainer>
-              <MessengerIcon />
+              <MessengerIcon
+                color={hoveredSocial === "messenger" ? "#00B2FF" : undefined}
+              />
             </DesktopContainer>
             <MobileContainer>
-              <MessengerIcon width={26} height={26} />
+              <MessengerIcon
+                color={hoveredSocial === "messenger" ? "#00B2FF" : undefined}
+                width={26}
+                height={26}
+              />
             </MobileContainer>
           </SocialWrapper>
         </SocialsBox>

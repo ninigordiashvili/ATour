@@ -123,7 +123,7 @@ const PartnersWrapper = styled.div`
   padding: 8px;
   border-radius: 24px;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(24px);
 
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -134,13 +134,6 @@ const PartnersWrapper = styled.div`
     inset: 0;
     border-radius: inherit;
     pointer-events: none;
-
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.35) 0%,
-      rgba(255, 255, 255, 0.1) 40%,
-      rgba(255, 255, 255, 0.02) 100%
-    );
   }
 `;
 
@@ -291,6 +284,7 @@ const Partners = () => {
                   alt="Aptos Logo"
                   width={153}
                   height={32}
+                  quality={75}
                 />
               </PartnersWrapper>
             </DesktopContainer>
@@ -308,6 +302,7 @@ const Partners = () => {
                   alt="Aptos Logo"
                   width={124}
                   height={26}
+                  quality={75}
                 />
               </PartnersWrapper>
             </MobileContainer>

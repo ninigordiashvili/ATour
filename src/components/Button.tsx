@@ -15,6 +15,7 @@ interface ButtonProps {
   onClick?: () => void;
   variant?: "default" | "iconOnly" | "transparent" | "bookButton" | "back";
   active?: boolean;
+  isHovered?: boolean;
 }
 
 const StyledButton = styled.button<{ $isActive: boolean; $variant?: string }>`
@@ -45,10 +46,10 @@ const TextContainer = styled.div<{ $isActive: boolean; $variant?: string }>`
   padding: 16px;
   background: ${(props) =>
     props.$variant === "bookButton"
-      ? `${colors.state.focus.ring}`
+      ? `${colors.state.focus.outline}`
       : props.$isActive
         ? `${colors.state.focus.active}`
-        : `${colors.state.focus.ring}`};
+        : `${colors.state.focus.outline}`};
   border-radius: ${(props) => (props.$isActive ? "24px 0 0 24px" : "24px")};
   transition: all 0.2s ease-in-out;
   flex: ${(props) => (props.$variant === "bookButton" ? "1" : "0 0 auto")};
@@ -90,10 +91,10 @@ const ArrowContainer = styled.div<{
         : "16px"};
   background: ${(props) =>
     props.$variant === "bookButton"
-      ? `${colors.state.focus.ring}`
+      ? `${colors.state.focus.outline}`
       : props.$isActive
         ? `${colors.state.focus.active}`
-        : `${colors.state.focus.ring}`};
+        : `${colors.state.focus.outline}`};
   border-radius: ${(props) => (props.$isActive ? "0 24px 24px 0" : "99px")};
   transition: all 0.2s ease-in-out;
 
@@ -146,9 +147,6 @@ const StyledArrowIcon = styled.div<{
   padding: ${(props) => (props.$variant === "bookButton" ? "1px" : "0")};
   transform: ${(props) => (props.$isActive ? "rotate(45deg)" : "rotate(0deg)")};
   transition: transform 0.3s ease-in-out;
-  ${StyledButton}:hover & {
-    transform: rotate(45deg);
-  }
 
   ${StyledButton}:active & {
     transform: rotate(45deg);
@@ -161,10 +159,12 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   variant = "default",
   active = false,
+  isHovered: isHoveredProp = false,
 }) => {
   const tButtons = useTranslations("Buttons");
   const locale = useLocale();
-  const [isHovered, setIsHovered] = useState(false);
+  const [isHoveredInternal, setIsHoveredInternal] = useState(false);
+  const isHovered = isHoveredProp || isHoveredInternal;
 
   // Back button variant
   if (variant === "back") {
@@ -199,8 +199,8 @@ const Button: React.FC<ButtonProps> = ({
       <StyledButton
         $isActive={false}
         onClick={onClick}
-        onMouseLeave={() => setIsHovered(false)}
-        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHoveredInternal(false)}
+        onMouseEnter={() => setIsHoveredInternal(true)}
       >
         <ArrowContainer
           $isActive={false}
@@ -222,18 +222,22 @@ const Button: React.FC<ButtonProps> = ({
 
   // Transparent variant with text and blue arrow
   if (variant === "transparent") {
+    const transparentColor = isHovered
+      ? colors.state.focus.ring
+      : colors.state.focus.outline;
+
     return (
       <StyledButton
         $isActive={false}
         onClick={onClick}
-        onMouseLeave={() => setIsHovered(false)}
-        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHoveredInternal(false)}
+        onMouseEnter={() => setIsHoveredInternal(true)}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <DesktopContainer>
             <Typography
               variant={locale === "ka" ? "text-mdUppercase" : "text-mdOneline"}
-              color={colors.state.focus.active}
+              color={transparentColor}
               weight="regular"
             >
               {tButtons("readMore")}
@@ -242,13 +246,13 @@ const Button: React.FC<ButtonProps> = ({
           <MobileContainer>
             <Typography
               variant={locale === "ka" ? "text-smUppercase" : "text-smOneline"}
-              color={colors.state.focus.active}
+              color={transparentColor}
               weight="regular"
             >
               {tButtons("readMore")}
             </Typography>
           </MobileContainer>
-          <BlueArrowIcon />
+          <BlueArrowIcon color={transparentColor} />
         </div>
       </StyledButton>
     );
@@ -262,9 +266,9 @@ const Button: React.FC<ButtonProps> = ({
         $variant="bookButton"
         onClick={onClick}
         onMouseLeave={() => {
-          setIsHovered(false);
+          setIsHoveredInternal(false);
         }}
-        onMouseEnter={() => setIsHovered(true)}
+        onMouseEnter={() => setIsHoveredInternal(true)}
       >
         <TextContainer $isActive={true} $variant="bookButton">
           <DesktopContainer>
@@ -308,8 +312,8 @@ const Button: React.FC<ButtonProps> = ({
     <StyledButton
       $isActive={!!active}
       onClick={onClick}
-      onMouseLeave={() => setIsHovered(false)}
-      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHoveredInternal(false)}
+      onMouseEnter={() => setIsHoveredInternal(true)}
     >
       <TextContainer $isActive={!!active}>
         <DesktopContainer>

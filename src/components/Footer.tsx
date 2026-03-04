@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { usePathname, useRouter } from "../i18n/routing";
+import { Link, usePathname, useRouter } from "../i18n/routing";
 import styled from "styled-components";
 import Container from "./Container";
 import { colors } from "../styles/colors";
@@ -18,7 +18,7 @@ import LogoSmallIcon from "../icons/LogoSmallIcon";
 const FooterWrapper = styled.footer`
   background-color: ${colors.background.light};
   position: relative;
-  padding: 100px 0;
+  padding: 100px 0 48px 0;
   @media screen and (max-width: 1080px) {
     padding: 48px 0;
   }
@@ -111,13 +111,10 @@ const SocialLink = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
-
   cursor: pointer;
-  transition: opacity 0.2s ease;
-
-  &:hover {
-    opacity: 0.7;
-  }
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  position: relative;
 `;
 
 const CopyrightSection = styled.div`
@@ -157,6 +154,8 @@ const Footer = () => {
   const locale = useLocale();
   const pathname = usePathname();
   const router = useRouter();
+  const [hoveredLink, setHoveredLink] = React.useState<string | null>(null);
+  const [hoveredSocial, setHoveredSocial] = React.useState<string | null>(null);
 
   return (
     <FooterWrapper>
@@ -165,14 +164,22 @@ const Footer = () => {
         <FooterContent>
           <BrandSection>
             <DesktopContainer>
-              <a href="/" style={{ cursor: "pointer" }}>
+              <Link
+                href="/"
+                style={{ cursor: "pointer" }}
+                aria-label="Atour Home"
+              >
                 <LogoIcon />
-              </a>
+              </Link>
             </DesktopContainer>
             <MobileContainer>
-              <a href="/" style={{ cursor: "pointer" }}>
+              <Link
+                href="/"
+                style={{ cursor: "pointer" }}
+                aria-label="Atour Home"
+              >
                 <LogoSmallIcon />
-              </a>
+              </Link>
             </MobileContainer>
             <DesktopContainer>
               <Typography
@@ -225,11 +232,17 @@ const Footer = () => {
                 e.preventDefault();
                 router.push("/Blog");
               }}
+              onMouseEnter={() => setHoveredLink("blog")}
+              onMouseLeave={() => setHoveredLink(null)}
             >
               <DesktopContainer>
                 <Typography
                   variant="text-mdOneline"
-                  color={colors.text.light}
+                  color={
+                    hoveredLink === "blog"
+                      ? colors.links.hoverText
+                      : colors.text.light
+                  }
                   weight="regular"
                 >
                   {tFooter("Links.blog")}
@@ -238,7 +251,11 @@ const Footer = () => {
               <MobileContainer>
                 <Typography
                   variant="text-sm"
-                  color={colors.text.light}
+                  color={
+                    hoveredLink === "blog"
+                      ? colors.links.hoverText
+                      : colors.text.light
+                  }
                   weight="regular"
                 >
                   {tFooter("Links.blog")}
@@ -258,11 +275,17 @@ const Footer = () => {
                   }
                 }
               }}
+              onMouseEnter={() => setHoveredLink("testimonials")}
+              onMouseLeave={() => setHoveredLink(null)}
             >
               <DesktopContainer>
                 <Typography
                   variant="text-mdOneline"
-                  color={colors.text.light}
+                  color={
+                    hoveredLink === "testimonials"
+                      ? colors.links.hoverText
+                      : colors.text.light
+                  }
                   weight="regular"
                 >
                   {tFooter("Links.testimonials")}
@@ -271,7 +294,11 @@ const Footer = () => {
               <MobileContainer>
                 <Typography
                   variant="text-sm"
-                  color={colors.text.light}
+                  color={
+                    hoveredLink === "testimonials"
+                      ? colors.links.hoverText
+                      : colors.text.light
+                  }
                   weight="regular"
                 >
                   {tFooter("Links.testimonials")}
@@ -291,11 +318,17 @@ const Footer = () => {
                   }
                 }
               }}
+              onMouseEnter={() => setHoveredLink("contact")}
+              onMouseLeave={() => setHoveredLink(null)}
             >
               <DesktopContainer>
                 <Typography
                   variant="text-mdOneline"
-                  color={colors.text.light}
+                  color={
+                    hoveredLink === "contact"
+                      ? colors.links.hoverText
+                      : colors.text.light
+                  }
                   weight="regular"
                 >
                   {tFooter("Links.contact")}
@@ -304,7 +337,11 @@ const Footer = () => {
               <MobileContainer>
                 <Typography
                   variant="text-sm"
-                  color={colors.text.light}
+                  color={
+                    hoveredLink === "contact"
+                      ? colors.links.hoverText
+                      : colors.text.light
+                  }
                   weight="regular"
                 >
                   {tFooter("Links.contact")}
@@ -398,13 +435,26 @@ const Footer = () => {
                 href="https://wa.me/"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Contact us on WhatsApp"
+                onMouseEnter={() => setHoveredSocial("whatsapp")}
+                onMouseLeave={() => setHoveredSocial(null)}
               >
                 <DesktopContainer>
-                  <WhatsappIcon color={colors.text.light} />
+                  <WhatsappIcon
+                    color={
+                      hoveredSocial === "whatsapp"
+                        ? "#7AD06D"
+                        : colors.text.light
+                    }
+                  />
                 </DesktopContainer>
                 <MobileContainer>
                   <WhatsappIcon
-                    color={colors.text.light}
+                    color={
+                      hoveredSocial === "whatsapp"
+                        ? "#7AD06D"
+                        : colors.text.light
+                    }
                     width={26}
                     height={26}
                   />
@@ -414,25 +464,55 @@ const Footer = () => {
                 href="https://instagram.com/"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Follow us on Instagram"
+                onMouseEnter={() => setHoveredSocial("instagram")}
+                onMouseLeave={() => setHoveredSocial(null)}
               >
                 <DesktopContainer>
-                  <InstaIcon color={colors.text.light} />
+                  <InstaIcon
+                    color={
+                      hoveredSocial === "instagram"
+                        ? "#8C3AAA"
+                        : colors.text.light
+                    }
+                  />
                 </DesktopContainer>
                 <MobileContainer>
-                  <InstaIcon color={colors.text.light} width={26} height={26} />
+                  <InstaIcon
+                    color={
+                      hoveredSocial === "instagram"
+                        ? "#8C3AAA"
+                        : colors.text.light
+                    }
+                    width={26}
+                    height={26}
+                  />
                 </MobileContainer>
               </SocialLink>
               <SocialLink
                 href="https://messenger.com/"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Message us on Messenger"
+                onMouseEnter={() => setHoveredSocial("messenger")}
+                onMouseLeave={() => setHoveredSocial(null)}
               >
                 <DesktopContainer>
-                  <MessengerIcon color={colors.text.light} />
+                  <MessengerIcon
+                    color={
+                      hoveredSocial === "messenger"
+                        ? "#00B2FF"
+                        : colors.text.light
+                    }
+                  />
                 </DesktopContainer>
                 <MobileContainer>
                   <MessengerIcon
-                    color={colors.text.light}
+                    color={
+                      hoveredSocial === "messenger"
+                        ? "#00B2FF"
+                        : colors.text.light
+                    }
                     width={26}
                     height={26}
                   />

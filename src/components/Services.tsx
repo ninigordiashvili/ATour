@@ -64,8 +64,20 @@ const ServiceCard = styled.div`
   background: ${colors.background.light};
   border-radius: 20px;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: ${colors.shadow.light};
+  cursor: pointer;
+
+  /* Trigger button hover state when card is hovered */
+  &:hover button > div {
+    background: ${colors.state.focus.ring};
+    transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &:hover button svg {
+    transform: rotate(45deg);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
 `;
 
 const CardImage = styled.div`
@@ -176,7 +188,7 @@ const PopupHeader = styled.div`
 `;
 
 const BadgeWrapper = styled.div`
-  background: ${colors.state.focus.ring};
+  background: ${colors.state.focus.outline};
   padding: 6px 12px;
   border-radius: 53px;
   display: inline-block;
@@ -186,20 +198,36 @@ const BadgeSwitcher = styled.div`
   display: flex;
   background: ${colors.background.light};
   border-radius: 53px;
+  position: relative;
+  overflow: hidden;
+`;
+
+const BadgeSlider = styled.div<{ $activeIndex: number }>`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 50%;
+  background: ${colors.state.focus.outline};
+  border-radius: 53px;
+  transform: ${({ $activeIndex }) =>
+    $activeIndex === 0 ? "translateX(0%)" : "translateX(100%)"};
+  transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
 `;
 
 const BadgeButton = styled.button<{ $active?: boolean }>`
-  background: ${({ $active }) =>
-    $active ? colors.state.focus.ring : "transparent"};
+  background: transparent;
   color: ${({ $active }) =>
     $active ? colors.text.primary : colors.text.light};
   border: none;
   border-radius: 53px;
   padding: 8px 16px;
   cursor: pointer;
-  transition:
-    background 300ms ease-out,
-    color 300ms ease-out;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  transition: color 300ms ease-out;
 `;
 
 const PopupContent = styled.div`
@@ -258,14 +286,6 @@ const Services = () => {
   const locale = useLocale();
   const [openCard, setOpenCard] = useState<null | "Card1" | "Card2">(null);
   const [miceDmcMode, setMiceDmcMode] = useState<"MICE" | "DMC">("DMC");
-
-  const [modalOpen, setModalOpen] = useState(false);
-  const [buttonResetKey, setButtonResetKey] = useState(0);
-
-  const handleCloseModal = () => {
-    setModalOpen(false);
-    setButtonResetKey((prev) => prev + 1);
-  };
 
   // Close popup on Esc key
   useEffect(() => {
@@ -358,7 +378,6 @@ const Services = () => {
 
     if (openCard === "Card2") {
       // Card2 popup with badge switcher
-      const badge = tServices("Card2.title");
       const imageSrc = "/images/services/dmc.png";
       const title =
         miceDmcMode === "DMC"
@@ -376,6 +395,7 @@ const Services = () => {
                 <CloseIcon />
               </PopupClose>
               <BadgeSwitcher>
+                <BadgeSlider $activeIndex={miceDmcMode === "MICE" ? 0 : 1} />
                 <BadgeButton
                   $active={miceDmcMode === "MICE"}
                   onClick={() => setMiceDmcMode("MICE")}
@@ -473,13 +493,14 @@ const Services = () => {
           </MobileContainer>
         </Title>
         <CardsGrid>
-          <ServiceCard>
+          <ServiceCard onClick={() => setOpenCard("Card1")}>
             <CardImage>
               <Image
                 src="/images/services/serviceCard1.png"
                 alt={tServices("Card1.title")}
                 fill
-                quality={80}
+                priority
+                quality={60}
                 sizes="(max-width: 1080px) 100vw, 470px"
                 style={{ objectFit: "cover" }}
               />
@@ -511,6 +532,7 @@ const Services = () => {
                 <Button
                   variant="iconOnly"
                   onClick={() => setOpenCard("Card1")}
+                  aria-label={tServices("Card1.title")}
                 />
               </CardHeader>
               <DescriptionWrapper>
@@ -551,13 +573,13 @@ const Services = () => {
             </CardContent>
           </ServiceCard>
 
-          <ServiceCard>
+          <ServiceCard onClick={() => setOpenCard("Card2")}>
             <CardImage>
               <Image
                 src="/images/services/serviceCard2.png"
                 alt={tServices("Card2.title")}
                 fill
-                quality={80}
+                quality={60}
                 sizes="(max-width: 1080px) 100vw, 470px"
                 style={{ objectFit: "cover" }}
               />
@@ -589,6 +611,7 @@ const Services = () => {
                 <Button
                   variant="iconOnly"
                   onClick={() => setOpenCard("Card2")}
+                  aria-label={tServices("Card2.title")}
                 />
               </CardHeader>
               <DescriptionWrapper>

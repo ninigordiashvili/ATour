@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Container from "./Container";
 import { colors } from "../styles/colors";
@@ -7,6 +7,7 @@ import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import { DesktopContainer, MobileContainer } from "./Responsive";
 import Button from "./Button";
+import { useRouter } from "../i18n/routing";
 
 const InsightsWrapper = styled.div`
   background-color: ${colors.background.light};
@@ -50,6 +51,13 @@ const InsightCard = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.12);
+  }
+
   @media screen and (max-width: 1080px) {
     padding: 16px;
     min-height: 400px;
@@ -110,6 +118,12 @@ const CardImage = styled.div`
 const Insights = () => {
   const tInsights = useTranslations("Insights");
   const locale = useLocale();
+  const router = useRouter();
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+
+  const navigateToBlog = () => {
+    router.push("/Blog");
+  };
 
   return (
     <InsightsWrapper id="insights">
@@ -148,7 +162,11 @@ const Insights = () => {
         </Title>
 
         <CardsGrid>
-          <InsightCard>
+          <InsightCard
+            onClick={navigateToBlog}
+            onMouseEnter={() => setHoveredCard(1)}
+            onMouseLeave={() => setHoveredCard(null)}
+          >
             <CardBody>
               <CardTextContent>
                 <CardDate>
@@ -212,7 +230,8 @@ const Insights = () => {
                   </MobileContainer>
                   <Button
                     variant="transparent"
-                    onClick={() => (window.location.href = "/Blog")}
+                    onClick={navigateToBlog}
+                    isHovered={hoveredCard === 1}
                   />
                 </CardBottomContent>
               </CardTextContent>
@@ -222,7 +241,8 @@ const Insights = () => {
                     src="/images/insights/card1.png"
                     alt={tInsights("Card1.title")}
                     fill
-                    quality={80}
+                    priority
+                    quality={60}
                     sizes="(max-width: 1080px) 100vw, 236px"
                     style={{ objectFit: "cover" }}
                   />
@@ -232,7 +252,8 @@ const Insights = () => {
                     src="/images/insights/card1Mob.png"
                     alt={tInsights("Card1.title")}
                     fill
-                    quality={60}
+                    priority
+                    quality={40}
                     sizes="(max-width: 640px) 100vw, (max-width: 1080px) 90vw, 236px"
                     style={{ objectFit: "cover" }}
                   />
@@ -241,7 +262,11 @@ const Insights = () => {
             </CardBody>
           </InsightCard>
 
-          <InsightCard>
+          <InsightCard
+            onClick={navigateToBlog}
+            onMouseEnter={() => setHoveredCard(2)}
+            onMouseLeave={() => setHoveredCard(null)}
+          >
             <CardBody>
               <CardTextContent>
                 <CardDate>
@@ -305,7 +330,8 @@ const Insights = () => {
                   </MobileContainer>
                   <Button
                     variant="transparent"
-                    onClick={() => (window.location.href = "/Blog")}
+                    onClick={navigateToBlog}
+                    isHovered={hoveredCard === 2}
                   />
                 </CardBottomContent>
               </CardTextContent>
@@ -315,7 +341,7 @@ const Insights = () => {
                     src="/images/insights/card2.png"
                     alt={tInsights("Card2.title")}
                     fill
-                    quality={80}
+                    quality={60}
                     sizes="(max-width: 1080px) 100vw, 236px"
                     style={{ objectFit: "cover" }}
                   />
@@ -325,7 +351,7 @@ const Insights = () => {
                     src="/images/insights/card2Mob.png"
                     alt={tInsights("Card2.title")}
                     fill
-                    quality={60}
+                    quality={40}
                     sizes="(max-width: 640px) 100vw, (max-width: 1080px) 90vw, 236px"
                     style={{ objectFit: "cover" }}
                   />
