@@ -40,6 +40,14 @@ body {
   font-family: var(--font-noto-sans), "Noto Sans", sans-serif;
 }
 
+.locale-ka body {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.locale-en body {
+  font-family: var(--font-noto-sans), Helvetica, Arial, sans-serif;
+}
+
 a {
   color: inherit;
   text-decoration: none;

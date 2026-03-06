@@ -239,7 +239,7 @@ const BlogPage = () => {
 
           <HeroImage>
             <Image
-              src="/images/blogHero.png"
+              src="/images/blogHero.webp"
               alt={tInsights("Card2.title")}
               fill
               style={{ objectFit: "cover" }}

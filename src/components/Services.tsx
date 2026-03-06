@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import Container from "./Container";
 import { colors } from "../styles/colors";
@@ -300,7 +300,7 @@ const Services = () => {
   }, [openCard]);
 
   // Popup content for Card1 (TFLS)
-  const renderPopup = () => {
+  const renderPopup = useCallback(() => {
     if (!openCard) return null;
 
     // Handler to close modal on click outside
@@ -315,7 +315,7 @@ const Services = () => {
       const title = tServices("Card1.titleDetails");
       const description = tServices("Card1.descriptionDetails");
       const badge = tServices("Card1.title");
-      const imageSrc = "/images/services/tfls.png";
+      const imageSrc = "/images/services/tfls.webp";
       return (
         <PopupOverlay $show={!!openCard} onClick={handleOverlayClick}>
           <PopupCard $bg={imageSrc} $show={!!openCard}>
@@ -378,7 +378,7 @@ const Services = () => {
 
     if (openCard === "Card2") {
       // Card2 popup with badge switcher
-      const imageSrc = "/images/services/dmc.png";
+      const imageSrc = "/images/services/dmc.webp";
       const title =
         miceDmcMode === "DMC"
           ? tServices("Card2.DmcDetails")
@@ -453,7 +453,7 @@ const Services = () => {
     }
 
     return null;
-  };
+  }, [openCard, miceDmcMode, tServices, locale]);
 
   return (
     <ServicesWrapper id="services">
@@ -496,7 +496,7 @@ const Services = () => {
           <ServiceCard onClick={() => setOpenCard("Card1")}>
             <CardImage>
               <Image
-                src="/images/services/serviceCard1.png"
+                src="/images/services/serviceCard1.webp"
                 alt={tServices("Card1.title")}
                 fill
                 priority
@@ -576,7 +576,7 @@ const Services = () => {
           <ServiceCard onClick={() => setOpenCard("Card2")}>
             <CardImage>
               <Image
-                src="/images/services/serviceCard2.png"
+                src="/images/services/serviceCard2.webp"
                 alt={tServices("Card2.title")}
                 fill
                 quality={60}

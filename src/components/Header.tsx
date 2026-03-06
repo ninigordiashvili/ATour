@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useTransition } from "react";
 import styled from "styled-components";
 import { Typography } from "./Typography";
 import { colors } from "../styles/colors";
@@ -140,7 +140,6 @@ const LanguageButton = styled.button<{
     props.$isMobileVariant && props.$isSelected
       ? colors.state.focus.outline
       : "transparent"};
-  transition: background-color 0.2s ease;
   font-size: inherit;
 
   &:hover {
@@ -161,10 +160,6 @@ const SlidingPill = styled.div`
   height: calc(100% - 8px);
   border-radius: 24px;
   background-color: ${colors.state.focus.outline};
-  transition:
-    transform 0.28s ease,
-    width 0.28s ease,
-    opacity 0.2s ease;
   z-index: 0;
   pointer-events: none;
 `;
@@ -176,10 +171,6 @@ const SlidingLanguagePill = styled.div`
   height: calc(100% - 6px);
   border-radius: 24px;
   background-color: ${colors.state.focus.outline};
-  transition:
-    transform 0.28s ease,
-    width 0.28s ease,
-    opacity 0.2s ease;
   z-index: 0;
   pointer-events: none;
 `;
@@ -209,11 +200,13 @@ const Header = () => {
     // Optionally, handle other routes if needed
   }, [pathname]);
   const [selectedLanguage, setSelectedLanguage] = useState(locale);
+  const [isPending, startTransition] = useTransition();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
   const lastScrollY = useRef(0);
   const [isFixed, setIsFixed] = useState(false);
   const [isAtTop, setIsAtTop] = useState(true);
+  const [isPastHero, setIsPastHero] = useState(false);
   const [isDesktop, setIsDesktop] = useState(true);
   const navigationTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
     null,
@@ -265,6 +258,8 @@ const Header = () => {
         window.requestAnimationFrame(() => {
           const currentScrollY = window.scrollY;
           setIsAtTop(currentScrollY === 0);
+          const heroHeight = window.innerWidth > 1080 ? 705 : 500;
+          setIsPastHero(currentScrollY > heroHeight);
           if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
             setShowHeader(false);
             setIsFixed(false);
@@ -378,7 +373,9 @@ const Header = () => {
 
   const handleLanguageChange = (lang: string) => {
     setSelectedLanguage(lang);
-    router.replace(pathname, { locale: lang });
+    startTransition(() => {
+      router.replace(pathname, { locale: lang });
+    });
     setIsMobileMenuOpen(false);
   };
 
@@ -431,11 +428,10 @@ const Header = () => {
           left: 0,
           width: "100%",
           zIndex: 100,
-          background:
-            isFixed && !isAtTop && isDesktop
-              ? `${colors.background.light}`
-              : undefined,
-          transition: "transform 0.3s ease",
+          background: isAtTop ? "transparent" : "rgba(255, 255, 255, 0.2)",
+          backdropFilter: isAtTop ? "none" : "blur(12px)",
+          WebkitBackdropFilter: isAtTop ? "none" : "blur(12px)",
+          transition: "transform 0.3s ease, background 0.3s ease, backdrop-filter 0.3s ease",
           transform: showHeader ? "translateY(0)" : "translateY(-120%)",
         }}
       >

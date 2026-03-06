@@ -36,11 +36,26 @@ export async function generateMetadata({
   // Default to 'ka' if locale is undefined or not in our list
   const currentLocale = locale && locale in descriptions ? locale : "ka";
 
+  const title = titles[currentLocale as keyof typeof titles];
+  const description = descriptions[currentLocale as keyof typeof descriptions];
+
   return {
-    title: titles[currentLocale as keyof typeof titles],
-    description: descriptions[currentLocale as keyof typeof descriptions],
+    title,
+    description,
     appleWebApp: {
-      title: titles[currentLocale as keyof typeof titles],
+      title,
+    },
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      url: "https://atour.ge",
+      locale: currentLocale === "ka" ? "ka_GE" : "en_US",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
     },
   };
 }
@@ -69,16 +84,19 @@ export default async function LocaleLayout({
 
   const messages = await getMessages();
 
-  const fontFamily =
-    locale === "ka"
-      ? "Helvetica, Arial, sans-serif"
-      : "var(--font-noto-sans), Helvetica, Arial, sans-serif";
-
   return (
     <html lang={locale} className={locale === "ka" ? "locale-ka" : "locale-en"}>
+      <head>
+        <link
+          rel="preload"
+          href="/fonts/helvetica-neue-lt-geo-55-roman-caps.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body
         className={notoSans.variable}
-        style={{ fontFamily }}
         suppressHydrationWarning
       >
         <StyledComponentsRegistry>

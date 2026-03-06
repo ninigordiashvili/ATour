@@ -238,7 +238,7 @@ const Insights = () => {
               <CardImage>
                 <DesktopContainer>
                   <Image
-                    src="/images/insights/card1.png"
+                    src="/images/insights/card1.webp"
                     alt={tInsights("Card1.title")}
                     fill
                     priority
@@ -249,7 +249,7 @@ const Insights = () => {
                 </DesktopContainer>
                 <MobileContainer>
                   <Image
-                    src="/images/insights/card1Mob.png"
+                    src="/images/insights/card1Mob.webp"
                     alt={tInsights("Card1.title")}
                     fill
                     priority
@@ -338,7 +338,7 @@ const Insights = () => {
               <CardImage>
                 <DesktopContainer>
                   <Image
-                    src="/images/insights/card2.png"
+                    src="/images/insights/card2.webp"
                     alt={tInsights("Card2.title")}
                     fill
                     quality={60}
@@ -348,7 +348,7 @@ const Insights = () => {
                 </DesktopContainer>
                 <MobileContainer>
                   <Image
-                    src="/images/insights/card2Mob.png"
+                    src="/images/insights/card2Mob.webp"
                     alt={tInsights("Card2.title")}
                     fill
                     quality={40}

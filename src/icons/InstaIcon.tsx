@@ -2,12 +2,14 @@ import * as React from "react";
 
 interface InstaIconProps {
   color?: string;
+  hovered?: boolean;
   width?: number;
   height?: number;
 }
 
 const InstaIcon = ({
   color = "#1F2937",
+  hovered = false,
   width = 33,
   height = 33,
 }: InstaIconProps) => (
@@ -18,8 +20,18 @@ const InstaIcon = ({
     viewBox="0 0 33 33"
     fill="none"
   >
+    <defs>
+      <radialGradient id="insta-grad" cx="30%" cy="107%" r="150%">
+        <stop offset="0%" stopColor="#FEDA75" />
+        <stop offset="25%" stopColor="#FA7E1E" />
+        <stop offset="50%" stopColor="#D62976" />
+        <stop offset="75%" stopColor="#962FBF" />
+        <stop offset="100%" stopColor="#4F5BD5" />
+      </radialGradient>
+    </defs>
     <path
-      stroke={color}
+      style={{ transition: "stroke 0.3s ease" }}
+      stroke={hovered ? "url(#insta-grad)" : color}
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2.475}

@@ -128,6 +128,13 @@ const SocialWrapper = styled.div`
   }
 `;
 
+const DescriptionWrapper = styled.div`
+  min-height: 40px; /* 2 lines × 20px line-height */
+  @media screen and (max-width: 1080px) {
+    min-height: 40px;
+  }
+`;
+
 const ButtonWrapper = styled.div`
   @media screen and (max-width: 1080px) {
     margin-top: 16px;
@@ -215,7 +222,7 @@ const Hero = () => {
       <HeroImageWrapper>
         <HeroDesktopImageWrapper>
           <Image
-            src="/images/hero.png"
+            src="/images/hero.webp"
             alt="Hero Background"
             fill
             priority
@@ -228,7 +235,7 @@ const Hero = () => {
 
         <HeroMobileImageWrapper>
           <Image
-            src="/images/heroMobImage.png"
+            src="/images/heroMobImage.webp"
             alt="Hero Background"
             fill
             priority
@@ -269,13 +276,15 @@ const Hero = () => {
             >
               {tHero("title")}
             </Typography>
-            <Typography
-              variant="text-sm"
-              weight="regular"
-              color={colors.text.light}
-            >
-              {tHero("description")}
-            </Typography>
+            <DescriptionWrapper>
+              <Typography
+                variant="text-sm"
+                weight="regular"
+                color={colors.text.light}
+              >
+                {tHero("description")}
+              </Typography>
+            </DescriptionWrapper>
           </DesktopContainer>
           <MobileContainer>
             <Typography
@@ -285,13 +294,15 @@ const Hero = () => {
             >
               {tHero("title")}
             </Typography>
-            <Typography
-              variant="text-sm"
-              weight="regular"
-              color={colors.text.light}
-            >
-              {tHero("description")}
-            </Typography>
+            <DescriptionWrapper>
+              <Typography
+                variant="text-sm"
+                weight="regular"
+                color={colors.text.light}
+              >
+                {tHero("description")}
+              </Typography>
+            </DescriptionWrapper>
           </MobileContainer>
           <ButtonWrapper>
             <Button
@@ -313,12 +324,12 @@ const Hero = () => {
           >
             <DesktopContainer>
               <WhatsappIcon
-                color={hoveredSocial === "whatsapp" ? "#7AD06D" : undefined}
+                hovered={hoveredSocial === "whatsapp"}
               />
             </DesktopContainer>
             <MobileContainer>
               <WhatsappIcon
-                color={hoveredSocial === "whatsapp" ? "#7AD06D" : undefined}
+                hovered={hoveredSocial === "whatsapp"}
                 width={26}
                 height={26}
               />
@@ -335,12 +346,12 @@ const Hero = () => {
           >
             <DesktopContainer>
               <InstaIcon
-                color={hoveredSocial === "instagram" ? "#8C3AAA" : undefined}
+                hovered={hoveredSocial === "instagram"}
               />
             </DesktopContainer>
             <MobileContainer>
               <InstaIcon
-                color={hoveredSocial === "instagram" ? "#8C3AAA" : undefined}
+                hovered={hoveredSocial === "instagram"}
                 width={26}
                 height={26}
               />
@@ -357,12 +368,12 @@ const Hero = () => {
           >
             <DesktopContainer>
               <MessengerIcon
-                color={hoveredSocial === "messenger" ? "#00B2FF" : undefined}
+                hovered={hoveredSocial === "messenger"}
               />
             </DesktopContainer>
             <MobileContainer>
               <MessengerIcon
-                color={hoveredSocial === "messenger" ? "#00B2FF" : undefined}
+                hovered={hoveredSocial === "messenger"}
                 width={26}
                 height={26}
               />
