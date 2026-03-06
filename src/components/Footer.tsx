@@ -375,58 +375,67 @@ const Footer = () => {
                 </Typography>
               </MobileContainer>
             </Title>
-            <ContactItem>
-              <DesktopContainer>
-                <MailIcon />
-              </DesktopContainer>
-              <MobileContainer>
-                <MailIcon width={16} height={18} />
-              </MobileContainer>
-              <DesktopContainer>
-                <Typography
-                  variant="text-mdOneline"
-                  color={colors.text.light}
-                  weight="regular"
-                >
-                  {tFooter("Contact.email")}
-                </Typography>
-              </DesktopContainer>
-              <MobileContainer>
-                <Typography
-                  variant="text-sm"
-                  color={colors.text.light}
-                  weight="regular"
-                >
-                  {tFooter("Contact.email")}
-                </Typography>
-              </MobileContainer>
-            </ContactItem>
-            <ContactItem>
-              <DesktopContainer>
-                <LocationIcon />
-              </DesktopContainer>
-              <MobileContainer>
-                <LocationIcon width={16} height={18} />
-              </MobileContainer>
-              <DesktopContainer>
-                <Typography
-                  variant="text-mdOneline"
-                  color={colors.text.light}
-                  weight="regular"
-                >
-                  {tFooter("Contact.location")}
-                </Typography>
-              </DesktopContainer>
-              <MobileContainer>
-                <Typography
-                  variant="text-sm"
-                  color={colors.text.light}
-                  weight="regular"
-                >
-                  {tFooter("Contact.location")}
-                </Typography>
-              </MobileContainer>
-            </ContactItem>
+            <a href="mailto:info@atour.ge" style={{ textDecoration: "none" }}>
+              <ContactItem>
+                <DesktopContainer>
+                  <MailIcon />
+                </DesktopContainer>
+                <MobileContainer>
+                  <MailIcon width={16} height={18} />
+                </MobileContainer>
+                <DesktopContainer>
+                  <Typography
+                    variant="text-mdOneline"
+                    color={colors.text.light}
+                    weight="regular"
+                  >
+                    {tFooter("Contact.email")}
+                  </Typography>
+                </DesktopContainer>
+                <MobileContainer>
+                  <Typography
+                    variant="text-sm"
+                    color={colors.text.light}
+                    weight="regular"
+                  >
+                    {tFooter("Contact.email")}
+                  </Typography>
+                </MobileContainer>
+              </ContactItem>
+            </a>
+            <a
+              href="https://maps.google.com/?q=Tbilisi,+Georgia"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
+            >
+              <ContactItem>
+                <DesktopContainer>
+                  <LocationIcon />
+                </DesktopContainer>
+                <MobileContainer>
+                  <LocationIcon width={16} height={18} />
+                </MobileContainer>
+                <DesktopContainer>
+                  <Typography
+                    variant="text-mdOneline"
+                    color={colors.text.light}
+                    weight="regular"
+                  >
+                    {tFooter("Contact.location")}
+                  </Typography>
+                </DesktopContainer>
+                <MobileContainer>
+                  <Typography
+                    variant="text-sm"
+                    color={colors.text.light}
+                    weight="regular"
+                  >
+                    {tFooter("Contact.location")}
+                  </Typography>
+                </MobileContainer>
+              </ContactItem>
+            </a>
           </ContactSection>
 
           <SocialSection>
@@ -441,20 +450,14 @@ const Footer = () => {
               >
                 <DesktopContainer>
                   <WhatsappIcon
-                    color={
-                      hoveredSocial === "whatsapp"
-                        ? "#7AD06D"
-                        : colors.text.light
-                    }
+                    color={colors.text.light}
+                    hovered={hoveredSocial === "whatsapp"}
                   />
                 </DesktopContainer>
                 <MobileContainer>
                   <WhatsappIcon
-                    color={
-                      hoveredSocial === "whatsapp"
-                        ? "#7AD06D"
-                        : colors.text.light
-                    }
+                    color={colors.text.light}
+                    hovered={hoveredSocial === "whatsapp"}
                     width={26}
                     height={26}
                   />
@@ -470,20 +473,14 @@ const Footer = () => {
               >
                 <DesktopContainer>
                   <InstaIcon
-                    color={
-                      hoveredSocial === "instagram"
-                        ? "#8C3AAA"
-                        : colors.text.light
-                    }
+                    color={colors.text.light}
+                    hovered={hoveredSocial === "instagram"}
                   />
                 </DesktopContainer>
                 <MobileContainer>
                   <InstaIcon
-                    color={
-                      hoveredSocial === "instagram"
-                        ? "#8C3AAA"
-                        : colors.text.light
-                    }
+                    color={colors.text.light}
+                    hovered={hoveredSocial === "instagram"}
                     width={26}
                     height={26}
                   />
@@ -499,20 +496,14 @@ const Footer = () => {
               >
                 <DesktopContainer>
                   <MessengerIcon
-                    color={
-                      hoveredSocial === "messenger"
-                        ? "#00B2FF"
-                        : colors.text.light
-                    }
+                    color={colors.text.light}
+                    hovered={hoveredSocial === "messenger"}
                   />
                 </DesktopContainer>
                 <MobileContainer>
                   <MessengerIcon
-                    color={
-                      hoveredSocial === "messenger"
-                        ? "#00B2FF"
-                        : colors.text.light
-                    }
+                    color={colors.text.light}
+                    hovered={hoveredSocial === "messenger"}
                     width={26}
                     height={26}
                   />

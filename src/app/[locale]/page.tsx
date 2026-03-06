@@ -9,15 +9,9 @@ import Hero from "@/src/components/Hero";
 import Insights from "@/src/components/Insights";
 
 // Lazy load heavy components
-const Partners = dynamic(() => import("@/src/components/Partners"), {
-  loading: () => <div style={{ height: "400px" }} />,
-});
-const Services = dynamic(() => import("@/src/components/Services"), {
-  loading: () => <div style={{ height: "600px" }} />,
-});
-const Testimonials = dynamic(() => import("@/src/components/Testimonials"), {
-  loading: () => <div style={{ height: "400px" }} />,
-});
+const Partners = dynamic(() => import("@/src/components/Partners"));
+const Services = dynamic(() => import("@/src/components/Services"));
+const Testimonials = dynamic(() => import("@/src/components/Testimonials"));
 
 const Page = () => {
   const pathname = usePathname();

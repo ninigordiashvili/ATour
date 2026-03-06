@@ -89,19 +89,20 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const duplicateCount = isMobile ? 2 : 2;
-  const duplicatedTopRow = Array(duplicateCount)
-    .fill(null)
-    .flatMap(() => topRowImages);
-  const duplicatedBottomRow = Array(duplicateCount)
-    .fill(null)
-    .flatMap(() => bottomRowImages);
+  const duplicatedTopRow = React.useMemo(
+    () => [...topRowImages, ...topRowImages],
+    [topRowImages],
+  );
+  const duplicatedBottomRow = React.useMemo(
+    () => [...bottomRowImages, ...bottomRowImages],
+    [bottomRowImages],
+  );
 
   return (
     <CarouselContainer>
       <Row>
         {duplicatedTopRow.map((image, index) => (
-          <ImageWrapper key={`top-${index}`}>
+          <ImageWrapper key={`top-${image.src}-${index}`}>
             <Image
               src={image.src}
               alt={image.alt}
@@ -118,7 +119,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
       </Row>
       <Row $reverse>
         {duplicatedBottomRow.map((image, index) => (
-          <ImageWrapper key={`bottom-${index}`}>
+          <ImageWrapper key={`bottom-${image.src}-${index}`}>
             <Image
               src={image.src}
               alt={image.alt}

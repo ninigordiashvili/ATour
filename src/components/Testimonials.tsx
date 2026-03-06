@@ -90,7 +90,6 @@ const TagWrapper = styled.div`
   gap: 8px;
   align-items: center;
   padding: 8px;
-  backdrop-filter: blur(40px);
   border-radius: 24px;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.4);
@@ -104,14 +103,14 @@ const TagWrapper = styled.div`
     inset: 0;
     border-radius: inherit;
     pointer-events: none;
+  }
 
-    &::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.7);
-      pointer-events: none;
-    }
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.7);
+    pointer-events: none;
   }
 `;
 
@@ -191,7 +190,7 @@ const Testimonials = () => {
     quote: tTestimonials(`${cardKey}.feedback`),
     name: tTestimonials(`${cardKey}.name`),
     title: tTestimonials(`${cardKey}.position`),
-    avatar: "/images/avatar.png",
+    avatar: "/images/avatar.webp",
   }));
 
   const duplicatedTestimonials = [

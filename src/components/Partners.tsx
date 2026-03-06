@@ -25,43 +25,18 @@ const MainContainer = styled.div`
 
 const PartnersSection = styled.section`
   position: relative;
+`;
 
-  &::before,
-  &::after,
-  &::partner-top-right,
-  &::partner-bottom-left {
-    content: "";
-    position: absolute;
-    width: 863px;
-    height: 863px;
-    border-radius: 50%;
-    background: #3f5fbf;
-    opacity: 0.1;
-    filter: blur(500px);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* Top Left */
-  &::before {
-    top: 200px;
-    left: -256px;
-  }
-  /* Top Right */
-  &::after {
-    top: 200px;
-    right: -256px;
-  }
-  /* Bottom Left */
-  &::partner-bottom-left {
-    bottom: -200px;
-    left: -256px;
-  }
-  /* Bottom Right */
-  &::partner-top-right {
-    bottom: -200px;
-    right: -256px;
-  }
+const BlurredEllipse = styled.span<{ $size?: number }>`
+  position: absolute;
+  width: ${({ $size }) => $size || 863}px;
+  height: ${({ $size }) => $size || 863}px;
+  border-radius: 50%;
+  background: #3f5fbf;
+  opacity: 0.1;
+  filter: blur(500px);
+  pointer-events: none;
+  z-index: 0;
 `;
 
 const DecorativeLine = styled.div`
@@ -152,24 +127,24 @@ const DecorativeLineBottomWrapper = styled.div`
 `;
 
 const topRowImages = [
-  { src: "/images/partners/image1.png", alt: "Event 1" },
-  { src: "/images/partners/image2.png", alt: "Event 2" },
-  { src: "/images/partners/image3.png", alt: "Event 3" },
-  { src: "/images/partners/image4.png", alt: "Event 4" },
-  { src: "/images/partners/image5.png", alt: "Event 5" },
-  { src: "/images/partners/image6.png", alt: "Event 6" },
-  { src: "/images/partners/image7.png", alt: "Event 7" },
-  { src: "/images/partners/image8.png", alt: "Event 8" },
+  { src: "/images/partners/image1.webp", alt: "Event 1" },
+  { src: "/images/partners/image2.webp", alt: "Event 2" },
+  { src: "/images/partners/image3.webp", alt: "Event 3" },
+  { src: "/images/partners/image4.webp", alt: "Event 4" },
+  { src: "/images/partners/image5.webp", alt: "Event 5" },
+  { src: "/images/partners/image6.webp", alt: "Event 6" },
+  { src: "/images/partners/image7.webp", alt: "Event 7" },
+  { src: "/images/partners/image8.webp", alt: "Event 8" },
 ];
 
 const bottomRowImages = [
-  { src: "/images/partners/image9.png", alt: "Event 9" },
-  { src: "/images/partners/image10.png", alt: "Event 10" },
-  { src: "/images/partners/image11.png", alt: "Event 11" },
-  { src: "/images/partners/image12.png", alt: "Event 12" },
-  { src: "/images/partners/image13.png", alt: "Event 13" },
-  { src: "/images/partners/image14.png", alt: "Event 14" },
-  { src: "/images/partners/image15.png", alt: "Event 15" },
+  { src: "/images/partners/image9.webp", alt: "Event 9" },
+  { src: "/images/partners/image10.webp", alt: "Event 10" },
+  { src: "/images/partners/image11.webp", alt: "Event 11" },
+  { src: "/images/partners/image12.webp", alt: "Event 12" },
+  { src: "/images/partners/image13.webp", alt: "Event 13" },
+  { src: "/images/partners/image14.webp", alt: "Event 14" },
+  { src: "/images/partners/image15.webp", alt: "Event 15" },
 ];
 
 const Partners = () => {
@@ -178,66 +153,14 @@ const Partners = () => {
 
   return (
     <PartnersSection>
-      <span
-        style={{
-          position: "absolute",
-          bottom: "-200px",
-          left: "-256px",
-          width: "564px",
-          height: "564px",
-          borderRadius: "50%",
-          background: "#3f5fbf",
-          opacity: 0.1,
-          filter: "blur(500px)",
-          pointerEvents: "none",
-          zIndex: 0,
-        }}
-      />
-      <span
-        style={{
-          position: "absolute",
-          top: "-200px",
-          right: "-256px",
-          width: "863px",
-          height: "863px",
-          borderRadius: "50%",
-          background: "#3f5fbf",
-          opacity: 0.1,
-          filter: "blur(500px)",
-          pointerEvents: "none",
-          zIndex: 0,
-        }}
-      />
-      <span
-        style={{
-          position: "absolute",
-          bottom: "-200px",
-          right: "-256px",
-          width: "564px",
-          height: "564px",
-          borderRadius: "50%",
-          background: "#3f5fbf",
-          opacity: 0.1,
-          filter: "blur(500px)",
-          pointerEvents: "none",
-          zIndex: 0,
-        }}
-      />
-      <span
-        style={{
-          position: "absolute",
-          top: "-200px",
-          left: "-256px",
-          width: "863px",
-          height: "863px",
-          borderRadius: "50%",
-          background: "#3f5fbf",
-          opacity: 0.1,
-          filter: "blur(500px)",
-          pointerEvents: "none",
-          zIndex: 0,
-        }}
-      />
+      {/* Top Left */}
+      <BlurredEllipse style={{ top: -200, left: -256 }} />
+      {/* Top Right */}
+      <BlurredEllipse style={{ top: -200, right: -256 }} />
+      {/* Bottom Left */}
+      <BlurredEllipse $size={564} style={{ bottom: -200, left: -256 }} />
+      {/* Bottom Right */}
+      <BlurredEllipse $size={564} style={{ bottom: -200, right: -256 }} />
       <Container>
         <MainContainer>
           <DecorativeLine />
@@ -280,7 +203,7 @@ const Partners = () => {
                   {tPartners("partner")}
                 </Typography>
                 <Image
-                  src="/images/aptosLogo.png"
+                  src="/images/aptosLogo.webp"
                   alt="Aptos Logo"
                   width={153}
                   height={32}
@@ -298,7 +221,7 @@ const Partners = () => {
                   {tPartners("partner")}
                 </Typography>
                 <Image
-                  src="/images/aptosLogo.png"
+                  src="/images/aptosLogo.webp"
                   alt="Aptos Logo"
                   width={124}
                   height={26}
