@@ -1,9 +1,11 @@
+"use client";
+
 import React from "react";
 import Container from "./Container";
 import { styled } from "styled-components";
 import { colors } from "../styles/colors";
 import Typography from "./Typography";
-import { useTranslations, useLocale } from "next-intl";
+import { useLocale } from "next-intl";
 import DotsIcon from "../icons/DotsIcon";
 import ImageCarousel from "./ImageCarousel";
 import { DesktopContainer, MobileContainer } from "./Responsive";
@@ -76,7 +78,7 @@ const DecorativeLineBottom = styled.div`
   }
 `;
 
-const Title = styled.div`
+const TitleStyled = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -126,30 +128,18 @@ const DecorativeLineBottomWrapper = styled.div`
   justify-content: center;
 `;
 
-const topRowImages = [
-  { src: "/images/partners/image1.webp", alt: "Event 1" },
-  { src: "/images/partners/image2.webp", alt: "Event 2" },
-  { src: "/images/partners/image3.webp", alt: "Event 3" },
-  { src: "/images/partners/image4.webp", alt: "Event 4" },
-  { src: "/images/partners/image5.webp", alt: "Event 5" },
-  { src: "/images/partners/image6.webp", alt: "Event 6" },
-  { src: "/images/partners/image7.webp", alt: "Event 7" },
-  { src: "/images/partners/image8.webp", alt: "Event 8" },
-];
+interface PartnersProps {
+  content: Record<string, unknown>;
+}
 
-const bottomRowImages = [
-  { src: "/images/partners/image9.webp", alt: "Event 9" },
-  { src: "/images/partners/image10.webp", alt: "Event 10" },
-  { src: "/images/partners/image11.webp", alt: "Event 11" },
-  { src: "/images/partners/image12.webp", alt: "Event 12" },
-  { src: "/images/partners/image13.webp", alt: "Event 13" },
-  { src: "/images/partners/image14.webp", alt: "Event 14" },
-  { src: "/images/partners/image15.webp", alt: "Event 15" },
-];
-
-const Partners = () => {
-  const tPartners = useTranslations("Partners");
+const Partners = ({ content }: PartnersProps) => {
   const locale = useLocale();
+
+  const topRowImages = content.topRowImages as { src: string; alt: string }[];
+  const bottomRowImages = content.bottomRowImages as {
+    src: string;
+    alt: string;
+  }[];
 
   return (
     <PartnersSection>
@@ -172,7 +162,7 @@ const Partners = () => {
               <DotsMobileIcon />
             </MobileContainer>
           </DotsWrapper>
-          <Title>
+          <TitleStyled>
             <DesktopContainer>
               <Typography
                 variant={
@@ -180,7 +170,7 @@ const Partners = () => {
                 }
                 color={colors.text.light}
               >
-                {tPartners("title")}
+                {content.title as string}
               </Typography>
             </DesktopContainer>
             <MobileContainer>
@@ -188,7 +178,7 @@ const Partners = () => {
                 variant={locale === "ka" ? "text-smUppercase" : "text-sm"}
                 color={colors.text.light}
               >
-                {tPartners("title")}
+                {content.title as string}
               </Typography>
             </MobileContainer>
             <DesktopContainer>
@@ -200,10 +190,10 @@ const Partners = () => {
                   weight="bold"
                   color={colors.text.dark}
                 >
-                  {tPartners("partner")}
+                  {content.partner as string}
                 </Typography>
                 <Image
-                  src="/images/aptosLogo.webp"
+                  src={content.logo as string}
                   alt="Aptos Logo"
                   width={153}
                   height={32}
@@ -218,10 +208,10 @@ const Partners = () => {
                   weight="bold"
                   color={colors.text.dark}
                 >
-                  {tPartners("partner")}
+                  {content.partner as string}
                 </Typography>
                 <Image
-                  src="/images/aptosLogo.webp"
+                  src={content.logo as string}
                   alt="Aptos Logo"
                   width={124}
                   height={26}
@@ -229,7 +219,7 @@ const Partners = () => {
                 />
               </PartnersWrapper>
             </MobileContainer>
-          </Title>
+          </TitleStyled>
         </MainContainer>
       </Container>
       <ImageCarouselWrapper>

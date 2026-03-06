@@ -208,8 +208,13 @@ const ContactFormCard = dynamic(
   { ssr: false },
 );
 
-const Hero = () => {
-  const tHero = useTranslations("Hero");
+interface HeroProps {
+  content: Record<string, unknown>;
+  social: unknown;
+}
+
+const Hero = ({ content, social }: HeroProps) => {
+  const tButtons = useTranslations("Buttons");
   const locale = useLocale();
   const [showModal, setShowModal] = useState(false);
   const [hoveredSocial, setHoveredSocial] = useState<string | null>(null);
@@ -217,12 +222,18 @@ const Hero = () => {
   const handleOpenModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
+  const socialUrls = social as {
+    whatsapp: string;
+    instagram: string;
+    messenger: string;
+  };
+
   return (
     <>
       <HeroImageWrapper>
         <HeroDesktopImageWrapper>
           <Image
-            src="/images/hero.webp"
+            src={content.desktop_image as string}
             alt="Hero Background"
             fill
             priority
@@ -235,7 +246,7 @@ const Hero = () => {
 
         <HeroMobileImageWrapper>
           <Image
-            src="/images/heroMobImage.webp"
+            src={content.mobile_image as string}
             alt="Hero Background"
             fill
             priority
@@ -255,7 +266,7 @@ const Hero = () => {
                 weight="regular"
                 color={colors.text.light}
               >
-                {tHero("tag")}
+                {content.tag as string}
               </Typography>
             </DesktopContainer>
             <MobileContainer>
@@ -264,7 +275,7 @@ const Hero = () => {
                 weight="regular"
                 color={colors.text.light}
               >
-                {tHero("tag")}
+                {content.tag as string}
               </Typography>
             </MobileContainer>
           </TagWrapper>
@@ -274,7 +285,7 @@ const Hero = () => {
               weight="bold"
               color={colors.text.dark}
             >
-              {tHero("title")}
+              {content.title as string}
             </Typography>
             <DescriptionWrapper>
               <Typography
@@ -282,7 +293,7 @@ const Hero = () => {
                 weight="regular"
                 color={colors.text.light}
               >
-                {tHero("description")}
+                {content.description as string}
               </Typography>
             </DescriptionWrapper>
           </DesktopContainer>
@@ -292,7 +303,7 @@ const Hero = () => {
               weight="bold"
               color={colors.text.dark}
             >
-              {tHero("title")}
+              {content.title as string}
             </Typography>
             <DescriptionWrapper>
               <Typography
@@ -300,7 +311,7 @@ const Hero = () => {
                 weight="regular"
                 color={colors.text.light}
               >
-                {tHero("description")}
+                {content.description as string}
               </Typography>
             </DescriptionWrapper>
           </MobileContainer>
@@ -315,7 +326,7 @@ const Hero = () => {
         <SocialsBox>
           <SocialWrapper
             as="a"
-            href="https://wa.me/"
+            href={socialUrls.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Contact us on WhatsApp"
@@ -337,7 +348,7 @@ const Hero = () => {
           </SocialWrapper>
           <SocialWrapper
             as="a"
-            href="https://instagram.com/"
+            href={socialUrls.instagram}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Follow us on Instagram"
@@ -359,7 +370,7 @@ const Hero = () => {
           </SocialWrapper>
           <SocialWrapper
             as="a"
-            href="https://messenger.com/"
+            href={socialUrls.messenger}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Message us on Messenger"
