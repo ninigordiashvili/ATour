@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import styled from "styled-components";
 import Container from "./Container";
@@ -115,11 +117,17 @@ const CardImage = styled.div`
   }
 `;
 
-const Insights = () => {
-  const tInsights = useTranslations("Insights");
+interface InsightsProps {
+  content: Record<string, unknown>;
+}
+
+const Insights = ({ content }: InsightsProps) => {
+  const tButtons = useTranslations("Buttons");
   const locale = useLocale();
   const router = useRouter();
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+
+  const cards = content.cards as Record<string, unknown>[];
 
   const navigateToBlog = () => {
     router.push("/Blog");
@@ -134,14 +142,14 @@ const Insights = () => {
               variant={locale === "ka" ? "text-mdUppercase" : "text-mdOneline"}
               color={colors.text.light}
             >
-              {tInsights("description")}
+              {content.description as string}
             </Typography>
             <Typography
               variant={locale === "ka" ? "display-mdUppercase" : "display-md"}
               color={colors.text.dark}
               weight="bold"
             >
-              {tInsights("title")}
+              {content.title as string}
             </Typography>
           </DesktopContainer>
           <MobileContainer>
@@ -149,216 +157,123 @@ const Insights = () => {
               variant={locale === "ka" ? "text-smUppercase" : "text-sm"}
               color={colors.text.light}
             >
-              {tInsights("description")}
+              {content.description as string}
             </Typography>
             <Typography
               variant={locale === "ka" ? "text-lgUppercase" : "text-lg"}
               color={colors.text.dark}
               weight="bold"
             >
-              {tInsights("title")}
+              {content.title as string}
             </Typography>
           </MobileContainer>
         </Title>
 
         <CardsGrid>
-          <InsightCard
-            onClick={navigateToBlog}
-            onMouseEnter={() => setHoveredCard(1)}
-            onMouseLeave={() => setHoveredCard(null)}
-          >
-            <CardBody>
-              <CardTextContent>
-                <CardDate>
+          {cards.map((card, index) => (
+            <InsightCard
+              key={index}
+              onClick={navigateToBlog}
+              onMouseEnter={() => setHoveredCard(index)}
+              onMouseLeave={() => setHoveredCard(null)}
+            >
+              <CardBody>
+                <CardTextContent>
+                  <CardDate>
+                    <DesktopContainer>
+                      <Typography
+                        variant="text-mdOneline"
+                        color={colors.text.light}
+                        weight="regular"
+                      >
+                        {card.date as string}
+                      </Typography>
+                    </DesktopContainer>
+                    <MobileContainer>
+                      <Typography
+                        variant="text-smUppercase"
+                        color={colors.text.light}
+                        weight="regular"
+                      >
+                        {card.date as string}
+                      </Typography>
+                    </MobileContainer>
+                  </CardDate>
+                  <CardBottomContent>
+                    <DesktopContainer>
+                      <Typography
+                        variant={
+                          locale === "ka" ? "text-lgUppercase" : "display-sm"
+                        }
+                        color={colors.text.dark}
+                        weight="semibold"
+                      >
+                        {card.title as string}
+                      </Typography>
+                    </DesktopContainer>
+                    <MobileContainer>
+                      <Typography
+                        variant={
+                          locale === "ka" ? "text-mdUppercase" : "text-md"
+                        }
+                        color={colors.text.dark}
+                        weight="semibold"
+                      >
+                        {card.title as string}
+                      </Typography>
+                    </MobileContainer>
+                    <DesktopContainer>
+                      <Typography
+                        variant="text-md"
+                        weight="regular"
+                        color={colors.text.light}
+                      >
+                        {card.description as string}
+                      </Typography>
+                    </DesktopContainer>
+                    <MobileContainer>
+                      <Typography
+                        variant="text-sm"
+                        weight="regular"
+                        color={colors.text.light}
+                      >
+                        {card.description as string}
+                      </Typography>
+                    </MobileContainer>
+                    <Button
+                      variant="transparent"
+                      onClick={navigateToBlog}
+                      isHovered={hoveredCard === index}
+                    />
+                  </CardBottomContent>
+                </CardTextContent>
+                <CardImage>
                   <DesktopContainer>
-                    <Typography
-                      variant="text-mdOneline"
-                      color={colors.text.light}
-                      weight="regular"
-                    >
-                      {tInsights("Card1.date")}
-                    </Typography>
+                    <Image
+                      src={card.desktop_image as string}
+                      alt={card.title as string}
+                      fill
+                      priority={index === 0}
+                      quality={60}
+                      sizes="(max-width: 1080px) 100vw, 236px"
+                      style={{ objectFit: "cover" }}
+                    />
                   </DesktopContainer>
                   <MobileContainer>
-                    <Typography
-                      variant="text-smUppercase"
-                      color={colors.text.light}
-                      weight="regular"
-                    >
-                      {tInsights("Card1.date")}
-                    </Typography>
+                    <Image
+                      src={card.mobile_image as string}
+                      alt={card.title as string}
+                      fill
+                      priority={index === 0}
+                      quality={40}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1080px) 90vw, 236px"
+                      style={{ objectFit: "cover" }}
+                    />
                   </MobileContainer>
-                </CardDate>
-                <CardBottomContent>
-                  <DesktopContainer>
-                    <Typography
-                      variant={
-                        locale === "ka" ? "text-lgUppercase" : "display-sm"
-                      }
-                      color={colors.text.dark}
-                      weight="semibold"
-                    >
-                      {tInsights("Card1.title")}
-                    </Typography>
-                  </DesktopContainer>
-                  <MobileContainer>
-                    <Typography
-                      variant={locale === "ka" ? "text-mdUppercase" : "text-md"}
-                      color={colors.text.dark}
-                      weight="semibold"
-                    >
-                      {tInsights("Card1.title")}
-                    </Typography>
-                  </MobileContainer>
-                  <DesktopContainer>
-                    <Typography
-                      variant="text-md"
-                      weight="regular"
-                      color={colors.text.light}
-                    >
-                      {tInsights("Card1.description")}
-                    </Typography>
-                  </DesktopContainer>
-                  <MobileContainer>
-                    <Typography
-                      variant="text-sm"
-                      weight="regular"
-                      color={colors.text.light}
-                    >
-                      {tInsights("Card1.description")}
-                    </Typography>
-                  </MobileContainer>
-                  <Button
-                    variant="transparent"
-                    onClick={navigateToBlog}
-                    isHovered={hoveredCard === 1}
-                  />
-                </CardBottomContent>
-              </CardTextContent>
-              <CardImage>
-                <DesktopContainer>
-                  <Image
-                    src="/images/insights/card1.webp"
-                    alt={tInsights("Card1.title")}
-                    fill
-                    priority
-                    quality={60}
-                    sizes="(max-width: 1080px) 100vw, 236px"
-                    style={{ objectFit: "cover" }}
-                  />
-                </DesktopContainer>
-                <MobileContainer>
-                  <Image
-                    src="/images/insights/card1Mob.webp"
-                    alt={tInsights("Card1.title")}
-                    fill
-                    priority
-                    quality={40}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1080px) 90vw, 236px"
-                    style={{ objectFit: "cover" }}
-                  />
-                </MobileContainer>
-              </CardImage>
-            </CardBody>
-          </InsightCard>
-
-          <InsightCard
-            onClick={navigateToBlog}
-            onMouseEnter={() => setHoveredCard(2)}
-            onMouseLeave={() => setHoveredCard(null)}
-          >
-            <CardBody>
-              <CardTextContent>
-                <CardDate>
-                  <DesktopContainer>
-                    <Typography
-                      variant="text-mdOneline"
-                      color={colors.text.light}
-                      weight="regular"
-                    >
-                      {tInsights("Card2.date")}
-                    </Typography>
-                  </DesktopContainer>
-                  <MobileContainer>
-                    <Typography
-                      variant="text-smUppercase"
-                      color={colors.text.light}
-                      weight="regular"
-                    >
-                      {tInsights("Card2.date")}
-                    </Typography>
-                  </MobileContainer>
-                </CardDate>
-                <CardBottomContent>
-                  <DesktopContainer>
-                    <Typography
-                      variant={
-                        locale === "ka" ? "text-lgUppercase" : "display-sm"
-                      }
-                      color={colors.text.dark}
-                      weight="semibold"
-                    >
-                      {tInsights("Card2.title")}
-                    </Typography>
-                  </DesktopContainer>
-                  <MobileContainer>
-                    <Typography
-                      variant={locale === "ka" ? "text-mdUppercase" : "text-md"}
-                      color={colors.text.dark}
-                      weight="semibold"
-                    >
-                      {tInsights("Card2.title")}
-                    </Typography>
-                  </MobileContainer>
-                  <DesktopContainer>
-                    <Typography
-                      variant="text-md"
-                      weight="regular"
-                      color={colors.text.light}
-                    >
-                      {tInsights("Card2.description")}
-                    </Typography>
-                  </DesktopContainer>
-                  <MobileContainer>
-                    <Typography
-                      variant="text-sm"
-                      weight="regular"
-                      color={colors.text.light}
-                    >
-                      {tInsights("Card2.description")}
-                    </Typography>
-                  </MobileContainer>
-                  <Button
-                    variant="transparent"
-                    onClick={navigateToBlog}
-                    isHovered={hoveredCard === 2}
-                  />
-                </CardBottomContent>
-              </CardTextContent>
-              <CardImage>
-                <DesktopContainer>
-                  <Image
-                    src="/images/insights/card2.webp"
-                    alt={tInsights("Card2.title")}
-                    fill
-                    quality={60}
-                    sizes="(max-width: 1080px) 100vw, 236px"
-                    style={{ objectFit: "cover" }}
-                  />
-                </DesktopContainer>
-                <MobileContainer>
-                  <Image
-                    src="/images/insights/card2Mob.webp"
-                    alt={tInsights("Card2.title")}
-                    fill
-                    quality={40}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1080px) 90vw, 236px"
-                    style={{ objectFit: "cover" }}
-                  />
-                </MobileContainer>
-              </CardImage>
-            </CardBody>
-          </InsightCard>
+                </CardImage>
+              </CardBody>
+            </InsightCard>
+          ))}
         </CardsGrid>
       </Container>
     </InsightsWrapper>

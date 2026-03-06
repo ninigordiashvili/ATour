@@ -9,6 +9,8 @@ import { routing, type Locale } from "../../i18n/routing";
 import StyledComponentsRegistry from "../components/StyledComponentRegistry";
 import Header from "@/src/components/Header";
 import Footer from "@/src/components/Footer";
+import NetlifyIdentityRedirect from "@/src/components/NetlifyIdentityRedirect";
+import { getSettingsContent } from "@/src/lib/content";
 
 const notoSans = Noto_Sans({
   variable: "--font-noto-sans",
@@ -83,6 +85,7 @@ export default async function LocaleLayout({
   }
 
   const messages = await getMessages();
+  const settingsContent = getSettingsContent(locale);
 
   return (
     <html lang={locale} className={locale === "ka" ? "locale-ka" : "locale-en"}>
@@ -94,6 +97,7 @@ export default async function LocaleLayout({
           type="font/ttf"
           crossOrigin="anonymous"
         />
+        <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" async></script>
       </head>
       <body
         className={notoSans.variable}
@@ -103,9 +107,10 @@ export default async function LocaleLayout({
           <NextIntlClientProvider messages={messages}>
             <Header />
             {children}
-            <Footer />
+            <Footer content={settingsContent} />
           </NextIntlClientProvider>
         </StyledComponentsRegistry>
+        <NetlifyIdentityRedirect />
       </body>
     </html>
   );

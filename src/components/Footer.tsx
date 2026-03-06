@@ -142,20 +142,34 @@ const CopyrightSection = styled.div`
   }
 `;
 
-const Title = styled.div`
+const TitleStyled = styled.div`
   margin-bottom: 8px;
   @media screen and (max-width: 1080px) {
     margin-bottom: 8px;
   }
 `;
 
-const Footer = () => {
+interface FooterProps {
+  content: {
+    social: unknown;
+    contact: Record<string, unknown>;
+    footer: Record<string, unknown>;
+  };
+}
+
+const Footer = ({ content }: FooterProps) => {
   const tFooter = useTranslations("Footer");
   const locale = useLocale();
   const pathname = usePathname();
   const router = useRouter();
   const [hoveredLink, setHoveredLink] = React.useState<string | null>(null);
   const [hoveredSocial, setHoveredSocial] = React.useState<string | null>(null);
+
+  const socialUrls = content.social as {
+    whatsapp: string;
+    instagram: string;
+    messenger: string;
+  };
 
   return (
     <FooterWrapper>
@@ -187,7 +201,7 @@ const Footer = () => {
                 color={colors.text.light}
                 weight="regular"
               >
-                {tFooter("description")}
+                {content.footer.description as string}
               </Typography>
             </DesktopContainer>
             <MobileContainer>
@@ -196,13 +210,13 @@ const Footer = () => {
                 color={colors.text.light}
                 weight="regular"
               >
-                {tFooter("description")}
+                {content.footer.description as string}
               </Typography>
             </MobileContainer>
           </BrandSection>
 
           <LinksSection>
-            <Title>
+            <TitleStyled>
               <DesktopContainer>
                 <Typography
                   variant={
@@ -225,7 +239,7 @@ const Footer = () => {
                   {tFooter("Links.home")}
                 </Typography>
               </MobileContainer>
-            </Title>
+            </TitleStyled>
             <LinkItem
               href="/Blog"
               onClick={(e) => {
@@ -351,7 +365,7 @@ const Footer = () => {
           </LinksSection>
 
           <ContactSection>
-            <Title>
+            <TitleStyled>
               <DesktopContainer>
                 <Typography
                   variant={
@@ -374,8 +388,8 @@ const Footer = () => {
                   {tFooter("Contact.title")}
                 </Typography>
               </MobileContainer>
-            </Title>
-            <a href="mailto:info@atour.ge" style={{ textDecoration: "none" }}>
+            </TitleStyled>
+            <a href={`mailto:${content.contact.email}`} style={{ textDecoration: "none" }}>
               <ContactItem>
                 <DesktopContainer>
                   <MailIcon />
@@ -389,7 +403,7 @@ const Footer = () => {
                     color={colors.text.light}
                     weight="regular"
                   >
-                    {tFooter("Contact.email")}
+                    {content.contact.email as string}
                   </Typography>
                 </DesktopContainer>
                 <MobileContainer>
@@ -398,7 +412,7 @@ const Footer = () => {
                     color={colors.text.light}
                     weight="regular"
                   >
-                    {tFooter("Contact.email")}
+                    {content.contact.email as string}
                   </Typography>
                 </MobileContainer>
               </ContactItem>
@@ -422,7 +436,7 @@ const Footer = () => {
                     color={colors.text.light}
                     weight="regular"
                   >
-                    {tFooter("Contact.location")}
+                    {content.contact.location as string}
                   </Typography>
                 </DesktopContainer>
                 <MobileContainer>
@@ -431,7 +445,7 @@ const Footer = () => {
                     color={colors.text.light}
                     weight="regular"
                   >
-                    {tFooter("Contact.location")}
+                    {content.contact.location as string}
                   </Typography>
                 </MobileContainer>
               </ContactItem>
@@ -441,7 +455,7 @@ const Footer = () => {
           <SocialSection>
             <SocialIcons>
               <SocialLink
-                href="https://wa.me/"
+                href={socialUrls.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Contact us on WhatsApp"
@@ -464,7 +478,7 @@ const Footer = () => {
                 </MobileContainer>
               </SocialLink>
               <SocialLink
-                href="https://instagram.com/"
+                href={socialUrls.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow us on Instagram"
@@ -487,7 +501,7 @@ const Footer = () => {
                 </MobileContainer>
               </SocialLink>
               <SocialLink
-                href="https://messenger.com/"
+                href={socialUrls.messenger}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Message us on Messenger"
@@ -516,12 +530,12 @@ const Footer = () => {
         <CopyrightSection>
           <DesktopContainer>
             <Typography variant="text-smUppercase" color={colors.text.light}>
-              {tFooter("rights")}
+              {content.footer.rights as string}
             </Typography>
           </DesktopContainer>
           <MobileContainer>
             <Typography variant="text-xs" color={colors.text.light}>
-              {tFooter("rights")}
+              {content.footer.rights as string}
             </Typography>
           </MobileContainer>
         </CopyrightSection>
