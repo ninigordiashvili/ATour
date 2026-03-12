@@ -17,20 +17,24 @@
       "titleDetails_en": "Complete Business Travel Solutions"
     },
     {
-      "title_en": "MICE & DMC Services",
-      "title_ka": "MICE და DMC სერვისები",
-      "description_en": "Comprehensive event management and destination management services for unforgettable corporate experiences.",
-      "description_ka": "ღონისძიების ადმინისტრაცია და დანიშვულების ადმინისტრაციის სერვისები.",
-      "card_image": "/images/services/serviceCard2.webp",
+      "DmcDetails_en": "Domestic Management Company",
+      "descriptionDetails_en": "A Destination Management Company (DMC) provides full local support for events and travel.  With deep knowledge of the destination and strong logistics expertise, a DMC plans, organizes, and manages everything on the ground, ensuring smooth, authentic, and well-executed experiences for your business or corporate events.",
+      "MiceDetails_en": "Meetings, Incentives, Conferences, Events & Exhibitions",
+      "DmcDescription_en": "A Destination Management Company (DMC) provides full local support for events and travel.  With deep knowledge of the destination and strong logistics expertise, a DMC plans, organizes, and manages everything on the ground, ensuring smooth, authentic, and well-executed experiences for your business or corporate events.",
       "popup_image": "/images/services/dmc.webp",
-      "MiceDetails_en": "MICE Services",
-      "MiceDetails_ka": "MICE სერვისები",
-      "MiceDescription_en": "Meeting, Incentive, Conference, and Event management tailored to create memorable corporate experiences.",
-      "MiceDescription_ka": "შეხვედრა, ინცენტივი, კონფერენცია და ღონისძიების ადმინისტრაცია, რომელიც შექმნილია კორპორატიული გამოცდილების შესაქმნელად.",
-      "DmcDetails_en": "Destination Management",
-      "DmcDetails_ka": "დანიშვულების ადმინისტრაცია",
-      "DmcDescription_en": "Expert destination management ensuring seamless coordination of accommodations, activities, and logistics.",
-      "DmcDescription_ka": "ექსპერტი დანიშვულების ადმინისტრაცია, რომელიც უზრუნველყოფს განთავსების, საქმიანობებისა და ლოგისტიკის უპრობლემო კოორდინაციას."
+      "MiceDescription_en": "MICE Tourism covers all types of business-related travel from meetings and incentive trips to conferences, events, and exhibitions. It brings together planning, organization, and on-site management to ensure every corporate gathering is efficient, engaging, and professionally executed.",
+      "titleDetails_ka": "ადგილობრივი მართვის კომპანია",
+      "card_image": "/images/services/serviceCard2.webp",
+      "description_en": "Meetings, Incentives, Conferences, and Events. Full destination management services for corporate gatherings of any scale.",
+      "DmcDetails_ka": "ადგილობრივი მართვის კომპანია",
+      "descriptionDetails_ka": "დანიშნულების ადგილის მართვის კომპანია (DMC) უზრუნველყოფს ღონისძიებებისა და მოგზაურობის სრულ ადგილობრივ მხარდაჭერას.\nდანიშნულების ადგილის ღრმა ცოდნისა და ძლიერი ლოგისტიკური გამოცდილების წყალობით, DMC გეგმავს, აორგანიზებს და ადგილზე მართავს ყველა პროცესს, რათა თქვენი ბიზნეს თუ კორპორაციული ღონისძიებები შეუფერხებლად, ავთენტურად და პროფესიონალურად განხორციელდეს.",
+      "title_en": "MICE & DMC",
+      "MiceDetails_ka": "შეხვედრები, წამახალისებელი პროგრამები, კონფერენციები, ღონისძიებები და გამოფენები",
+      "DmcDescription_ka": "დანიშნულების ადგილის მართვის კომპანია (DMC) უზრუნველყოფს ღონისძიებებისა და მოგზაურობის სრულ ადგილობრივ მხარდაჭერას.\nდანიშნულების ადგილის ღრმა ცოდნისა და ძლიერი ლოგისტიკური გამოცდილების წყალობით, DMC გეგმავს, აორგანიზებს და ადგილზე მართავს ყველა პროცესს, რათა თქვენი ბიზნეს თუ კორპორაციული ღონისძიებები შეუფერხებლად, ავთენტურად და პროფესიონალურად განხორციელდეს.",
+      "MiceDescription_ka": "MICE ტურიზმი მოიცავს ბიზნესთან დაკავშირებული მოგზაურობის ყველა ტიპს — შეხვედრებიდან და წამახალისებელი მოგზაურობებიდან დაწყებული, კონფერენციებით, ღონისძიებებითა და გამოფენებით დამთავრებული. ის აერთიანებს დაგეგმვას, ორგანიზებასა და ადგილზე მართვას, რათა უზრუნველყოფილი იყოს, რომ თითოეული კორპორაციული შეკრება იყოს ეფექტური, საინტერესო და პროფესიონალურად განხორციელებული.",
+      "description_ka": "შეხვედრები, წამახალისებელი პროგრამები, კონფერენციები და ღონისძიებები.\nდანიშნულების ადგილის სრული მართვის სერვისები ნებისმიერი მასშტაბის კორპორაციული შეკრებებისთვის.",
+      "title_ka": "MICE & DMC",
+      "titleDetails_en": "Domestic Management Company"
     }
   ]
 }
