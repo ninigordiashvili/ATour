@@ -80,7 +80,8 @@
       "emailTitle": "Your Email or phone",
       "emailPlaceholder": "Write here...",
       "messageTitle": "Message",
-      "messagePlaceholder": "Write here.."
+      "messagePlaceholder": "Write here..",
+      "error": "Incorrect Input"
     }
   },
   "Footer": {

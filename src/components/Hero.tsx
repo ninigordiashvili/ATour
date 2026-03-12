@@ -36,7 +36,7 @@ const HeroDesktopImageWrapper = styled.div`
 const HeroMobileImageWrapper = styled.div`
   display: none;
 
-  @media (max-width: 425px) {
+  @media (max-width: 668px) {
     display: block;
   }
 `;

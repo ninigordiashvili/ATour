@@ -34,7 +34,7 @@ export const colors = {
 
   // State colorsƒ
   state: {
-    error: "#F04438",
+    error: "#CE1F22",
     success: "#17B26A",
     warning: "#F79009",
     hover: {

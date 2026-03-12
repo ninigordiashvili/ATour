@@ -92,6 +92,15 @@ const ContactItem = styled.div`
   gap: 16px;
 `;
 
+const ContactLink = styled.a`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+`;
+
 const SocialSection = styled.div`
   display: flex;
   flex-direction: column;
@@ -156,6 +165,8 @@ const Footer = () => {
   const router = useRouter();
   const [hoveredLink, setHoveredLink] = React.useState<string | null>(null);
   const [hoveredSocial, setHoveredSocial] = React.useState<string | null>(null);
+  const [hoveredLocation, setHoveredLocation] = React.useState(false);
+  const [hoveredEmail, setHoveredEmail] = React.useState(false);
 
   return (
     <FooterWrapper>
@@ -375,17 +386,34 @@ const Footer = () => {
                 </Typography>
               </MobileContainer>
             </Title>
-            <ContactItem>
+            <ContactLink
+              href="mailto:info@atour.ge"
+              aria-label="Send email to info@atour.ge"
+              onMouseEnter={() => setHoveredEmail(true)}
+              onMouseLeave={() => setHoveredEmail(false)}
+            >
               <DesktopContainer>
-                <MailIcon />
+                <MailIcon
+                  color={
+                    hoveredEmail ? colors.links.hoverText : colors.text.light
+                  }
+                />
               </DesktopContainer>
               <MobileContainer>
-                <MailIcon width={16} height={18} />
+                <MailIcon
+                  color={
+                    hoveredEmail ? colors.links.hoverText : colors.text.light
+                  }
+                  width={16}
+                  height={18}
+                />
               </MobileContainer>
               <DesktopContainer>
                 <Typography
                   variant="text-mdOneline"
-                  color={colors.text.light}
+                  color={
+                    hoveredEmail ? colors.links.hoverText : colors.text.light
+                  }
                   weight="regular"
                 >
                   {tFooter("Contact.email")}
@@ -394,24 +422,45 @@ const Footer = () => {
               <MobileContainer>
                 <Typography
                   variant="text-sm"
-                  color={colors.text.light}
+                  color={
+                    hoveredEmail ? colors.links.hoverText : colors.text.light
+                  }
                   weight="regular"
                 >
                   {tFooter("Contact.email")}
                 </Typography>
               </MobileContainer>
-            </ContactItem>
-            <ContactItem>
+            </ContactLink>
+            <ContactLink
+              href="https://www.google.com/maps/search/Tbilisi+Georgia"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View our location on Google Maps"
+              onMouseEnter={() => setHoveredLocation(true)}
+              onMouseLeave={() => setHoveredLocation(false)}
+            >
               <DesktopContainer>
-                <LocationIcon />
+                <LocationIcon
+                  color={
+                    hoveredLocation ? colors.links.hoverText : colors.text.light
+                  }
+                />
               </DesktopContainer>
               <MobileContainer>
-                <LocationIcon width={16} height={18} />
+                <LocationIcon
+                  color={
+                    hoveredLocation ? colors.links.hoverText : colors.text.light
+                  }
+                  width={16}
+                  height={18}
+                />
               </MobileContainer>
               <DesktopContainer>
                 <Typography
                   variant="text-mdOneline"
-                  color={colors.text.light}
+                  color={
+                    hoveredLocation ? colors.links.hoverText : colors.text.light
+                  }
                   weight="regular"
                 >
                   {tFooter("Contact.location")}
@@ -420,13 +469,15 @@ const Footer = () => {
               <MobileContainer>
                 <Typography
                   variant="text-sm"
-                  color={colors.text.light}
+                  color={
+                    hoveredLocation ? colors.links.hoverText : colors.text.light
+                  }
                   weight="regular"
                 >
                   {tFooter("Contact.location")}
                 </Typography>
               </MobileContainer>
-            </ContactItem>
+            </ContactLink>
           </ContactSection>
 
           <SocialSection>

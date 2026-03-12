@@ -9,6 +9,8 @@ import PhoneIcon from "../icons/PhoneIcon";
 import MailIcon from "../icons/MailIcon";
 import PenIcon from "../icons/PenIcon";
 import Button from "./Button";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const ContactWrapper = styled.div`
   background-color: ${colors.background.light};
@@ -85,11 +87,12 @@ const InputWrapper = styled.div`
   align-items: center;
 `;
 
-const StyledInput = styled.input<{ $locale?: string }>`
+const StyledInput = styled.input<{ $locale?: string; $error?: boolean }>`
   width: 100%;
   padding: 16px;
   padding-right: 80px;
-  border: 1px solid ${colors.text.light};
+  border: 1px solid
+    ${({ $error }) => ($error ? colors.state.error : colors.text.light)};
   border-radius: 20px;
   color: ${colors.text.dark};
   background: ${colors.background.light};
@@ -181,9 +184,61 @@ const ButtonWrapper = styled.div`
   margin-top: 32px;
 `;
 
+const ErrorMessageWrapper = styled.div`
+  position: absolute;
+  top: -36px;
+  right: 0;
+  white-space: nowrap;
+`;
+
 export const ContactFormCard = () => {
   const tContact = useTranslations("Contact");
   const locale = useLocale();
+
+  // Validation schema for email or phone
+  const validationSchema = Yup.object().shape({
+    emailOrPhone: Yup.string()
+      .required(tContact("form.error"))
+      .test("emailOrPhone", tContact("form.error"), function (value) {
+        if (!value) return false;
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const phoneRegex =
+          /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{3,6}$/;
+
+        return emailRegex.test(value) || phoneRegex.test(value);
+      }),
+    message: Yup.string(),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      emailOrPhone: "",
+      message: "",
+    },
+    validationSchema,
+    onSubmit: (values) => {
+      console.log("Form submitted:", values);
+      // Handle form submission here
+    },
+  });
+
+  const hasOnlyNumbers = (value: string) => {
+    // Remove spaces, dashes, parentheses, +, which are valid in phone numbers
+    const cleaned = value.replace(/[\s\-().+\[\]]/g, "");
+    return cleaned.length > 0 && /^[0-9]*$/.test(cleaned);
+  };
+
+  const phoneIconHasError =
+    formik.touched.emailOrPhone &&
+    !!formik.errors.emailOrPhone &&
+    hasOnlyNumbers(formik.values.emailOrPhone);
+
+  const mailIconHasError =
+    formik.touched.emailOrPhone &&
+    !!formik.errors.emailOrPhone &&
+    !hasOnlyNumbers(formik.values.emailOrPhone);
+
   return (
     <FormCard>
       <FormGroup>
@@ -214,15 +269,44 @@ export const ContactFormCard = () => {
             type="text"
             placeholder={tContact("form.emailPlaceholder")}
             $locale={locale}
+            $error={formik.touched.emailOrPhone && !!formik.errors.emailOrPhone}
+            {...formik.getFieldProps("emailOrPhone")}
           />
+          {formik.touched.emailOrPhone && formik.errors.emailOrPhone && (
+            <ErrorMessageWrapper>
+              <Typography
+                variant="text-smOneline"
+                color={colors.state.error}
+                weight="regular"
+              >
+                {formik.errors.emailOrPhone}
+              </Typography>
+            </ErrorMessageWrapper>
+          )}
           <IconsWrapper>
             <DesktopContainer>
-              <PhoneIcon width={24} height={24} />
-              <MailIcon width={24} height={24} />
+              <PhoneIcon
+                width={24}
+                height={24}
+                color={phoneIconHasError ? colors.state.error : "#6B7280"}
+              />
+              <MailIcon
+                width={24}
+                height={24}
+                color={mailIconHasError ? colors.state.error : "#6B7280"}
+              />
             </DesktopContainer>
             <MobileContainer>
-              <PhoneIcon width={18} height={18} />
-              <MailIcon width={18} height={18} />
+              <PhoneIcon
+                width={18}
+                height={18}
+                color={phoneIconHasError ? colors.state.error : "#6B7280"}
+              />
+              <MailIcon
+                width={18}
+                height={18}
+                color={mailIconHasError ? colors.state.error : "#6B7280"}
+              />
             </MobileContainer>
           </IconsWrapper>
         </InputWrapper>
@@ -254,6 +338,7 @@ export const ContactFormCard = () => {
             placeholder={tContact("form.messagePlaceholder")}
             rows={1}
             $locale={locale}
+            {...formik.getFieldProps("message")}
           />
           <SingleIconWrapper>
             <DesktopContainer>
