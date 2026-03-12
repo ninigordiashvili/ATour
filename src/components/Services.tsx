@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+"use client";
+
+import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import Container from "./Container";
 import { colors } from "../styles/colors";
 import Typography from "./Typography";
-import { useTranslations, useLocale } from "next-intl";
+import { useLocale } from "next-intl";
 import Image from "next/image";
 import Button from "./Button";
 import { DesktopContainer, MobileContainer } from "./Responsive";
@@ -281,15 +283,20 @@ const PopupClose = styled.button`
   }
 `;
 
-const Services = () => {
-  const tServices = useTranslations("Services");
+interface ServicesProps {
+  content: Record<string, unknown>;
+}
+
+const Services = ({ content }: ServicesProps) => {
   const locale = useLocale();
-  const [openCard, setOpenCard] = useState<null | "Card1" | "Card2">(null);
+  const [openCard, setOpenCard] = useState<null | number>(null);
   const [miceDmcMode, setMiceDmcMode] = useState<"MICE" | "DMC">("DMC");
+
+  const cards = content.cards as Record<string, unknown>[];
 
   // Close popup on Esc key
   useEffect(() => {
-    if (!openCard) return;
+    if (openCard === null) return;
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setOpenCard(null);
@@ -299,26 +306,27 @@ const Services = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [openCard]);
 
-  // Popup content for Card1 (TFLS)
-  const renderPopup = () => {
-    if (!openCard) return null;
+  // Popup content
+  const renderPopup = useCallback(() => {
+    if (openCard === null) return null;
 
-    // Handler to close modal on click outside
     const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
       if (e.target === e.currentTarget) {
         setOpenCard(null);
       }
     };
 
-    if (openCard === "Card1") {
+    const card = cards[openCard];
+
+    if (openCard === 0) {
       // Card1 popup
-      const title = tServices("Card1.titleDetails");
-      const description = tServices("Card1.descriptionDetails");
-      const badge = tServices("Card1.title");
-      const imageSrc = "/images/services/tfls.png";
+      const title = card.titleDetails as string;
+      const description = card.descriptionDetails as string;
+      const badge = card.title as string;
+      const imageSrc = card.popup_image as string;
       return (
-        <PopupOverlay $show={!!openCard} onClick={handleOverlayClick}>
-          <PopupCard $bg={imageSrc} $show={!!openCard}>
+        <PopupOverlay $show={openCard !== null} onClick={handleOverlayClick}>
+          <PopupCard $bg={imageSrc} $show={openCard !== null}>
             <PopupHeader>
               <PopupClose aria-label="Close" onClick={() => setOpenCard(null)}>
                 <CloseIcon />
@@ -334,7 +342,6 @@ const Services = () => {
                 </Typography>
               </BadgeWrapper>
             </PopupHeader>
-            {/* Content at the bottom, absolutely positioned */}
             <PopupContent>
               <DesktopContainer>
                 <Typography
@@ -376,20 +383,20 @@ const Services = () => {
       );
     }
 
-    if (openCard === "Card2") {
+    if (openCard === 1) {
       // Card2 popup with badge switcher
-      const imageSrc = "/images/services/dmc.png";
+      const imageSrc = card.popup_image as string;
       const title =
         miceDmcMode === "DMC"
-          ? tServices("Card2.DmcDetails")
-          : tServices("Card2.MiceDetails");
+          ? (card.DmcDetails as string)
+          : (card.MiceDetails as string);
       const description =
         miceDmcMode === "DMC"
-          ? tServices("Card2.DmcDescription")
-          : tServices("Card2.MiceDescription");
+          ? (card.DmcDescription as string)
+          : (card.MiceDescription as string);
       return (
-        <PopupOverlay $show={!!openCard} onClick={handleOverlayClick}>
-          <PopupCard $bg={imageSrc} $show={!!openCard}>
+        <PopupOverlay $show={openCard !== null} onClick={handleOverlayClick}>
+          <PopupCard $bg={imageSrc} $show={openCard !== null}>
             <PopupHeader>
               <PopupClose aria-label="Close" onClick={() => setOpenCard(null)}>
                 <CloseIcon />
@@ -410,7 +417,6 @@ const Services = () => {
                 </BadgeButton>
               </BadgeSwitcher>
             </PopupHeader>
-            {/* Content at the bottom, absolutely positioned */}
             <PopupContent>
               <DesktopContainer>
                 <Typography
@@ -453,7 +459,7 @@ const Services = () => {
     }
 
     return null;
-  };
+  }, [openCard, miceDmcMode, cards, locale]);
 
   return (
     <ServicesWrapper id="services">
@@ -466,14 +472,14 @@ const Services = () => {
               variant={locale === "ka" ? "text-mdUppercase" : "text-md"}
               color={colors.text.light}
             >
-              {tServices("description")}
+              {content.description as string}
             </Typography>
             <Typography
               variant={locale === "ka" ? "display-mdUppercase" : "display-md"}
               color={colors.text.dark}
               weight="bold"
             >
-              {tServices("title")}
+              {content.title as string}
             </Typography>
           </DesktopContainer>
           <MobileContainer>
@@ -481,175 +487,103 @@ const Services = () => {
               variant={locale === "ka" ? "text-smUppercase" : "text-sm"}
               color={colors.text.light}
             >
-              {tServices("description")}
+              {content.description as string}
             </Typography>
             <Typography
               variant={locale === "ka" ? "text-lgUppercase" : "text-lg"}
               color={colors.text.dark}
               weight="bold"
             >
-              {tServices("title")}
+              {content.title as string}
             </Typography>
           </MobileContainer>
         </Title>
         <CardsGrid>
-          <ServiceCard onClick={() => setOpenCard("Card1")}>
-            <CardImage>
-              <Image
-                src="/images/services/serviceCard1.png"
-                alt={tServices("Card1.title")}
-                fill
-                priority
-                quality={60}
-                sizes="(max-width: 1080px) 100vw, 470px"
-                style={{ objectFit: "cover" }}
-              />
-            </CardImage>
-            <CardContent>
-              <CardHeader>
-                <CardTitle>
+          {cards.map((card, index) => (
+            <ServiceCard key={index} onClick={() => setOpenCard(index)}>
+              <CardImage>
+                <Image
+                  src={card.card_image as string}
+                  alt={card.title as string}
+                  fill
+                  priority={index === 0}
+                  quality={60}
+                  sizes="(max-width: 1080px) 100vw, 470px"
+                  style={{ objectFit: "cover" }}
+                />
+              </CardImage>
+              <CardContent>
+                <CardHeader>
+                  <CardTitle>
+                    <DesktopContainer>
+                      <Typography
+                        variant={
+                          locale === "ka"
+                            ? "display-smUppercase"
+                            : "display-sm"
+                        }
+                        color={colors.text.dark}
+                        weight="semibold"
+                      >
+                        {card.title as string}
+                      </Typography>
+                    </DesktopContainer>
+                    <MobileContainer>
+                      <Typography
+                        variant={
+                          locale === "ka" ? "text-lgUppercase" : "text-lg"
+                        }
+                        color={colors.text.dark}
+                        weight="semibold"
+                      >
+                        {card.title as string}
+                      </Typography>
+                    </MobileContainer>
+                  </CardTitle>
+                  <Button
+                    variant="iconOnly"
+                    onClick={() => setOpenCard(index)}
+                    aria-label={card.title as string}
+                  />
+                </CardHeader>
+                <DescriptionWrapper>
                   <DesktopContainer>
                     <Typography
-                      variant={
-                        locale === "ka" ? "display-smUppercase" : "display-sm"
-                      }
-                      color={colors.text.dark}
-                      weight="semibold"
+                      variant="text-mdOneline"
+                      weight="regular"
+                      color={colors.text.light}
                     >
-                      {tServices("Card1.title")}
+                      [ 0{index + 1} ]
+                    </Typography>
+
+                    <Typography
+                      variant="text-md"
+                      weight="regular"
+                      color={colors.text.light}
+                    >
+                      {card.description as string}
                     </Typography>
                   </DesktopContainer>
                   <MobileContainer>
                     <Typography
-                      variant={locale === "ka" ? "text-lgUppercase" : "text-lg"}
-                      color={colors.text.dark}
-                      weight="semibold"
+                      variant="text-sm"
+                      weight="regular"
+                      color={colors.text.light}
                     >
-                      {tServices("Card1.title")}
+                      [ 0{index + 1} ]
+                    </Typography>
+                    <Typography
+                      variant="text-sm"
+                      weight="regular"
+                      color={colors.text.light}
+                    >
+                      {card.description as string}
                     </Typography>
                   </MobileContainer>
-                </CardTitle>
-                <Button
-                  variant="iconOnly"
-                  onClick={() => setOpenCard("Card1")}
-                  aria-label={tServices("Card1.title")}
-                />
-              </CardHeader>
-              <DescriptionWrapper>
-                <DesktopContainer>
-                  <Typography
-                    variant="text-mdOneline"
-                    weight="regular"
-                    color={colors.text.light}
-                  >
-                    [ 01 ]
-                  </Typography>
-
-                  <Typography
-                    variant="text-md"
-                    weight="regular"
-                    color={colors.text.light}
-                  >
-                    {tServices("Card1.description")}
-                  </Typography>
-                </DesktopContainer>
-                <MobileContainer>
-                  <Typography
-                    variant="text-sm"
-                    weight="regular"
-                    color={colors.text.light}
-                  >
-                    [ 01 ]
-                  </Typography>
-                  <Typography
-                    variant="text-sm"
-                    weight="regular"
-                    color={colors.text.light}
-                  >
-                    {tServices("Card1.description")}
-                  </Typography>
-                </MobileContainer>
-              </DescriptionWrapper>
-            </CardContent>
-          </ServiceCard>
-
-          <ServiceCard onClick={() => setOpenCard("Card2")}>
-            <CardImage>
-              <Image
-                src="/images/services/serviceCard2.png"
-                alt={tServices("Card2.title")}
-                fill
-                quality={60}
-                sizes="(max-width: 1080px) 100vw, 470px"
-                style={{ objectFit: "cover" }}
-              />
-            </CardImage>
-            <CardContent>
-              <CardHeader>
-                <CardTitle>
-                  <DesktopContainer>
-                    <Typography
-                      variant={
-                        locale === "ka" ? "display-smUppercase" : "display-sm"
-                      }
-                      color={colors.text.dark}
-                      weight="semibold"
-                    >
-                      {tServices("Card2.title")}
-                    </Typography>
-                  </DesktopContainer>
-                  <MobileContainer>
-                    <Typography
-                      variant={locale === "ka" ? "text-lgUppercase" : "text-lg"}
-                      color={colors.text.dark}
-                      weight="semibold"
-                    >
-                      {tServices("Card2.title")}
-                    </Typography>
-                  </MobileContainer>
-                </CardTitle>
-                <Button
-                  variant="iconOnly"
-                  onClick={() => setOpenCard("Card2")}
-                  aria-label={tServices("Card2.title")}
-                />
-              </CardHeader>
-              <DescriptionWrapper>
-                <DesktopContainer>
-                  <Typography
-                    variant="text-mdOneline"
-                    weight="regular"
-                    color={colors.text.light}
-                  >
-                    [ 02 ]
-                  </Typography>
-                  <Typography
-                    variant="text-md"
-                    weight="regular"
-                    color={colors.text.light}
-                  >
-                    {tServices("Card2.description")}
-                  </Typography>
-                </DesktopContainer>
-                <MobileContainer>
-                  <Typography
-                    variant="text-sm"
-                    weight="regular"
-                    color={colors.text.light}
-                  >
-                    [ 02 ]
-                  </Typography>
-                  <Typography
-                    variant="text-sm"
-                    weight="regular"
-                    color={colors.text.light}
-                  >
-                    {tServices("Card2.description")}
-                  </Typography>
-                </MobileContainer>
-              </DescriptionWrapper>
-            </CardContent>
-          </ServiceCard>
+                </DescriptionWrapper>
+              </CardContent>
+            </ServiceCard>
+          ))}
         </CardsGrid>
       </Container>
       {renderPopup()}

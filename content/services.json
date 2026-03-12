@@ -1,0 +1,20 @@
+{
+  "title_en": "Our Services",
+  "title_ka": "ჩვენი სერვისები",
+  "description_en": "Tailored solutions for your business travel and event needs",
+  "description_ka": "ჩვენი მომსახურება მოიცავს ბიზნეს მოგზაურობას, ღონისძიებების დაგეგმვას და კორპორატიულ მოგზაურობას.",
+  "cards": [
+    {
+      "descriptionDetails_en": "Our Business Travel service provides complete support for all your corporate travel needs from global flight and hotel bookings to transfers, visas, insurance, and conference registration. We tailor accommodations and travel solutions to your preferences and offer 24/7 assistance, ensuring a smooth and efficient journey anywhere in the world.",
+      "popup_image": "/images/services/tfls.webp",
+      "titleDetails_ka": "ბიზნეს-მოგზაურობის სრულყოფილი მომსახურება",
+      "card_image": "/images/services/serviceCard1.webp",
+      "description_en": "Complete corporate travel management including flights, accommodations, and ground transportation. We handle every detail so you can focus on your business.",
+      "descriptionDetails_ka": "ჩვენი ბიზნეს მოგზაურობის სერვისი უზრუნველყოფს სრულ მხარდაჭერას თქვენი კორპორატიული მოგზაურობის ყველა საჭიროებისთვის, გლობალური ფრენების და სასტუმროების დაჯავშნიდან ტრანსფერებს, ვიზებს, დაზღვევას და კონფერენციის რეგისტრაციას. ჩვენ ვთარგმნით საცხოვრებელ და მოგზაურობის გადაწყვეტილებებს თქვენს პრეფერენციებზე და ვთავაზობთ 24/7 დახმარებას, რათა უზრუნველვყოთ გლუვი და ეფექტური მოგზაურობა მსოფლიოს ნებისმიერ წერტილში.",
+      "title_en": "Business Travel",
+      "description_ka": "შექმენით ეფექტური და კომფორტული მოგზაურობის გეგმები თქვენი ბიზნესის საჭიროებებისთვის.",
+      "title_ka": "ბიზნეს მოგზაურობა",
+      "titleDetails_en": "Complete Business Travel Solutions"
+    }
+  ]
+}

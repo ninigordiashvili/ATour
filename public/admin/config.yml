@@ -1,0 +1,187 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - name: "settings"
+        label: "Social & Contact"
+        file: "content/settings.json"
+        fields:
+          - label: "Social Links"
+            name: "social"
+            widget: "object"
+            fields:
+              - { label: "WhatsApp URL", name: "whatsapp", widget: "string" }
+              - { label: "Instagram URL", name: "instagram", widget: "string" }
+              - { label: "Messenger URL", name: "messenger", widget: "string" }
+          - label: "Contact"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Location (EN)", name: "location_en", widget: "string" }
+              - { label: "Location (KA)", name: "location_ka", widget: "string" }
+          - label: "Footer"
+            name: "footer"
+            widget: "object"
+            fields:
+              - { label: "Description (EN)", name: "description_en", widget: "text" }
+              - { label: "Description (KA)", name: "description_ka", widget: "text" }
+              - { label: "Rights (EN)", name: "rights_en", widget: "string" }
+              - { label: "Rights (KA)", name: "rights_ka", widget: "string" }
+
+  - name: "hero"
+    label: "Hero Section"
+    files:
+      - name: "hero"
+        label: "Hero"
+        file: "content/hero.json"
+        fields:
+          - { label: "Tag (EN)", name: "tag_en", widget: "string" }
+          - { label: "Tag (KA)", name: "tag_ka", widget: "string" }
+          - { label: "Title (EN)", name: "title_en", widget: "string" }
+          - { label: "Title (KA)", name: "title_ka", widget: "string" }
+          - { label: "Description (EN)", name: "description_en", widget: "text" }
+          - { label: "Description (KA)", name: "description_ka", widget: "text" }
+          - { label: "Desktop Image", name: "desktop_image", widget: "image" }
+          - { label: "Mobile Image", name: "mobile_image", widget: "image" }
+
+  - name: "services"
+    label: "Services Section"
+    files:
+      - name: "services"
+        label: "Services"
+        file: "content/services.json"
+        fields:
+          - { label: "Title (EN)", name: "title_en", widget: "string" }
+          - { label: "Title (KA)", name: "title_ka", widget: "string" }
+          - { label: "Description (EN)", name: "description_en", widget: "text" }
+          - { label: "Description (KA)", name: "description_ka", widget: "text" }
+          - label: "Cards"
+            name: "cards"
+            widget: "list"
+            fields:
+              - { label: "Title (EN)", name: "title_en", widget: "string" }
+              - { label: "Title (KA)", name: "title_ka", widget: "string" }
+              - { label: "Description (EN)", name: "description_en", widget: "text" }
+              - { label: "Description (KA)", name: "description_ka", widget: "text" }
+              - { label: "Detail Title (EN)", name: "titleDetails_en", widget: "string" }
+              - { label: "Detail Title (KA)", name: "titleDetails_ka", widget: "string" }
+              - { label: "Detail Description (EN)", name: "descriptionDetails_en", widget: "text" }
+              - { label: "Detail Description (KA)", name: "descriptionDetails_ka", widget: "text" }
+              - { label: "DMC Details (EN)", name: "DmcDetails_en", widget: "string", required: false }
+              - { label: "DMC Details (KA)", name: "DmcDetails_ka", widget: "string", required: false }
+              - { label: "DMC Description (EN)", name: "DmcDescription_en", widget: "text", required: false }
+              - { label: "DMC Description (KA)", name: "DmcDescription_ka", widget: "text", required: false }
+              - { label: "MICE Details (EN)", name: "MiceDetails_en", widget: "string", required: false }
+              - { label: "MICE Details (KA)", name: "MiceDetails_ka", widget: "string", required: false }
+              - { label: "MICE Description (EN)", name: "MiceDescription_en", widget: "text", required: false }
+              - { label: "MICE Description (KA)", name: "MiceDescription_ka", widget: "text", required: false }
+              - { label: "Card Image", name: "card_image", widget: "image" }
+              - { label: "Popup Image", name: "popup_image", widget: "image" }
+
+  - name: "partners"
+    label: "Partners Section"
+    files:
+      - name: "partners"
+        label: "Partners"
+        file: "content/partners.json"
+        fields:
+          - { label: "Title (EN)", name: "title_en", widget: "string" }
+          - { label: "Title (KA)", name: "title_ka", widget: "string" }
+          - { label: "Partner Label (EN)", name: "partner_en", widget: "string" }
+          - { label: "Partner Label (KA)", name: "partner_ka", widget: "string" }
+          - { label: "Logo", name: "logo", widget: "image" }
+          - label: "Top Row Images"
+            name: "topRowImages"
+            widget: "list"
+            fields:
+              - { label: "Image", name: "src", widget: "image" }
+              - { label: "Alt Text", name: "alt", widget: "string" }
+          - label: "Bottom Row Images"
+            name: "bottomRowImages"
+            widget: "list"
+            fields:
+              - { label: "Image", name: "src", widget: "image" }
+              - { label: "Alt Text", name: "alt", widget: "string" }
+
+  - name: "insights"
+    label: "Insights Section"
+    files:
+      - name: "insights"
+        label: "Insights"
+        file: "content/insights.json"
+        fields:
+          - { label: "Title (EN)", name: "title_en", widget: "string" }
+          - { label: "Title (KA)", name: "title_ka", widget: "string" }
+          - { label: "Description (EN)", name: "description_en", widget: "text" }
+          - { label: "Description (KA)", name: "description_ka", widget: "text" }
+          - label: "Cards"
+            name: "cards"
+            widget: "list"
+            fields:
+              - { label: "Date (EN)", name: "date_en", widget: "string" }
+              - { label: "Date (KA)", name: "date_ka", widget: "string" }
+              - { label: "Title (EN)", name: "title_en", widget: "string" }
+              - { label: "Title (KA)", name: "title_ka", widget: "string" }
+              - { label: "Description (EN)", name: "description_en", widget: "text" }
+              - { label: "Description (KA)", name: "description_ka", widget: "text" }
+              - { label: "Desktop Image", name: "desktop_image", widget: "image" }
+              - { label: "Mobile Image", name: "mobile_image", widget: "image" }
+
+  - name: "testimonials"
+    label: "Testimonials Section"
+    files:
+      - name: "testimonials"
+        label: "Testimonials"
+        file: "content/testimonials.json"
+        fields:
+          - { label: "Title (EN)", name: "title_en", widget: "string" }
+          - { label: "Title (KA)", name: "title_ka", widget: "string" }
+          - { label: "Description (EN)", name: "description_en", widget: "text" }
+          - { label: "Description (KA)", name: "description_ka", widget: "text" }
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Name (EN)", name: "name_en", widget: "string" }
+              - { label: "Name (KA)", name: "name_ka", widget: "string" }
+              - { label: "Position (EN)", name: "position_en", widget: "string" }
+              - { label: "Position (KA)", name: "position_ka", widget: "string" }
+              - { label: "Feedback (EN)", name: "feedback_en", widget: "text" }
+              - { label: "Feedback (KA)", name: "feedback_ka", widget: "text" }
+              - { label: "Avatar", name: "avatar", widget: "image" }
+
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "content/blog"
+    create: true
+    extension: "json"
+    format: "json"
+    slug: "{{slug}}"
+    identifier_field: "slug"
+    fields:
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Date (EN)", name: "date_en", widget: "string" }
+      - { label: "Date (KA)", name: "date_ka", widget: "string" }
+      - { label: "Reading Time (EN)", name: "time_en", widget: "string" }
+      - { label: "Reading Time (KA)", name: "time_ka", widget: "string" }
+      - { label: "Title (EN)", name: "title_en", widget: "string" }
+      - { label: "Title (KA)", name: "title_ka", widget: "string" }
+      - { label: "Intro (EN)", name: "intro_en", widget: "text" }
+      - { label: "Intro (KA)", name: "intro_ka", widget: "text" }
+      - { label: "Hero Image", name: "hero_image", widget: "image" }
+      - label: "Sections"
+        name: "sections"
+        widget: "list"
+        fields:
+          - { label: "Subtitle (EN)", name: "subtitle_en", widget: "string" }
+          - { label: "Subtitle (KA)", name: "subtitle_ka", widget: "string" }
+          - { label: "Description (EN)", name: "description_en", widget: "text" }
+          - { label: "Description (KA)", name: "description_ka", widget: "text" }

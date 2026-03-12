@@ -151,14 +151,22 @@ const CopyrightSection = styled.div`
   }
 `;
 
-const Title = styled.div`
+const TitleStyled = styled.div`
   margin-bottom: 8px;
   @media screen and (max-width: 1080px) {
     margin-bottom: 8px;
   }
 `;
 
-const Footer = () => {
+interface FooterProps {
+  content: {
+    social: unknown;
+    contact: Record<string, unknown>;
+    footer: Record<string, unknown>;
+  };
+}
+
+const Footer = ({ content }: FooterProps) => {
   const tFooter = useTranslations("Footer");
   const locale = useLocale();
   const pathname = usePathname();
@@ -167,6 +175,12 @@ const Footer = () => {
   const [hoveredSocial, setHoveredSocial] = React.useState<string | null>(null);
   const [hoveredLocation, setHoveredLocation] = React.useState(false);
   const [hoveredEmail, setHoveredEmail] = React.useState(false);
+
+  const socialUrls = content.social as {
+    whatsapp: string;
+    instagram: string;
+    messenger: string;
+  };
 
   return (
     <FooterWrapper>
@@ -198,7 +212,7 @@ const Footer = () => {
                 color={colors.text.light}
                 weight="regular"
               >
-                {tFooter("description")}
+                {content.footer.description as string}
               </Typography>
             </DesktopContainer>
             <MobileContainer>
@@ -207,13 +221,13 @@ const Footer = () => {
                 color={colors.text.light}
                 weight="regular"
               >
-                {tFooter("description")}
+                {content.footer.description as string}
               </Typography>
             </MobileContainer>
           </BrandSection>
 
           <LinksSection>
-            <Title>
+            <TitleStyled>
               <DesktopContainer>
                 <Typography
                   variant={
@@ -236,7 +250,7 @@ const Footer = () => {
                   {tFooter("Links.home")}
                 </Typography>
               </MobileContainer>
-            </Title>
+            </TitleStyled>
             <LinkItem
               href="/Blog"
               onClick={(e) => {
@@ -362,7 +376,7 @@ const Footer = () => {
           </LinksSection>
 
           <ContactSection>
-            <Title>
+            <TitleStyled>
               <DesktopContainer>
                 <Typography
                   variant={
@@ -385,105 +399,77 @@ const Footer = () => {
                   {tFooter("Contact.title")}
                 </Typography>
               </MobileContainer>
-            </Title>
-            <ContactLink
-              href="mailto:info@atour.ge"
-              aria-label="Send email to info@atour.ge"
-              onMouseEnter={() => setHoveredEmail(true)}
-              onMouseLeave={() => setHoveredEmail(false)}
+            </TitleStyled>
+            <a
+              href={`mailto:${content.contact.email}`}
+              style={{ textDecoration: "none" }}
             >
-              <DesktopContainer>
-                <MailIcon
-                  color={
-                    hoveredEmail ? colors.links.hoverText : colors.text.light
-                  }
-                />
-              </DesktopContainer>
-              <MobileContainer>
-                <MailIcon
-                  color={
-                    hoveredEmail ? colors.links.hoverText : colors.text.light
-                  }
-                  width={16}
-                  height={18}
-                />
-              </MobileContainer>
-              <DesktopContainer>
-                <Typography
-                  variant="text-mdOneline"
-                  color={
-                    hoveredEmail ? colors.links.hoverText : colors.text.light
-                  }
-                  weight="regular"
-                >
-                  {tFooter("Contact.email")}
-                </Typography>
-              </DesktopContainer>
-              <MobileContainer>
-                <Typography
-                  variant="text-sm"
-                  color={
-                    hoveredEmail ? colors.links.hoverText : colors.text.light
-                  }
-                  weight="regular"
-                >
-                  {tFooter("Contact.email")}
-                </Typography>
-              </MobileContainer>
-            </ContactLink>
-            <ContactLink
-              href="https://www.google.com/maps/search/Tbilisi+Georgia"
+              <ContactItem>
+                <DesktopContainer>
+                  <MailIcon />
+                </DesktopContainer>
+                <MobileContainer>
+                  <MailIcon width={16} height={18} />
+                </MobileContainer>
+                <DesktopContainer>
+                  <Typography
+                    variant="text-mdOneline"
+                    color={colors.text.light}
+                    weight="regular"
+                  >
+                    {content.contact.email as string}
+                  </Typography>
+                </DesktopContainer>
+                <MobileContainer>
+                  <Typography
+                    variant="text-sm"
+                    color={colors.text.light}
+                    weight="regular"
+                  >
+                    {content.contact.email as string}
+                  </Typography>
+                </MobileContainer>
+              </ContactItem>
+            </a>
+            <a
+              href="https://maps.google.com/?q=Tbilisi,+Georgia"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="View our location on Google Maps"
-              onMouseEnter={() => setHoveredLocation(true)}
-              onMouseLeave={() => setHoveredLocation(false)}
+              style={{ textDecoration: "none" }}
             >
-              <DesktopContainer>
-                <LocationIcon
-                  color={
-                    hoveredLocation ? colors.links.hoverText : colors.text.light
-                  }
-                />
-              </DesktopContainer>
-              <MobileContainer>
-                <LocationIcon
-                  color={
-                    hoveredLocation ? colors.links.hoverText : colors.text.light
-                  }
-                  width={16}
-                  height={18}
-                />
-              </MobileContainer>
-              <DesktopContainer>
-                <Typography
-                  variant="text-mdOneline"
-                  color={
-                    hoveredLocation ? colors.links.hoverText : colors.text.light
-                  }
-                  weight="regular"
-                >
-                  {tFooter("Contact.location")}
-                </Typography>
-              </DesktopContainer>
-              <MobileContainer>
-                <Typography
-                  variant="text-sm"
-                  color={
-                    hoveredLocation ? colors.links.hoverText : colors.text.light
-                  }
-                  weight="regular"
-                >
-                  {tFooter("Contact.location")}
-                </Typography>
-              </MobileContainer>
-            </ContactLink>
+              <ContactItem>
+                <DesktopContainer>
+                  <LocationIcon />
+                </DesktopContainer>
+                <MobileContainer>
+                  <LocationIcon width={16} height={18} />
+                </MobileContainer>
+                <DesktopContainer>
+                  <Typography
+                    variant="text-mdOneline"
+                    color={colors.text.light}
+                    weight="regular"
+                  >
+                    {content.contact.location as string}
+                  </Typography>
+                </DesktopContainer>
+                <MobileContainer>
+                  <Typography
+                    variant="text-sm"
+                    color={colors.text.light}
+                    weight="regular"
+                  >
+                    {content.contact.location as string}
+                  </Typography>
+                </MobileContainer>
+              </ContactItem>
+            </a>
           </ContactSection>
 
           <SocialSection>
             <SocialIcons>
               <SocialLink
-                href="https://wa.me/"
+                href={socialUrls.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Contact us on WhatsApp"
@@ -492,27 +478,21 @@ const Footer = () => {
               >
                 <DesktopContainer>
                   <WhatsappIcon
-                    color={
-                      hoveredSocial === "whatsapp"
-                        ? "#7AD06D"
-                        : colors.text.light
-                    }
+                    color={colors.text.light}
+                    hovered={hoveredSocial === "whatsapp"}
                   />
                 </DesktopContainer>
                 <MobileContainer>
                   <WhatsappIcon
-                    color={
-                      hoveredSocial === "whatsapp"
-                        ? "#7AD06D"
-                        : colors.text.light
-                    }
+                    color={colors.text.light}
+                    hovered={hoveredSocial === "whatsapp"}
                     width={26}
                     height={26}
                   />
                 </MobileContainer>
               </SocialLink>
               <SocialLink
-                href="https://instagram.com/"
+                href={socialUrls.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow us on Instagram"
@@ -521,27 +501,21 @@ const Footer = () => {
               >
                 <DesktopContainer>
                   <InstaIcon
-                    color={
-                      hoveredSocial === "instagram"
-                        ? "#8C3AAA"
-                        : colors.text.light
-                    }
+                    color={colors.text.light}
+                    hovered={hoveredSocial === "instagram"}
                   />
                 </DesktopContainer>
                 <MobileContainer>
                   <InstaIcon
-                    color={
-                      hoveredSocial === "instagram"
-                        ? "#8C3AAA"
-                        : colors.text.light
-                    }
+                    color={colors.text.light}
+                    hovered={hoveredSocial === "instagram"}
                     width={26}
                     height={26}
                   />
                 </MobileContainer>
               </SocialLink>
               <SocialLink
-                href="https://messenger.com/"
+                href={socialUrls.messenger}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Message us on Messenger"
@@ -550,20 +524,14 @@ const Footer = () => {
               >
                 <DesktopContainer>
                   <MessengerIcon
-                    color={
-                      hoveredSocial === "messenger"
-                        ? "#00B2FF"
-                        : colors.text.light
-                    }
+                    color={colors.text.light}
+                    hovered={hoveredSocial === "messenger"}
                   />
                 </DesktopContainer>
                 <MobileContainer>
                   <MessengerIcon
-                    color={
-                      hoveredSocial === "messenger"
-                        ? "#00B2FF"
-                        : colors.text.light
-                    }
+                    color={colors.text.light}
+                    hovered={hoveredSocial === "messenger"}
                     width={26}
                     height={26}
                   />
@@ -576,12 +544,12 @@ const Footer = () => {
         <CopyrightSection>
           <DesktopContainer>
             <Typography variant="text-smUppercase" color={colors.text.light}>
-              {tFooter("rights")}
+              {content.footer.rights as string}
             </Typography>
           </DesktopContainer>
           <MobileContainer>
             <Typography variant="text-xs" color={colors.text.light}>
-              {tFooter("rights")}
+              {content.footer.rights as string}
             </Typography>
           </MobileContainer>
         </CopyrightSection>

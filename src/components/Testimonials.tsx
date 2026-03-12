@@ -1,10 +1,12 @@
+"use client";
+
 import React from "react";
 import Container from "./Container";
 import { styled, keyframes } from "styled-components";
 import Image from "next/image";
 import { colors } from "../styles/colors";
 import Typography from "./Typography";
-import { useTranslations, useLocale } from "next-intl";
+import { useLocale } from "next-intl";
 import DotsIcon from "../icons/DotsIcon";
 import CommentIcon from "../icons/CommentIcon";
 import { DesktopContainer, MobileContainer } from "./Responsive";
@@ -72,7 +74,7 @@ const DotsWrapper = styled.div`
   }
 `;
 
-const Title = styled.div`
+const TitleStyled = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -90,7 +92,6 @@ const TagWrapper = styled.div`
   gap: 8px;
   align-items: center;
   padding: 8px;
-  backdrop-filter: blur(40px);
   border-radius: 24px;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.4);
@@ -104,14 +105,14 @@ const TagWrapper = styled.div`
     inset: 0;
     border-radius: inherit;
     pointer-events: none;
+  }
 
-    &::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.7);
-      pointer-events: none;
-    }
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.7);
+    pointer-events: none;
   }
 `;
 
@@ -180,24 +181,28 @@ const AuthorInfo = styled.div`
   gap: 8px;
 `;
 
-const testimonialCards = ["Card1", "Card2", "Card1", "Card2"] as const;
+interface TestimonialsProps {
+  content: Record<string, unknown>;
+}
 
-const Testimonials = () => {
-  const tTestimonials = useTranslations("Testimonials");
+const Testimonials = ({ content }: TestimonialsProps) => {
   const locale = useLocale();
 
-  const testimonials = testimonialCards.map((cardKey, index) => ({
+  const items = content.items as Record<string, unknown>[];
+
+  // Build testimonials array with duplication for carousel loop
+  const baseTestimonials = [...items, ...items].map((item, index) => ({
     id: index + 1,
-    quote: tTestimonials(`${cardKey}.feedback`),
-    name: tTestimonials(`${cardKey}.name`),
-    title: tTestimonials(`${cardKey}.position`),
-    avatar: "/images/avatar.png",
+    quote: item.feedback as string,
+    name: item.name as string,
+    title: item.position as string,
+    avatar: item.avatar as string,
   }));
 
   const duplicatedTestimonials = [
-    ...testimonials,
-    ...testimonials,
-    ...testimonials,
+    ...baseTestimonials,
+    ...baseTestimonials,
+    ...baseTestimonials,
   ];
 
   return (
@@ -221,7 +226,7 @@ const Testimonials = () => {
               <DotsMobileIcon />
             </MobileContainer>
           </DotsWrapper>
-          <Title>
+          <TitleStyled>
             <DesktopContainer>
               <Typography
                 variant={
@@ -229,7 +234,7 @@ const Testimonials = () => {
                 }
                 color={colors.text.light}
               >
-                {tTestimonials("description")}
+                {content.description as string}
               </Typography>
             </DesktopContainer>
             <MobileContainer>
@@ -237,7 +242,7 @@ const Testimonials = () => {
                 variant={locale === "ka" ? "text-smUppercase" : "text-sm"}
                 color={colors.text.light}
               >
-                {tTestimonials("description")}
+                {content.description as string}
               </Typography>
             </MobileContainer>
             <TagWrapper>
@@ -249,7 +254,7 @@ const Testimonials = () => {
                   weight="bold"
                   color={colors.text.dark}
                 >
-                  {tTestimonials("title")}
+                  {content.title as string}
                 </Typography>
               </DesktopContainer>
               <MobileContainer>
@@ -258,11 +263,11 @@ const Testimonials = () => {
                   weight="bold"
                   color={colors.text.dark}
                 >
-                  {tTestimonials("title")}
+                  {content.title as string}
                 </Typography>
               </MobileContainer>
             </TagWrapper>
-          </Title>
+          </TitleStyled>
         </Container>
       </MainContainer>
       <CarouselContainer>

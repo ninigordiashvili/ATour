@@ -1,50 +1,45 @@
-"use client";
-
-import { useEffect } from "react";
-import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
 
 import Contact from "@/src/components/Contact";
 import Hero from "@/src/components/Hero";
 import Insights from "@/src/components/Insights";
+import HashScroller from "@/src/components/HashScroller";
+import {
+  getHeroContent,
+  getServicesContent,
+  getPartnersContent,
+  getInsightsContent,
+  getTestimonialsContent,
+  getSettingsContent,
+} from "@/src/lib/content";
 
-// Lazy load heavy components
-const Partners = dynamic(() => import("@/src/components/Partners"), {
-  loading: () => <div style={{ height: "400px" }} />,
-});
-const Services = dynamic(() => import("@/src/components/Services"), {
-  loading: () => <div style={{ height: "600px" }} />,
-});
-const Testimonials = dynamic(() => import("@/src/components/Testimonials"), {
-  loading: () => <div style={{ height: "400px" }} />,
-});
+const Partners = dynamic(() => import("@/src/components/Partners"));
+const Services = dynamic(() => import("@/src/components/Services"));
+const Testimonials = dynamic(() => import("@/src/components/Testimonials"));
 
-const Page = () => {
-  const pathname = usePathname();
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
 
-  useEffect(() => {
-    const hash = window.location.hash;
-    if (hash) {
-      const id = hash.replace("#", "");
-      const element = document.getElementById(id);
-      if (element) {
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 0);
-      }
-    }
-  }, [pathname]);
+  const heroContent = getHeroContent(locale);
+  const servicesContent = getServicesContent(locale);
+  const partnersContent = getPartnersContent(locale);
+  const insightsContent = getInsightsContent(locale);
+  const testimonialsContent = getTestimonialsContent(locale);
+  const settingsContent = getSettingsContent(locale);
 
   return (
     <>
-      <Hero />
-      <Services />
-      <Partners />
-      <Insights />
-      <Testimonials />
+      <HashScroller />
+      <Hero content={heroContent} social={settingsContent.social} />
+      <Services content={servicesContent} />
+      <Partners content={partnersContent} />
+      <Insights content={insightsContent} />
+      <Testimonials content={testimonialsContent} />
       <Contact />
     </>
   );
-};
-
-export default Page;
+}

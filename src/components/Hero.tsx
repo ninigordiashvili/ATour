@@ -128,6 +128,13 @@ const SocialWrapper = styled.div`
   }
 `;
 
+const DescriptionWrapper = styled.div`
+  min-height: 40px; /* 2 lines × 20px line-height */
+  @media screen and (max-width: 1080px) {
+    min-height: 40px;
+  }
+`;
+
 const ButtonWrapper = styled.div`
   @media screen and (max-width: 1080px) {
     margin-top: 16px;
@@ -201,8 +208,13 @@ const ContactFormCard = dynamic(
   { ssr: false },
 );
 
-const Hero = () => {
-  const tHero = useTranslations("Hero");
+interface HeroProps {
+  content: Record<string, unknown>;
+  social: unknown;
+}
+
+const Hero = ({ content, social }: HeroProps) => {
+  const tButtons = useTranslations("Buttons");
   const locale = useLocale();
   const [showModal, setShowModal] = useState(false);
   const [hoveredSocial, setHoveredSocial] = useState<string | null>(null);
@@ -210,12 +222,18 @@ const Hero = () => {
   const handleOpenModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
+  const socialUrls = social as {
+    whatsapp: string;
+    instagram: string;
+    messenger: string;
+  };
+
   return (
     <>
       <HeroImageWrapper>
         <HeroDesktopImageWrapper>
           <Image
-            src="/images/hero.png"
+            src={content.desktop_image as string}
             alt="Hero Background"
             fill
             priority
@@ -228,7 +246,7 @@ const Hero = () => {
 
         <HeroMobileImageWrapper>
           <Image
-            src="/images/heroMobImage.png"
+            src={content.mobile_image as string}
             alt="Hero Background"
             fill
             priority
@@ -248,7 +266,7 @@ const Hero = () => {
                 weight="regular"
                 color={colors.text.light}
               >
-                {tHero("tag")}
+                {content.tag as string}
               </Typography>
             </DesktopContainer>
             <MobileContainer>
@@ -257,7 +275,7 @@ const Hero = () => {
                 weight="regular"
                 color={colors.text.light}
               >
-                {tHero("tag")}
+                {content.tag as string}
               </Typography>
             </MobileContainer>
           </TagWrapper>
@@ -267,15 +285,17 @@ const Hero = () => {
               weight="bold"
               color={colors.text.dark}
             >
-              {tHero("title")}
+              {content.title as string}
             </Typography>
-            <Typography
-              variant="text-sm"
-              weight="regular"
-              color={colors.text.light}
-            >
-              {tHero("description")}
-            </Typography>
+            <DescriptionWrapper>
+              <Typography
+                variant="text-sm"
+                weight="regular"
+                color={colors.text.light}
+              >
+                {content.description as string}
+              </Typography>
+            </DescriptionWrapper>
           </DesktopContainer>
           <MobileContainer>
             <Typography
@@ -283,15 +303,17 @@ const Hero = () => {
               weight="bold"
               color={colors.text.dark}
             >
-              {tHero("title")}
+              {content.title as string}
             </Typography>
-            <Typography
-              variant="text-sm"
-              weight="regular"
-              color={colors.text.light}
-            >
-              {tHero("description")}
-            </Typography>
+            <DescriptionWrapper>
+              <Typography
+                variant="text-sm"
+                weight="regular"
+                color={colors.text.light}
+              >
+                {content.description as string}
+              </Typography>
+            </DescriptionWrapper>
           </MobileContainer>
           <ButtonWrapper>
             <Button
@@ -304,7 +326,7 @@ const Hero = () => {
         <SocialsBox>
           <SocialWrapper
             as="a"
-            href="https://wa.me/"
+            href={socialUrls.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Contact us on WhatsApp"
@@ -313,12 +335,12 @@ const Hero = () => {
           >
             <DesktopContainer>
               <WhatsappIcon
-                color={hoveredSocial === "whatsapp" ? "#7AD06D" : undefined}
+                hovered={hoveredSocial === "whatsapp"}
               />
             </DesktopContainer>
             <MobileContainer>
               <WhatsappIcon
-                color={hoveredSocial === "whatsapp" ? "#7AD06D" : undefined}
+                hovered={hoveredSocial === "whatsapp"}
                 width={26}
                 height={26}
               />
@@ -326,7 +348,7 @@ const Hero = () => {
           </SocialWrapper>
           <SocialWrapper
             as="a"
-            href="https://instagram.com/"
+            href={socialUrls.instagram}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Follow us on Instagram"
@@ -335,12 +357,12 @@ const Hero = () => {
           >
             <DesktopContainer>
               <InstaIcon
-                color={hoveredSocial === "instagram" ? "#8C3AAA" : undefined}
+                hovered={hoveredSocial === "instagram"}
               />
             </DesktopContainer>
             <MobileContainer>
               <InstaIcon
-                color={hoveredSocial === "instagram" ? "#8C3AAA" : undefined}
+                hovered={hoveredSocial === "instagram"}
                 width={26}
                 height={26}
               />
@@ -348,7 +370,7 @@ const Hero = () => {
           </SocialWrapper>
           <SocialWrapper
             as="a"
-            href="https://messenger.com/"
+            href={socialUrls.messenger}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Message us on Messenger"
@@ -357,12 +379,12 @@ const Hero = () => {
           >
             <DesktopContainer>
               <MessengerIcon
-                color={hoveredSocial === "messenger" ? "#00B2FF" : undefined}
+                hovered={hoveredSocial === "messenger"}
               />
             </DesktopContainer>
             <MobileContainer>
               <MessengerIcon
-                color={hoveredSocial === "messenger" ? "#00B2FF" : undefined}
+                hovered={hoveredSocial === "messenger"}
                 width={26}
                 height={26}
               />

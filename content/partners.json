@@ -1,0 +1,71 @@
+{
+  "title_en": "Aptos is a world-renowned aesthetic technology brand",
+  "title_ka": "Aptos არის მსოფლიო აღიარებული ესთეტიკური ტექნოლოგიების ბრენდი",
+  "partner_en": "Partnered with :",
+  "partner_ka": "პარტნიორია :",
+  "logo": "/images/aptosLogo.webp",
+  "topRowImages": [
+    {
+      "src": "/images/partners/image1.webp",
+      "alt": "Event 1"
+    },
+    {
+      "src": "/images/partners/image2.webp",
+      "alt": "Event 2"
+    },
+    {
+      "src": "/images/partners/image3.webp",
+      "alt": "Event 3"
+    },
+    {
+      "src": "/images/partners/image4.webp",
+      "alt": "Event 4"
+    },
+    {
+      "src": "/images/partners/image5.webp",
+      "alt": "Event 5"
+    },
+    {
+      "src": "/images/partners/image6.webp",
+      "alt": "Event 6"
+    },
+    {
+      "src": "/images/partners/image7.webp",
+      "alt": "Event 7"
+    },
+    {
+      "src": "/images/partners/image8.webp",
+      "alt": "Event 8"
+    }
+  ],
+  "bottomRowImages": [
+    {
+      "src": "/images/partners/image9.webp",
+      "alt": "Event 9"
+    },
+    {
+      "src": "/images/partners/image10.webp",
+      "alt": "Event 10"
+    },
+    {
+      "src": "/images/partners/image11.webp",
+      "alt": "Event 11"
+    },
+    {
+      "src": "/images/partners/image12.webp",
+      "alt": "Event 12"
+    },
+    {
+      "src": "/images/partners/image13.webp",
+      "alt": "Event 13"
+    },
+    {
+      "src": "/images/partners/image14.webp",
+      "alt": "Event 14"
+    },
+    {
+      "src": "/images/partners/image15.webp",
+      "alt": "Event 15"
+    }
+  ]
+}
