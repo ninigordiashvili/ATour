@@ -518,9 +518,7 @@ const Services = ({ content }: ServicesProps) => {
                     <DesktopContainer>
                       <Typography
                         variant={
-                          locale === "ka"
-                            ? "display-smUppercase"
-                            : "display-sm"
+                          locale === "ka" ? "display-smUppercase" : "display-sm"
                         }
                         color={colors.text.dark}
                         weight="semibold"

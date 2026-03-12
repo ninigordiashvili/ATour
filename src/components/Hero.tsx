@@ -334,9 +334,7 @@ const Hero = ({ content, social }: HeroProps) => {
             onMouseLeave={() => setHoveredSocial(null)}
           >
             <DesktopContainer>
-              <WhatsappIcon
-                hovered={hoveredSocial === "whatsapp"}
-              />
+              <WhatsappIcon hovered={hoveredSocial === "whatsapp"} />
             </DesktopContainer>
             <MobileContainer>
               <WhatsappIcon
@@ -356,9 +354,7 @@ const Hero = ({ content, social }: HeroProps) => {
             onMouseLeave={() => setHoveredSocial(null)}
           >
             <DesktopContainer>
-              <InstaIcon
-                hovered={hoveredSocial === "instagram"}
-              />
+              <InstaIcon hovered={hoveredSocial === "instagram"} />
             </DesktopContainer>
             <MobileContainer>
               <InstaIcon
@@ -378,9 +374,7 @@ const Hero = ({ content, social }: HeroProps) => {
             onMouseLeave={() => setHoveredSocial(null)}
           >
             <DesktopContainer>
-              <MessengerIcon
-                hovered={hoveredSocial === "messenger"}
-              />
+              <MessengerIcon hovered={hoveredSocial === "messenger"} />
             </DesktopContainer>
             <MobileContainer>
               <MessengerIcon

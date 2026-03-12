@@ -15,6 +15,22 @@
       "description_ka": "შექმენით ეფექტური და კომფორტული მოგზაურობის გეგმები თქვენი ბიზნესის საჭიროებებისთვის.",
       "title_ka": "ბიზნეს მოგზაურობა",
       "titleDetails_en": "Complete Business Travel Solutions"
+    },
+    {
+      "title_en": "MICE & DMC Services",
+      "title_ka": "MICE და DMC სერვისები",
+      "description_en": "Comprehensive event management and destination management services for unforgettable corporate experiences.",
+      "description_ka": "ღონისძიების ადმინისტრაცია და დანიშვულების ადმინისტრაციის სერვისები.",
+      "card_image": "/images/services/serviceCard2.webp",
+      "popup_image": "/images/services/dmc.webp",
+      "MiceDetails_en": "MICE Services",
+      "MiceDetails_ka": "MICE სერვისები",
+      "MiceDescription_en": "Meeting, Incentive, Conference, and Event management tailored to create memorable corporate experiences.",
+      "MiceDescription_ka": "შეხვედრა, ინცენტივი, კონფერენცია და ღონისძიების ადმინისტრაცია, რომელიც შექმნილია კორპორატიული გამოცდილების შესაქმნელად.",
+      "DmcDetails_en": "Destination Management",
+      "DmcDetails_ka": "დანიშვულების ადმინისტრაცია",
+      "DmcDescription_en": "Expert destination management ensuring seamless coordination of accommodations, activities, and logistics.",
+      "DmcDescription_ka": "ექსპერტი დანიშვულების ადმინისტრაცია, რომელიც უზრუნველყოფს განთავსების, საქმიანობებისა და ლოგისტიკის უპრობლემო კოორდინაციას."
     }
   ]
 }

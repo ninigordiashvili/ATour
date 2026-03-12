@@ -403,18 +403,32 @@ const Footer = ({ content }: FooterProps) => {
             <a
               href={`mailto:${content.contact.email}`}
               style={{ textDecoration: "none" }}
+              onMouseEnter={() => setHoveredEmail(true)}
+              onMouseLeave={() => setHoveredEmail(false)}
             >
               <ContactItem>
                 <DesktopContainer>
-                  <MailIcon />
+                  <MailIcon
+                    color={
+                      hoveredEmail ? colors.links.hoverText : colors.text.light
+                    }
+                  />
                 </DesktopContainer>
                 <MobileContainer>
-                  <MailIcon width={16} height={18} />
+                  <MailIcon
+                    color={
+                      hoveredEmail ? colors.links.hoverText : colors.text.light
+                    }
+                    width={16}
+                    height={18}
+                  />
                 </MobileContainer>
                 <DesktopContainer>
                   <Typography
                     variant="text-mdOneline"
-                    color={colors.text.light}
+                    color={
+                      hoveredEmail ? colors.links.hoverText : colors.text.light
+                    }
                     weight="regular"
                   >
                     {content.contact.email as string}
@@ -423,7 +437,9 @@ const Footer = ({ content }: FooterProps) => {
                 <MobileContainer>
                   <Typography
                     variant="text-sm"
-                    color={colors.text.light}
+                    color={
+                      hoveredEmail ? colors.links.hoverText : colors.text.light
+                    }
                     weight="regular"
                   >
                     {content.contact.email as string}
@@ -436,18 +452,38 @@ const Footer = ({ content }: FooterProps) => {
               target="_blank"
               rel="noopener noreferrer"
               style={{ textDecoration: "none" }}
+              onMouseEnter={() => setHoveredLocation(true)}
+              onMouseLeave={() => setHoveredLocation(false)}
             >
               <ContactItem>
                 <DesktopContainer>
-                  <LocationIcon />
+                  <LocationIcon
+                    color={
+                      hoveredLocation
+                        ? colors.links.hoverText
+                        : colors.text.light
+                    }
+                  />
                 </DesktopContainer>
                 <MobileContainer>
-                  <LocationIcon width={16} height={18} />
+                  <LocationIcon
+                    color={
+                      hoveredLocation
+                        ? colors.links.hoverText
+                        : colors.text.light
+                    }
+                    width={16}
+                    height={18}
+                  />
                 </MobileContainer>
                 <DesktopContainer>
                   <Typography
                     variant="text-mdOneline"
-                    color={colors.text.light}
+                    color={
+                      hoveredLocation
+                        ? colors.links.hoverText
+                        : colors.text.light
+                    }
                     weight="regular"
                   >
                     {content.contact.location as string}
@@ -456,7 +492,11 @@ const Footer = ({ content }: FooterProps) => {
                 <MobileContainer>
                   <Typography
                     variant="text-sm"
-                    color={colors.text.light}
+                    color={
+                      hoveredLocation
+                        ? colors.links.hoverText
+                        : colors.text.light
+                    }
                     weight="regular"
                   >
                     {content.contact.location as string}
