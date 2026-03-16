@@ -5,36 +5,36 @@
   "description_ka": "ჩვენი მომსახურება მოიცავს ბიზნეს მოგზაურობას, ღონისძიებების დაგეგმვას და კორპორატიულ მოგზაურობას.",
   "cards": [
     {
-      "descriptionDetails_en": "Our Business Travel service provides complete support for all your corporate travel needs from global flight and hotel bookings to transfers, visas, insurance, and conference registration. We tailor accommodations and travel solutions to your preferences and offer 24/7 assistance, ensuring a smooth and efficient journey anywhere in the world.",
+      "descriptionDetails_en": "Our Corporate Travel service provides end-to-end support for all your business travel needs — from international flights and hotel bookings to transfers, visas, insurance, and conference registrations. We tailor travel arrangements to your preferences and offer 24/7 assistance, ensuring a seamless and efficient journey anywhere in the world.",
       "popup_image": "/images/services/tfls.webp",
-      "titleDetails_ka": "ბიზნეს-მოგზაურობის სრულყოფილი მომსახურება",
+      "titleDetails_ka": "კორპორაციული მოგზაურობის სრული სერვისები",
       "card_image": "/images/services/serviceCard1.webp",
-      "description_en": "Complete corporate travel management including flights, accommodations, and ground transportation. We handle every detail so you can focus on your business.",
-      "descriptionDetails_ka": "ჩვენი ბიზნეს მოგზაურობის სერვისი უზრუნველყოფს სრულ მხარდაჭერას თქვენი კორპორატიული მოგზაურობის ყველა საჭიროებისთვის, გლობალური ფრენების და სასტუმროების დაჯავშნიდან ტრანსფერებს, ვიზებს, დაზღვევას და კონფერენციის რეგისტრაციას. ჩვენ ვთარგმნით საცხოვრებელ და მოგზაურობის გადაწყვეტილებებს თქვენს პრეფერენციებზე და ვთავაზობთ 24/7 დახმარებას, რათა უზრუნველვყოთ გლუვი და ეფექტური მოგზაურობა მსოფლიოს ნებისმიერ წერტილში.",
-      "title_en": "Business Travel",
-      "description_ka": "შექმენით ეფექტური და კომფორტული მოგზაურობის გეგმები თქვენი ბიზნესის საჭიროებებისთვის.",
-      "title_ka": "ბიზნეს მოგზაურობა",
-      "titleDetails_en": "Complete Business Travel Solutions"
+      "description_en": "Complete corporate travel management including flights, accommodations, and ground transportation. We handle every detail so your team can focus on business.",
+      "descriptionDetails_ka": "ჩვენი კორპორაციული მოგზაურობის სერვისი უზრუნველყოფს სრულ მხარდაჭერას თქვენი საქმიანი მოგზაურობის ყველა საჭიროებისთვის — საერთაშორისო ფრენებიდან და სასტუმროს ჯავშნებიდან ტრანსფერებამდე, ვიზებამდე, დაზღვევამდე და კონფერენციებზე რეგისტრაციამდე.\nჩვენ ვამზადებთ მოგზაურობის გეგმებს თქვენი მოთხოვნებისა და პრეფერენციების შესაბამისად და გთავაზობთ 24/7 მხარდაჭერას, რათა უზრუნველვყოთ კომფორტული, შეუფერხებელი და ეფექტური მოგზაურობა მსოფლიოს ნებისმიერ წერტილში.",
+      "title_en": "Corporate Travel",
+      "description_ka": "კორპორაციული მოგზაურობის სრული მართვა, მათ შორის ავიაბილეთები, განთავსება და სახმელეთო ტრანსპორტირება.\nჩვენ ვზრუნავთ ყველა დეტალზე, რათა თქვენი გუნდი სრულად კონცენტრირდეს ბიზნესზე.",
+      "title_ka": "კორპორაციული მოგზაურობა",
+      "titleDetails_en": "Complete Corporate Travel Solutions"
     },
     {
-      "DmcDetails_en": "Domestic Management Company",
-      "descriptionDetails_en": "A Destination Management Company (DMC) provides full local support for events and travel.  With deep knowledge of the destination and strong logistics expertise, a DMC plans, organizes, and manages everything on the ground, ensuring smooth, authentic, and well-executed experiences for your business or corporate events.",
+      "DmcDetails_en": "Destination Management Company",
+      "descriptionDetails_en": "As a trusted Destination Management Company (DMC), we provide full local support for corporate travel, meetings, incentives, and events. With deep destination knowledge and strong logistical expertise, we manage every aspect on the ground — from planning and coordination to on-site execution — ensuring seamless and authentic experiences for your clients and teams.",
       "MiceDetails_en": "Meetings, Incentives, Conferences, Events & Exhibitions",
-      "DmcDescription_en": "A Destination Management Company (DMC) provides full local support for events and travel.  With deep knowledge of the destination and strong logistics expertise, a DMC plans, organizes, and manages everything on the ground, ensuring smooth, authentic, and well-executed experiences for your business or corporate events.",
+      "DmcDescription_en": "As a trusted Destination Management Company (DMC), we provide full local support for corporate travel, meetings, incentives, and events. With deep destination knowledge and strong logistical expertise, we manage every aspect on the ground — from planning and coordination to on-site execution — ensuring seamless and authentic experiences for your clients and teams.",
       "popup_image": "/images/services/dmc.webp",
-      "MiceDescription_en": "MICE Tourism covers all types of business-related travel from meetings and incentive trips to conferences, events, and exhibitions. It brings together planning, organization, and on-site management to ensure every corporate gathering is efficient, engaging, and professionally executed.",
-      "titleDetails_ka": "ადგილობრივი მართვის კომპანია",
+      "MiceDescription_en": "We deliver comprehensive MICE and destination management services for corporate clients — from meetings and incentive travel to conferences, events, and exhibitions. Our team handles planning, logistics, and on-site coordination to ensure every event is seamless, engaging, and professionally executed.",
+      "titleDetails_ka": "ადგილობრივი ტურისტული მომსახურების ორგანიზატორი კომპანია",
       "card_image": "/images/services/serviceCard2.webp",
-      "description_en": "Meetings, Incentives, Conferences, and Events. Full destination management services for corporate gatherings of any scale.",
-      "DmcDetails_ka": "ადგილობრივი მართვის კომპანია",
-      "descriptionDetails_ka": "დანიშნულების ადგილის მართვის კომპანია (DMC) უზრუნველყოფს ღონისძიებებისა და მოგზაურობის სრულ ადგილობრივ მხარდაჭერას.\nდანიშნულების ადგილის ღრმა ცოდნისა და ძლიერი ლოგისტიკური გამოცდილების წყალობით, DMC გეგმავს, აორგანიზებს და ადგილზე მართავს ყველა პროცესს, რათა თქვენი ბიზნეს თუ კორპორაციული ღონისძიებები შეუფერხებლად, ავთენტურად და პროფესიონალურად განხორციელდეს.",
+      "description_en": "Meetings, Incentives, Conferences, and Events. Full destination management services for corporate gatherings and business events of any scale.",
+      "DmcDetails_ka": "ადგილობრივი ტურისტული მომსახურების ორგანიზატორი კომპანია",
+      "descriptionDetails_ka": "როგორც სანდო დანიშნულების ადგილის მართვის კომპანია (DMC), ჩვენ ვთავაზობთ სრულ ადგილობრივ მხარდაჭერას კორპორატიული მოგზაურობებისთვის, შეხვედრებისთვის, წამახალისებელი ტურებისთვის და სხვადასხვა ღონისძიებისთვის. დანიშნულების ადგილის ღრმა ცოდნისა და ძლიერი ლოგისტიკური გამოცდილების საფუძველზე, ადგილზე ვმართავთ ყველა პროცესს — დაგეგმვიდან და კოორდინაციიდან დაწყებული, ადგილზე განხორციელებით დამთავრებული — რათა უზრუნველვყოთ თქვენი კლიენტებისა და გუნდებისთვის შეუფერხებელი და ავთენტური გამოცდილება.",
       "title_en": "MICE & DMC",
       "MiceDetails_ka": "შეხვედრები, წამახალისებელი პროგრამები, კონფერენციები, ღონისძიებები და გამოფენები",
-      "DmcDescription_ka": "დანიშნულების ადგილის მართვის კომპანია (DMC) უზრუნველყოფს ღონისძიებებისა და მოგზაურობის სრულ ადგილობრივ მხარდაჭერას.\nდანიშნულების ადგილის ღრმა ცოდნისა და ძლიერი ლოგისტიკური გამოცდილების წყალობით, DMC გეგმავს, აორგანიზებს და ადგილზე მართავს ყველა პროცესს, რათა თქვენი ბიზნეს თუ კორპორაციული ღონისძიებები შეუფერხებლად, ავთენტურად და პროფესიონალურად განხორციელდეს.",
-      "MiceDescription_ka": "MICE ტურიზმი მოიცავს ბიზნესთან დაკავშირებული მოგზაურობის ყველა ტიპს — შეხვედრებიდან და წამახალისებელი მოგზაურობებიდან დაწყებული, კონფერენციებით, ღონისძიებებითა და გამოფენებით დამთავრებული. ის აერთიანებს დაგეგმვას, ორგანიზებასა და ადგილზე მართვას, რათა უზრუნველყოფილი იყოს, რომ თითოეული კორპორაციული შეკრება იყოს ეფექტური, საინტერესო და პროფესიონალურად განხორციელებული.",
-      "description_ka": "შეხვედრები, წამახალისებელი პროგრამები, კონფერენციები და სხვა ტიპის ღონისძიებები.",
+      "DmcDescription_ka": "როგორც სანდო დანიშნულების ადგილის მართვის კომპანია (DMC), ჩვენ ვთავაზობთ სრულ ადგილობრივ მხარდაჭერას კორპორატიული მოგზაურობებისთვის, შეხვედრებისთვის, წამახალისებელი ტურებისთვის და სხვადასხვა ღონისძიებისთვის. დანიშნულების ადგილის ღრმა ცოდნისა და ძლიერი ლოგისტიკური გამოცდილების საფუძველზე, ადგილზე ვმართავთ ყველა პროცესს — დაგეგმვიდან და კოორდინაციიდან დაწყებული, ადგილზე განხორციელებით დამთავრებული — რათა უზრუნველვყოთ თქვენი კლიენტებისა და გუნდებისთვის შეუფერხებელი და ავთენტური გამოცდილება.",
+      "MiceDescription_ka": "ჩვენ ვთავაზობთ სრულყოფილ MICE-ისა და დანიშნულების ადგილის მართვის სერვისებს კორპორატიული კლიენტებისთვის — შეხვედრებიდან და წამახალისებელი მოგზაურობებიდან დაწყებული, კონფერენციებით, ღონისძიებებითა და გამოფენებით დასრულებული. ჩვენი გუნდი უზრუნველყოფს დაგეგმვას, ლოგისტიკას და ადგილზე კოორდინაციას, რათა თითოეული ღონისძიება იყოს შეუფერხებლად ჩატარებული, საინტერესო და პროფესიონალურად ორგანიზებული.",
+      "description_ka": "შეხვედრები, წამახალისებელი პროგრამები, კონფერენციები და ღონისძიებები.\nდანიშნულების ადგილის მართვის სრული სერვისები კორპორაციული შეკრებებისა და ბიზნეს ღონისძიებებისთვის ნებისმიერი მასშტაბით.",
       "title_ka": "MICE & DMC",
-      "titleDetails_en": "Domestic Management Company"
+      "titleDetails_en": "Destination Management Company"
     }
   ]
 }
