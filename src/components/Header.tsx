@@ -428,11 +428,17 @@ const Header = () => {
           left: 0,
           width: "100%",
           zIndex: 100,
-          background: isAtTop ? "transparent" : "rgba(255, 255, 255, 0.2)",
-          backdropFilter: isAtTop ? "none" : "blur(12px)",
-          WebkitBackdropFilter: isAtTop ? "none" : "blur(12px)",
-          transition: "transform 0.3s ease, background 0.3s ease, backdrop-filter 0.3s ease",
-          transform: showHeader ? "translateY(0)" : "translateY(-120%)",
+          background:
+            isDesktop && !isAtTop ? "rgba(255, 255, 255, 0.2)" : "transparent",
+          backdropFilter: isDesktop && !isAtTop ? "blur(12px)" : "none",
+          WebkitBackdropFilter: isDesktop && !isAtTop ? "blur(12px)" : "none",
+          transition:
+            "transform 0.3s ease, background 0.3s ease, backdrop-filter 0.3s ease",
+          transform: showHeader
+            ? "translateY(0)"
+            : isDesktop
+              ? "translateY(-120%)"
+              : "translateY(calc(-100% - 24px))",
         }}
       >
         <Container>

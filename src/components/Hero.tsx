@@ -46,10 +46,9 @@ const TagWrapper = styled.div`
   padding: 8px;
   background-color: ${colors.background.light};
   border-radius: 24px;
-  max-width: 184px;
   text-align: center;
+  width: fit-content;
   @media screen and (max-width: 1080px) {
-    width: 160px;
     margin-bottom: 16px;
     padding: 7px;
   }
@@ -66,7 +65,7 @@ const MainContainer = styled.div`
     gap: 16px;
     text-align: center;
     align-items: center;
-    padding: 124px 0 48px 0;
+    padding: 124px 0 24px 0;
   }
 `;
 

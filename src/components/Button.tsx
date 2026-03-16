@@ -331,7 +331,7 @@ const Button: React.FC<ButtonProps> = ({
             color={colors.text.primary}
             weight="semibold"
           >
-            {tButtons("bookNow")}
+            {tButtons("bookNowMobile")}
           </Typography>
         </MobileContainer>
       </TextContainer>

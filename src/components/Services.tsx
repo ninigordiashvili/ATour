@@ -174,7 +174,6 @@ const PopupCard = styled.div<PopupCardProps & { $show: boolean }>`
     margin: 0 16px;
     min-width: 343px;
     max-width: 100%;
-    height: 414px;
     padding-top: 16px;
     padding-left: 16px;
     padding-right: 16px;
