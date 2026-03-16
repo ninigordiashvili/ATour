@@ -5,7 +5,7 @@ import styled from "styled-components";
 import Container from "./Container";
 import { colors } from "../styles/colors";
 import Typography from "./Typography";
-import { useTranslations, useLocale } from "next-intl";
+import { useLocale } from "next-intl";
 import Image from "next/image";
 import { DesktopContainer, MobileContainer } from "./Responsive";
 import Button from "./Button";
@@ -47,7 +47,7 @@ const InsightCard = styled.div`
   background: ${colors.background.light};
   border-radius: 20px;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: box-shadow 0.3s ease;
   box-shadow: ${colors.shadow.light};
   padding: 16px;
   display: flex;
@@ -56,7 +56,6 @@ const InsightCard = styled.div`
   cursor: pointer;
 
   &:hover {
-    transform: translateY(-4px);
     box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.12);
   }
 
@@ -122,7 +121,6 @@ interface InsightsProps {
 }
 
 const Insights = ({ content }: InsightsProps) => {
-  const tButtons = useTranslations("Buttons");
   const locale = useLocale();
   const router = useRouter();
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
