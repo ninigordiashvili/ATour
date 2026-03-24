@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations, useLocale } from "next-intl";
+import { useLocale } from "next-intl";
 import styled from "styled-components";
 import { Typography } from "./Typography";
 import { colors } from "../styles/colors";
@@ -213,10 +213,19 @@ interface HeroProps {
 }
 
 const Hero = ({ content, social }: HeroProps) => {
-  const tButtons = useTranslations("Buttons");
   const locale = useLocale();
+
   const [showModal, setShowModal] = useState(false);
   const [hoveredSocial, setHoveredSocial] = useState<string | null>(null);
+
+  // Responsive color for social icons
+  const [isMobile, setIsMobile] = useState(false);
+  React.useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 1080);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const handleOpenModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
@@ -319,7 +328,7 @@ const Hero = ({ content, social }: HeroProps) => {
               variant="default"
               onClick={handleOpenModal}
               active={showModal}
-            />{" "}
+            />
           </ButtonWrapper>
         </MainContainer>
         <SocialsBox>
@@ -332,16 +341,10 @@ const Hero = ({ content, social }: HeroProps) => {
             onMouseEnter={() => setHoveredSocial("whatsapp")}
             onMouseLeave={() => setHoveredSocial(null)}
           >
-            <DesktopContainer>
-              <WhatsappIcon hovered={hoveredSocial === "whatsapp"} />
-            </DesktopContainer>
-            <MobileContainer>
-              <WhatsappIcon
-                hovered={hoveredSocial === "whatsapp"}
-                width={26}
-                height={26}
-              />
-            </MobileContainer>
+            <WhatsappIcon
+              color={isMobile ? colors.text.dark : colors.background.light}
+              hovered={hoveredSocial === "whatsapp"}
+            />
           </SocialWrapper>
           <SocialWrapper
             as="a"
@@ -352,16 +355,10 @@ const Hero = ({ content, social }: HeroProps) => {
             onMouseEnter={() => setHoveredSocial("instagram")}
             onMouseLeave={() => setHoveredSocial(null)}
           >
-            <DesktopContainer>
-              <InstaIcon hovered={hoveredSocial === "instagram"} />
-            </DesktopContainer>
-            <MobileContainer>
-              <InstaIcon
-                hovered={hoveredSocial === "instagram"}
-                width={26}
-                height={26}
-              />
-            </MobileContainer>
+            <InstaIcon
+              color={isMobile ? colors.text.dark : colors.background.light}
+              hovered={hoveredSocial === "instagram"}
+            />
           </SocialWrapper>
           <SocialWrapper
             as="a"
@@ -372,16 +369,10 @@ const Hero = ({ content, social }: HeroProps) => {
             onMouseEnter={() => setHoveredSocial("messenger")}
             onMouseLeave={() => setHoveredSocial(null)}
           >
-            <DesktopContainer>
-              <MessengerIcon hovered={hoveredSocial === "messenger"} />
-            </DesktopContainer>
-            <MobileContainer>
-              <MessengerIcon
-                hovered={hoveredSocial === "messenger"}
-                width={26}
-                height={26}
-              />
-            </MobileContainer>
+            <MessengerIcon
+              color={isMobile ? colors.text.dark : colors.background.light}
+              hovered={hoveredSocial === "messenger"}
+            />
           </SocialWrapper>
         </SocialsBox>
       </Container>

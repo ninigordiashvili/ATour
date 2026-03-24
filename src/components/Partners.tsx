@@ -6,11 +6,13 @@ import { styled } from "styled-components";
 import { colors } from "../styles/colors";
 import Typography from "./Typography";
 import { useLocale } from "next-intl";
-import DotsIcon from "../icons/DotsIcon";
 import ImageCarousel from "./ImageCarousel";
 import { DesktopContainer, MobileContainer } from "./Responsive";
-import DotsMobileIcon from "../icons/DotsMobileIcon";
-import Image from "next/image";
+import AptosIcon from "../logoIcons/AptosIcon";
+import TotalCharmIcon from "../logoIcons/TotalCharmIcon";
+import EstemedIcon from "../logoIcons/EstemedIcon";
+import KnaufIcon from "../logoIcons/KnaufIcon";
+import IsystemsIcon from "../logoIcons/IsystemsIcon";
 
 const MainContainer = styled.div`
   padding: 100px 0 0 0;
@@ -56,13 +58,72 @@ const DecorativeLine = styled.div`
   }
 `;
 
-const DotsWrapper = styled.div`
-  position: absolute;
-  top: 70px;
-  left: 50%;
-  transform: translate(-50%, -50%);
+const TopDecorativeWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
+const PartnershipTag = styled.div`
+  position: relative;
+  margin-top: 2px;
+  padding: 12px 64px 14px;
+  z-index: 1;
+  isolation: isolate;
+  clip-path: polygon(0 0, 100% 0, 82% 100%, 18% 100%);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: ${colors.background.light};
+    border-top: none;
+    box-shadow: 0px -17px 60px 0px #465fcf26;
+    clip-path: polygon(0 0, 100% 0, 82% 100%, 18% 100%);
+    z-index: -1;
+    pointer-events: none;
+  }
+
   @media screen and (max-width: 1080px) {
-    top: 30px;
+    padding: 8px 20px 10px;
+    clip-path: polygon(0 0, 100% 0, 86% 100%, 14% 100%);
+
+    &::before {
+      clip-path: polygon(0 0, 100% 0, 86% 100%, 14% 100%);
+    }
+  }
+`;
+
+const MainPartnersWrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+`;
+
+const PartnerLogosRow = styled.div`
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 64px;
+  margin-bottom: 128px;
+  svg {
+    width: auto;
+    height: auto;
+  }
+
+  @media screen and (max-width: 1080px) {
+    margin-top: 24px;
+    gap: 20px;
+
+    svg {
+      max-height: 36px;
+      max-width: 100%;
+    }
   }
 `;
 
@@ -83,6 +144,7 @@ const TitleStyled = styled.div`
   flex-direction: column;
   gap: 24px;
   align-items: center;
+  text-align: center;
   margin-left: auto;
   margin-right: auto;
   @media screen and (max-width: 1080px) {
@@ -95,15 +157,8 @@ const TitleStyled = styled.div`
 const PartnersWrapper = styled.div`
   position: relative;
   display: flex;
-  gap: 8px;
   align-items: center;
-  padding: 8px;
-  border-radius: 24px;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(24px);
-
-  border: 1px solid rgba(255, 255, 255, 0.18);
 
   &::before {
     content: "";
@@ -153,16 +208,43 @@ const Partners = ({ content }: PartnersProps) => {
       <BlurredEllipse $size={564} style={{ bottom: -200, right: -256 }} />
       <Container>
         <MainContainer>
-          <DecorativeLine />
-          <DotsWrapper>
-            <DesktopContainer>
-              <DotsIcon />
-            </DesktopContainer>
-            <MobileContainer>
-              <DotsMobileIcon />
-            </MobileContainer>
-          </DotsWrapper>
+          <MainPartnersWrapper>
+            <TopDecorativeWrapper>
+              <DecorativeLine />
+              <PartnershipTag>
+                <Typography
+                  variant={
+                    locale === "ka" ? "display-mdUppercase" : "display-md"
+                  }
+                  weight="bold"
+                  color={colors.text.dark}
+                >
+                  {(content.partnershipTag as string) || "In Partnership with"}
+                </Typography>
+              </PartnershipTag>
+            </TopDecorativeWrapper>
+            <PartnerLogosRow aria-label="Partner logos">
+              <AptosIcon />
+              <TotalCharmIcon />
+              <EstemedIcon />
+              <KnaufIcon />
+              <IsystemsIcon />
+            </PartnerLogosRow>
+          </MainPartnersWrapper>
           <TitleStyled>
+            <DesktopContainer>
+              <PartnersWrapper>
+                <Typography
+                  variant={
+                    locale === "ka" ? "display-mdUppercase" : "display-md"
+                  }
+                  weight="bold"
+                  color={colors.text.dark}
+                >
+                  {content.partner as string}
+                </Typography>
+              </PartnersWrapper>
+            </DesktopContainer>
             <DesktopContainer>
               <Typography
                 variant={
@@ -180,44 +262,6 @@ const Partners = ({ content }: PartnersProps) => {
               >
                 {content.title as string}
               </Typography>
-            </MobileContainer>
-            <DesktopContainer>
-              <PartnersWrapper>
-                <Typography
-                  variant={
-                    locale === "ka" ? "display-mdUppercase" : "display-md"
-                  }
-                  weight="bold"
-                  color={colors.text.dark}
-                >
-                  {content.partner as string}
-                </Typography>
-                <Image
-                  src={content.logo as string}
-                  alt="Aptos Logo"
-                  width={153}
-                  height={32}
-                  quality={75}
-                />
-              </PartnersWrapper>
-            </DesktopContainer>
-            <MobileContainer>
-              <PartnersWrapper>
-                <Typography
-                  variant={locale === "ka" ? "text-lgUppercase" : "text-lg"}
-                  weight="bold"
-                  color={colors.text.dark}
-                >
-                  {content.partner as string}
-                </Typography>
-                <Image
-                  src={content.logo as string}
-                  alt="Aptos Logo"
-                  width={124}
-                  height={26}
-                  quality={75}
-                />
-              </PartnersWrapper>
             </MobileContainer>
           </TitleStyled>
         </MainContainer>

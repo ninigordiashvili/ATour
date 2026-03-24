@@ -1,4 +1,8 @@
 {
+  "aboutUs_title_en": "About Us",
+  "aboutUs_title_ka": "ჩვენ შესახებ",
+  "aboutUs_description_en": "We are a Georgia-based Destination Management Company (DMC) specializing in corporate travel and MICE services. We support Georgian businesses with outbound corporate travel worldwide, while also delivering full destination management and event services for international clients visiting Georgia. Combining strong local expertise with a global approach, we ensure seamless planning, reliable execution, and high-quality service",
+  "aboutUs_description_ka": "We are a Georgia-based Destination Management Company (DMC) specializing in corporate travel and MICE services. We support Georgian businesses with outbound corporate travel worldwide, while also delivering full destination management and event services for international clients visiting Georgia. Combining strong local expertise with a global approach, we ensure seamless planning, reliable execution, and high-quality service",
   "title_en": "Our Services",
   "title_ka": "ჩვენი სერვისები",
   "description_en": "Tailored solutions for your business travel and event needs",
@@ -35,6 +39,18 @@
       "description_ka": "შეხვედრები, წამახალისებელი პროგრამები, კონფერენციები და ღონისძიებები.\nდანიშნულების ადგილის მართვის სრული სერვისები კორპორაციული შეკრებებისა და ბიზნეს ღონისძიებებისთვის ნებისმიერი მასშტაბით.",
       "title_ka": "MICE & DMC",
       "titleDetails_en": "Destination Management Company"
+    },
+    {
+      "detailsTitle_en": "Leisure & Lifestyle",
+      "detailsDescription_en": "We create unforgettable travel moments around the world tailored to your personal tastes and interests. From premium-class hotels and private transfers to cultural, culinary, sea, and adventure experiences, every detail is carefully planned so you can fully relax and enjoy your journey. Alongside global destinations, we also craft distinctive experiences in Georgia, helping you discover its beauty, culture, and unique charm with the same level of comfort and style.",
+      "popup_image": "/images/services/tfls.webp",
+      "card_image": "/images/services/serviceCard1.webp",
+      "description_en": "We design unforgettable journeys worldwide around your preferences, combining premium comfort, curated experiences, and thoughtful planning from start to finish.",
+      "detailsTitle_ka": "Leisure & Lifestyle",
+      "detailsDescription_ka": "ჩვენ ვქმნით მოგზაურობის დაუვიწყარ მომენტებს მსოფლიოს მასშტაბით, თქვენი პირადი გემოვნებისა და ინტერესების გათვალისწინებით. პრემიუმ კლასის სასტუმროები, ინდივიდუალური ტრანსფერები, კულტურული, კულინარიული, საზღვაო, სათავგადასავლო მოგზაურობა სადაც თითოეული დეტალი ყურადღებით არის დაგეგმილი, რათა თქვენ შეძლოთ სრულფასოვნად დაისვენოთ, ისიამოვნოთ და მთლიანად ჩაერთოთ მოგზაურობაში. მსოფლიოს სხვადასხვა მიმართულებასთან ერთად, ჩვენ ვქმნით გამორჩეულ გამოცდილებებს საქართველოშიც, რაც საშუალებას გაძლევთ აღმოაჩინოთ მისი სილამაზე, კულტურა და უნიკალური ხიბლი იმავე კომფორტითა და სტილით.",
+      "title_en": "Leisure & Lifestyle",
+      "description_ka": "პრემიუმ კლასის სასტუმროები, ინდივიდუალური ტრანსფერები, კულტურული, კულინარიული, საზღვაო, სათავგადასავლო მოგზაურობა სადაც თითოეული დეტალი ყურადღებით არის დაგეგმილი.",
+      "title_ka": "დასვენება"
     }
   ]
 }

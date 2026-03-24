@@ -1,6 +1,7 @@
 {
   "Buttons": {
     "bookNow": "Contact Our Team",
+    "bookNowMobile": "Contact Us",
     "readMore": "Read More",
     "back": "Get Back",
     "call": "Book a Call",
@@ -20,8 +21,9 @@
   },
   "Contact": {
     "title": "Interested In Our Services or Have a Question? ",
+    "subtitle": "Our team is ready to assist with your corporate travel and event needs",
     "form": {
-      "emailTitle": "Your Email or phone",
+      "emailTitle": "Email or Phone Number",
       "emailPlaceholder": "Write here...",
       "messageTitle": "Message",
       "messagePlaceholder": "Write here..",

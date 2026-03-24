@@ -13,30 +13,64 @@ import CloseIcon from "../icons/CloseIcon";
 
 const ServicesWrapper = styled.section`
   background-color: ${colors.background.light};
-  border-top-left-radius: 100px;
-  border-top-right-radius: 100px;
   position: relative;
-  padding: 100px 0;
   @media screen and (max-width: 1080px) {
-    border-top-left-radius: 32px;
-    border-top-right-radius: 32px;
     padding: 48px 0 58px 0;
   }
 `;
 
-const DecorativeLine = styled.div`
-  border: 2px solid ${colors.state.focus.ring}70;
-  border-radius: 99px;
-  width: 122px;
-  position: absolute;
-  top: 32px;
-  left: 50%;
-  transform: translateX(-50%);
-  opacity: 0.4;
+const AboutUsSection = styled.div`
+  position: relative;
+  padding: 0 0 64px 0;
+
   @media screen and (max-width: 1080px) {
-    border: 1px solid ${colors.state.focus.ring}70;
-    width: 64px;
-    top: 16px;
+    padding: 48px 0 48px 0;
+  }
+`;
+
+const AboutUsTitle = styled.div`
+  position: relative;
+  z-index: 1;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 12px 130px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 32px;
+  align-items: center;
+  text-align: center;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: ${colors.background.white};
+    clip-path: polygon(0 0, 100% 0, 74% 100%, 26% 100%);
+    box-shadow: 0px -17px 60px 0px #465fcf26;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  @media screen and (max-width: 1080px) {
+    padding: 14px 56px 22px;
+    gap: 8px;
+    margin-bottom: 24px;
+
+    &::before {
+      clip-path: polygon(0 0, 100% 0, 82% 100%, 18% 100%);
+    }
+  }
+`;
+
+const AboutUsContent = styled.div`
+  margin-top: 0;
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  @media screen and (max-width: 1080px) {
+    margin-top: 0;
   }
 `;
 
@@ -45,6 +79,7 @@ const Title = styled.div`
   flex-direction: column;
   gap: 24px;
   margin-bottom: 64px;
+  margin-top: 100px;
   @media screen and (max-width: 1080px) {
     margin-bottom: 32px;
     gap: 8px;
@@ -54,7 +89,7 @@ const Title = styled.div`
 const CardsGrid = styled.div`
   display: grid;
   justify-content: center;
-  grid-template-columns: repeat(2, 470px);
+  grid-template-columns: repeat(3, 409px);
   gap: 16px;
   @media screen and (max-width: 1080px) {
     grid-template-columns: repeat(auto-fit, minmax(343px, 1fr));
@@ -92,7 +127,7 @@ const CardImage = styled.div`
 `;
 
 const CardContent = styled.div`
-  padding: 24px;
+  padding: 24px 16px 8px 16px;
   @media screen and (max-width: 1080px) {
     padding: 16px;
   }
@@ -112,14 +147,14 @@ const CardTitle = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
-  max-width: 107px;
+  max-width: 110px;
 `;
 
 const DescriptionWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 1fr 6fr;
   align-items: center;
-  gap: 16px;
+  gap: 4px;
 `;
 
 // Popup styles
@@ -279,6 +314,21 @@ const PopupClose = styled.button`
   @media (max-width: 1080px) {
     top: 16px;
     right: 16px;
+  }
+`;
+
+const DecorativeLine = styled.div`
+  border: 1px solid ${colors.state.focus.ring}40;
+  border-radius: 99px;
+  max-width: 1214px;
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 40%;
+  @media screen and (max-width: 1080px) {
+    border: 1px solid ${colors.state.focus.ring}40;
+    width: 100%;
   }
 `;
 
@@ -457,13 +507,112 @@ const Services = ({ content }: ServicesProps) => {
       );
     }
 
+    if (openCard === 2) {
+      // Card3 popup
+      const imageSrc = card.popup_image as string;
+      const title = (card.detailsTitle as string) || (card.title as string);
+      const description =
+        (card.detailsDescription as string) || (card.description as string);
+      const badge = card.title as string;
+
+      return (
+        <PopupOverlay $show={openCard !== null} onClick={handleOverlayClick}>
+          <PopupCard $bg={imageSrc} $show={openCard !== null}>
+            <PopupHeader>
+              <PopupClose aria-label="Close" onClick={() => setOpenCard(null)}>
+                <CloseIcon />
+              </PopupClose>
+              <BadgeWrapper>
+                <Typography
+                  as="span"
+                  variant={locale === "ka" ? "text-smUppercase" : "text-sm"}
+                  color={`${colors.background.white}`}
+                  weight="regular"
+                >
+                  {badge}
+                </Typography>
+              </BadgeWrapper>
+            </PopupHeader>
+            <PopupContent>
+              <DesktopContainer>
+                <Typography
+                  variant={
+                    locale === "ka" ? "display-smUppercase" : "display-sm"
+                  }
+                  color={colors.text.dark}
+                  weight="semibold"
+                >
+                  {title}
+                </Typography>
+                <Typography
+                  variant="text-md"
+                  color={colors.text.dark}
+                  weight="regular"
+                >
+                  {description}
+                </Typography>
+              </DesktopContainer>
+              <MobileContainer>
+                <Typography
+                  variant={locale === "ka" ? "text-lgUppercase" : "text-lg"}
+                  color={colors.text.dark}
+                  weight="semibold"
+                >
+                  {title}
+                </Typography>
+                <Typography
+                  variant="text-sm"
+                  color={colors.text.dark}
+                  weight="regular"
+                >
+                  {description}
+                </Typography>
+              </MobileContainer>
+            </PopupContent>
+          </PopupCard>
+        </PopupOverlay>
+      );
+    }
+
     return null;
   }, [openCard, miceDmcMode, cards, locale]);
 
   return (
     <ServicesWrapper id="services">
+      <AboutUsSection>
+        <Container>
+          <AboutUsTitle>
+            <DesktopContainer>
+              <Typography
+                variant={locale === "ka" ? "display-mdUppercase" : "display-md"}
+                color={colors.text.dark}
+                weight="bold"
+              >
+                {content.aboutUs_title as string}
+              </Typography>
+            </DesktopContainer>
+            <MobileContainer>
+              <Typography
+                variant={locale === "ka" ? "text-lgUppercase" : "text-lg"}
+                color={colors.text.dark}
+                weight="bold"
+              >
+                {content.aboutUs_title as string}
+              </Typography>
+            </MobileContainer>
+          </AboutUsTitle>
+          <AboutUsContent>
+            <Typography
+              variant="text-md"
+              color={colors.text.light}
+              weight="regular"
+            >
+              {content.aboutUs_description as string}
+            </Typography>
+          </AboutUsContent>
+        </Container>
+      </AboutUsSection>
       <DecorativeLine />
-
       <Container>
         <Title>
           <DesktopContainer>

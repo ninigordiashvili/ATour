@@ -176,6 +176,10 @@ const Footer = ({ content }: FooterProps) => {
   const [hoveredLocation, setHoveredLocation] = React.useState(false);
   const [hoveredEmail, setHoveredEmail] = React.useState(false);
 
+  const handleSocialStart = (socialName: string) =>
+    setHoveredSocial(socialName);
+  const handleSocialEnd = () => setHoveredSocial(null);
+
   const socialUrls = content.social as {
     whatsapp: string;
     instagram: string;
@@ -513,8 +517,13 @@ const Footer = ({ content }: FooterProps) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Contact us on WhatsApp"
-                onMouseEnter={() => setHoveredSocial("whatsapp")}
-                onMouseLeave={() => setHoveredSocial(null)}
+                onMouseEnter={() => handleSocialStart("whatsapp")}
+                onMouseLeave={handleSocialEnd}
+                onTouchStart={() => handleSocialStart("whatsapp")}
+                onTouchEnd={handleSocialEnd}
+                onTouchCancel={handleSocialEnd}
+                onFocus={() => handleSocialStart("whatsapp")}
+                onBlur={handleSocialEnd}
               >
                 <DesktopContainer>
                   <WhatsappIcon
@@ -536,8 +545,13 @@ const Footer = ({ content }: FooterProps) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow us on Instagram"
-                onMouseEnter={() => setHoveredSocial("instagram")}
-                onMouseLeave={() => setHoveredSocial(null)}
+                onMouseEnter={() => handleSocialStart("instagram")}
+                onMouseLeave={handleSocialEnd}
+                onTouchStart={() => handleSocialStart("instagram")}
+                onTouchEnd={handleSocialEnd}
+                onTouchCancel={handleSocialEnd}
+                onFocus={() => handleSocialStart("instagram")}
+                onBlur={handleSocialEnd}
               >
                 <DesktopContainer>
                   <InstaIcon
@@ -559,8 +573,13 @@ const Footer = ({ content }: FooterProps) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Message us on Messenger"
-                onMouseEnter={() => setHoveredSocial("messenger")}
-                onMouseLeave={() => setHoveredSocial(null)}
+                onMouseEnter={() => handleSocialStart("messenger")}
+                onMouseLeave={handleSocialEnd}
+                onTouchStart={() => handleSocialStart("messenger")}
+                onTouchEnd={handleSocialEnd}
+                onTouchCancel={handleSocialEnd}
+                onFocus={() => handleSocialStart("messenger")}
+                onBlur={handleSocialEnd}
               >
                 <DesktopContainer>
                   <MessengerIcon
