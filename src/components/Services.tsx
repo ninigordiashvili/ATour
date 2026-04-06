@@ -14,8 +14,9 @@ import CloseIcon from "../icons/CloseIcon";
 const ServicesWrapper = styled.section`
   background-color: ${colors.background.light};
   position: relative;
+  margin-top: 40px;
   @media screen and (max-width: 1080px) {
-    padding: 48px 0 58px 0;
+    margin-top: 125px;
   }
 `;
 
@@ -24,7 +25,7 @@ const AboutUsSection = styled.div`
   padding: 0 0 64px 0;
 
   @media screen and (max-width: 1080px) {
-    padding: 48px 0 48px 0;
+    padding: 0 0 48px 0;
   }
 `;
 
@@ -45,9 +46,13 @@ const AboutUsTitle = styled.div`
     content: "";
     position: absolute;
     inset: 0;
-    background: ${colors.background.white};
-    clip-path: polygon(0 0, 100% 0, 74% 100%, 26% 100%);
-    box-shadow: 0px -17px 60px 0px #465fcf26;
+    background: radial-gradient(
+      ellipse at top center,
+      #e8f0fb 0%,
+      #d0dcf5 100%
+    );
+    clip-path: url(#servicesAboutClip);
+    box-shadow: 0px -17px 60px 0px #465fcf40;
     pointer-events: none;
     z-index: -1;
   }
@@ -58,7 +63,13 @@ const AboutUsTitle = styled.div`
     margin-bottom: 24px;
 
     &::before {
-      clip-path: polygon(0 0, 100% 0, 82% 100%, 18% 100%);
+      background: radial-gradient(
+        ellipse at top center,
+        #d8e5f5 0%,
+        #d1ddf3 100%
+      );
+      clip-path: url(#servicesAboutClip);
+      box-shadow: 0px -17px 60px 0px #465fcf40;
     }
   }
 `;
@@ -83,6 +94,7 @@ const Title = styled.div`
   @media screen and (max-width: 1080px) {
     margin-bottom: 32px;
     gap: 8px;
+    margin-top: 48px;
   }
 `;
 
@@ -328,7 +340,7 @@ const DecorativeLine = styled.div`
   opacity: 40%;
   @media screen and (max-width: 1080px) {
     border: 1px solid ${colors.state.focus.ring}40;
-    width: 100%;
+    width: 286px;
   }
 `;
 
@@ -579,6 +591,13 @@ const Services = ({ content }: ServicesProps) => {
 
   return (
     <ServicesWrapper id="services">
+      <svg style={{ position: "absolute", width: 0, height: 0 }}>
+        <defs>
+          <clipPath id="servicesAboutClip" clipPathUnits="objectBoundingBox">
+            <path d="M 0 0 L 1 0 L 0.7551 0.9419 Q 0.74 1 0.68 1 L 0.32 1 Q 0.26 1 0.2449 0.9419 L 0 0 Z" />
+          </clipPath>
+        </defs>
+      </svg>
       <AboutUsSection>
         <Container>
           <AboutUsTitle>
@@ -602,13 +621,24 @@ const Services = ({ content }: ServicesProps) => {
             </MobileContainer>
           </AboutUsTitle>
           <AboutUsContent>
-            <Typography
-              variant="text-md"
-              color={colors.text.light}
-              weight="regular"
-            >
-              {content.aboutUs_description as string}
-            </Typography>
+            <DesktopContainer>
+              <Typography
+                variant="text-md"
+                color={colors.text.light}
+                weight="regular"
+              >
+                {content.aboutUs_description as string}
+              </Typography>
+            </DesktopContainer>
+            <MobileContainer>
+              <Typography
+                variant="text-sm"
+                color={colors.text.light}
+                weight="regular"
+              >
+                {content.aboutUs_description as string}
+              </Typography>
+            </MobileContainer>
           </AboutUsContent>
         </Container>
       </AboutUsSection>

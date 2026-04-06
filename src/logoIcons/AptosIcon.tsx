@@ -1,6 +1,11 @@
 import * as React from "react";
-const AptosIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={310} height={65} fill="none">
+const AptosIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 310 65"
+    fill="none"
+    {...props}
+  >
     <path
       fill="#42AADF"
       fillRule="evenodd"

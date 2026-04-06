@@ -35,6 +35,9 @@ const DecorativeLine = styled.div`
   left: 50%;
   transform: translateX(-50%);
   opacity: 0.4;
+  @media screen and (max-width: 1080px) {
+    width: 286px;
+  }
 `;
 
 const FooterContent = styled.div`

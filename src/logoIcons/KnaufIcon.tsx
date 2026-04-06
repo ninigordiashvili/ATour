@@ -1,6 +1,11 @@
 import * as React from "react";
-const KnaufIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={138} height={70} fill="none">
+const KnaufIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 138 70"
+    fill="none"
+    {...props}
+  >
     <path
       fill="#00AEEF"
       fillRule="evenodd"

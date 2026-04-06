@@ -22,7 +22,8 @@ const HeroImageWrapper = styled.div`
   top: -108px;
   z-index: -1;
   @media screen and (max-width: 1080px) {
-    height: 700px;
+    height: 680px;
+    top: 0px;
   }
 `;
 
@@ -106,7 +107,7 @@ const SocialsBox = styled.div`
   @media screen and (max-width: 1080px) {
     justify-content: center;
     align-items: center;
-    margin: 0 auto 48px auto;
+    margin: 48px auto 48px auto;
     max-width: 206px;
   }
 `;

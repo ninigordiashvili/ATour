@@ -1,6 +1,11 @@
 import * as React from "react";
-const IsystemsIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={180} height={70} fill="none">
+const IsystemsIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 180 70"
+    fill="none"
+    {...props}
+  >
     <path
       fill="#1F2937"
       fillRule="evenodd"

@@ -2,7 +2,7 @@
 
 import React from "react";
 import Container from "./Container";
-import { styled } from "styled-components";
+import { styled, keyframes } from "styled-components";
 import { colors } from "../styles/colors";
 import Typography from "./Typography";
 import { useLocale } from "next-intl";
@@ -17,7 +17,6 @@ import IsystemsIcon from "../logoIcons/IsystemsIcon";
 const MainContainer = styled.div`
   padding: 100px 0 0 0;
   position: relative;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   margin-bottom: 64px;
@@ -54,7 +53,7 @@ const DecorativeLine = styled.div`
   opacity: 40%;
   @media screen and (max-width: 1080px) {
     border: 1px solid ${colors.state.focus.ring}40;
-    width: 100%;
+    width: 286px;
   }
 `;
 
@@ -71,26 +70,30 @@ const PartnershipTag = styled.div`
   padding: 12px 64px 14px;
   z-index: 1;
   isolation: isolate;
-  clip-path: polygon(0 0, 100% 0, 82% 100%, 18% 100%);
+  clip-path: url(#partnersTagClipDesktop);
 
   &::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: ${colors.background.light};
+    background: radial-gradient(
+      ellipse at top center,
+      #f1f3fd 0%,
+      #dae0f8 100%
+    );
     border-top: none;
-    box-shadow: 0px -17px 60px 0px #465fcf26;
-    clip-path: polygon(0 0, 100% 0, 82% 100%, 18% 100%);
+    box-shadow: 0px -17px 60px 0px #dfe4f9;
+    clip-path: url(#partnersTagClipDesktop);
     z-index: -1;
     pointer-events: none;
   }
 
   @media screen and (max-width: 1080px) {
-    padding: 8px 20px 10px;
-    clip-path: polygon(0 0, 100% 0, 86% 100%, 14% 100%);
+    padding: 8px 28px 10px;
+    clip-path: url(#partnersTagClipMobile);
 
     &::before {
-      clip-path: polygon(0 0, 100% 0, 86% 100%, 14% 100%);
+      clip-path: url(#partnersTagClipMobile);
     }
   }
 `;
@@ -100,7 +103,11 @@ const MainPartnersWrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  overflow: hidden;
+`;
+
+const logoScroll = keyframes`
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 `;
 
 const PartnerLogosRow = styled.div`
@@ -108,22 +115,48 @@ const PartnerLogosRow = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 64px;
-  margin-bottom: 128px;
+  max-width: 1214px;
+  margin-bottom: 96px;
   svg {
     width: auto;
-    height: auto;
+    height: 102px;
   }
 
   @media screen and (max-width: 1080px) {
-    margin-top: 24px;
-    gap: 20px;
+    display: none;
+  }
+`;
 
-    svg {
-      max-height: 36px;
-      max-width: 100%;
-    }
+const MobileLogosCarouselWrapper = styled.div`
+  display: none;
+  @media screen and (max-width: 1080px) {
+    display: block;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-top: 24px;
+    margin-bottom: 64px;
+  }
+`;
+
+const MobileLogosTrack = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  width: max-content;
+  animation: ${logoScroll} 18s linear infinite;
+
+  svg {
+    display: block;
+    height: 44px;
+    width: auto;
+    flex-shrink: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    overflow-x: auto;
   }
 `;
 
@@ -135,7 +168,7 @@ const DecorativeLineBottom = styled.div`
   opacity: 0.4;
   @media screen and (max-width: 1080px) {
     border: 1px solid ${colors.state.focus.ring}40;
-    width: 100%;
+    width: 286px;
   }
 `;
 
@@ -198,6 +231,22 @@ const Partners = ({ content }: PartnersProps) => {
 
   return (
     <PartnersSection>
+      <svg style={{ position: "absolute", width: 0, height: 0 }}>
+        <defs>
+          <clipPath
+            id="partnersTagClipDesktop"
+            clipPathUnits="objectBoundingBox"
+          >
+            <path d="M 0 0 L 1 0 L 0.831 0.941 Q 0.82 1 0.76 1 L 0.24 1 Q 0.18 1 0.169 0.941 L 0 0 Z" />
+          </clipPath>
+          <clipPath
+            id="partnersTagClipMobile"
+            clipPathUnits="objectBoundingBox"
+          >
+            <path d="M 0 0 L 1 0 L 0.868 0.941 Q 0.86 1 0.80 1 L 0.20 1 Q 0.14 1 0.132 0.941 L 0 0 Z" />
+          </clipPath>
+        </defs>
+      </svg>
       {/* Top Left */}
       <BlurredEllipse style={{ top: -200, left: -256 }} />
       {/* Top Right */}
@@ -212,15 +261,28 @@ const Partners = ({ content }: PartnersProps) => {
             <TopDecorativeWrapper>
               <DecorativeLine />
               <PartnershipTag>
-                <Typography
-                  variant={
-                    locale === "ka" ? "display-mdUppercase" : "display-md"
-                  }
-                  weight="bold"
-                  color={colors.text.dark}
-                >
-                  {(content.partnershipTag as string) || "In Partnership with"}
-                </Typography>
+                <DesktopContainer>
+                  <Typography
+                    variant={
+                      locale === "ka" ? "display-mdUppercase" : "display-md"
+                    }
+                    weight="bold"
+                    color={colors.text.dark}
+                  >
+                    {(content.partnershipTag as string) ||
+                      "In Partnership with"}
+                  </Typography>
+                </DesktopContainer>
+                <MobileContainer>
+                  <Typography
+                    variant={locale === "ka" ? "text-lgUppercase" : "text-lg"}
+                    weight="bold"
+                    color={colors.text.dark}
+                  >
+                    {(content.partnershipTag as string) ||
+                      "In Partnership with"}
+                  </Typography>
+                </MobileContainer>
               </PartnershipTag>
             </TopDecorativeWrapper>
             <PartnerLogosRow aria-label="Partner logos">
@@ -230,6 +292,20 @@ const Partners = ({ content }: PartnersProps) => {
               <KnaufIcon />
               <IsystemsIcon />
             </PartnerLogosRow>
+            <MobileLogosCarouselWrapper aria-label="Partner logos">
+              <MobileLogosTrack>
+                <AptosIcon />
+                <TotalCharmIcon />
+                <EstemedIcon />
+                <KnaufIcon />
+                <IsystemsIcon />
+                <AptosIcon />
+                <TotalCharmIcon />
+                <EstemedIcon />
+                <KnaufIcon />
+                <IsystemsIcon />
+              </MobileLogosTrack>
+            </MobileLogosCarouselWrapper>
           </MainPartnersWrapper>
           <TitleStyled>
             <DesktopContainer>
@@ -245,6 +321,15 @@ const Partners = ({ content }: PartnersProps) => {
                 </Typography>
               </PartnersWrapper>
             </DesktopContainer>
+            <MobileContainer>
+              <Typography
+                variant={locale === "ka" ? "text-lgUppercase" : "text-lg"}
+                weight="bold"
+                color={colors.text.dark}
+              >
+                {content.partner as string}
+              </Typography>
+            </MobileContainer>
             <DesktopContainer>
               <Typography
                 variant={
