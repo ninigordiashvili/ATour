@@ -27,7 +27,9 @@
       "emailPlaceholder": "Write here...",
       "messageTitle": "Message",
       "messagePlaceholder": "Write here..",
-      "error": "Incorrect Input"
+      "error": "Incorrect Input",
+      "success": "Your message has been sent successfully!",
+      "submitError": "Something went wrong. Please try again."
     }
   },
   "Footer": {

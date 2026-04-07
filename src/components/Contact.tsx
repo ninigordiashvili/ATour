@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Container from "./Container";
 import { colors } from "../styles/colors";
@@ -204,9 +204,17 @@ const ErrorMessageWrapper = styled.div`
   white-space: nowrap;
 `;
 
+const SuccessMessage = styled.div`
+  margin-top: 16px;
+  text-align: center;
+`;
+
 export const ContactFormCard = () => {
   const tContact = useTranslations("Contact");
   const locale = useLocale();
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
 
   // Validation schema for email or phone
   const validationSchema = Yup.object().shape({
@@ -230,9 +238,20 @@ export const ContactFormCard = () => {
       message: "",
     },
     validationSchema,
-    onSubmit: (values) => {
-      console.log("Form submitted:", values);
-      // Handle form submission here
+    onSubmit: async (values, { resetForm }) => {
+      setSubmitStatus("loading");
+      try {
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(values),
+        });
+        if (!response.ok) throw new Error("Failed to submit");
+        setSubmitStatus("success");
+        resetForm();
+      } catch {
+        setSubmitStatus("error");
+      }
     },
   });
 
@@ -365,8 +384,33 @@ export const ContactFormCard = () => {
       </FormGroup>
 
       <ButtonWrapper>
-        <Button variant="bookButton" />
+        <Button
+          variant="bookButton"
+          onClick={() => formik.handleSubmit()}
+        />
       </ButtonWrapper>
+      {submitStatus === "success" && (
+        <SuccessMessage>
+          <Typography
+            variant="text-smOneline"
+            color={colors.state.focus.ring}
+            weight="regular"
+          >
+            {tContact("form.success")}
+          </Typography>
+        </SuccessMessage>
+      )}
+      {submitStatus === "error" && (
+        <SuccessMessage>
+          <Typography
+            variant="text-smOneline"
+            color={colors.state.error}
+            weight="regular"
+          >
+            {tContact("form.submitError")}
+          </Typography>
+        </SuccessMessage>
+      )}
     </FormCard>
   );
 };

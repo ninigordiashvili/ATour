@@ -158,6 +158,19 @@ collections:
               - { label: "Feedback (KA)", name: "feedback_ka", widget: "text" }
               - { label: "Avatar", name: "avatar", widget: "image" }
 
+  - name: "contact-submissions"
+    label: "Contact Submissions"
+    folder: "content/contact-submissions"
+    create: false
+    extension: "json"
+    format: "json"
+    slug: "{{slug}}"
+    identifier_field: "date"
+    fields:
+      - { label: "Email or Phone", name: "emailOrPhone", widget: "string" }
+      - { label: "Message", name: "message", widget: "text", required: false }
+      - { label: "Date", name: "date", widget: "datetime" }
+
   - name: "blog"
     label: "Blog Posts"
     folder: "content/blog"
