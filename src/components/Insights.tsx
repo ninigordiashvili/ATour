@@ -131,6 +131,10 @@ const Insights = ({ content }: InsightsProps) => {
     router.push("/Blog");
   };
 
+  const navigateToKolkhida = () => {
+    router.push("/Blog/kolkhida-congress");
+  };
+
   return (
     <InsightsWrapper id="insights">
       <Container>
@@ -171,7 +175,7 @@ const Insights = ({ content }: InsightsProps) => {
           {cards.map((card, index) => (
             <InsightCard
               key={index}
-              onClick={navigateToBlog}
+              onClick={index === 0 ? navigateToKolkhida : navigateToBlog}
               onMouseEnter={() => setHoveredCard(index)}
               onMouseLeave={() => setHoveredCard(null)}
             >
@@ -240,7 +244,9 @@ const Insights = ({ content }: InsightsProps) => {
                     </MobileContainer>
                     <Button
                       variant="transparent"
-                      onClick={navigateToBlog}
+                      onClick={
+                        index === 0 ? navigateToKolkhida : navigateToBlog
+                      }
                       isHovered={hoveredCard === index}
                     />
                   </CardBottomContent>

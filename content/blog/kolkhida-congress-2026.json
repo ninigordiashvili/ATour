@@ -1,0 +1,27 @@
+{
+  "slug": "kolkhida-congress-2026",
+  "date_en": "January 1, 2026",
+  "date_ka": "იანვარი 1, 2026",
+  "time_en": "1 min read",
+  "time_ka": "1 წუთი კითხვა",
+  "title_en": "The 20th edition of the Kolkhida Congress",
+  "title_ka": "The 20th edition of the Kolkhida Congress",
+  "subtitle_en": "KOLKHIDA 20 Official Dates Announced",
+  "subtitle_ka": "KOLKHIDA 20 Official Dates Announced",
+  "intro_en": "The 20th edition of the Kolkhida Congress is coming a celebration of science, innovation, and two decades of shared knowledge.",
+  "intro_ka": "The 20th edition of the Kolkhida Congress is coming a celebration of science, innovation, and two decades of shared knowledge.",
+  "hero_image": "/images/insights/kolkhida.png",
+  "hero_image_mobile": "/images/insights/kolkhidaMob.png",
+  "sections": [
+    {
+      "subtitle_en": "Tbilisi, Georgia · Sheraton Grand Metechi Palace",
+      "subtitle_ka": "Tbilisi, Georgia · Sheraton Grand Metechi Palace",
+      "description_en": "July 3 · 4 · 5",
+      "description_ka": "July 3 · 4 · 5",
+      "description_2_en": "Join world-renowned experts, leading sessions, and a community that moves the field forward.",
+      "description_2_ka": "Join world-renowned experts, leading sessions, and a community that moves the field forward.",
+      "description_3_en": "A congress you truly can't miss.",
+      "description_3_ka": "A congress you truly can't miss."
+    }
+  ]
+}

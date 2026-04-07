@@ -1,22 +1,22 @@
 {
-  "title_en": "Latest Insights",
-  "title_ka": "\u10d1\u10dd\u10da\u10dd \u10e1\u10d8\u10d0\u10ee\u10da\u10d4\u10d4\u10d1\u10d8",
-  "description_en": "Expert tips and industry trends",
-  "description_ka": "\u10d4\u10e5\u10e1\u10de\u10d4\u10e0\u10e2\u10d8\u10e1 \u10e0\u10e9\u10d4\u10d5\u10d4\u10d1\u10d8 \u10d3\u10d0 \u10d8\u10dc\u10d3\u10e3\u10e1\u10e2\u10e0\u10d8\u10d8\u10e1 \u10e2\u10d4\u10dc\u10d3\u10d4\u10dc\u10ea\u10d8\u10d4\u10d1\u10d8",
+  "title_en": "Insights & Industry Trends",
+  "title_ka": "სიახლეები",
+  "description_en": "",
+  "description_ka": "",
   "cards": [
     {
-      "date_en": "December 1, 2024",
-      "date_ka": "\u10d3\u10d4\u10d9\u10d4\u10db\u10d1\u10d4\u10e0\u10d8 1, 2024",
-      "title_en": "5 Tips for Efficient Business Travel in 2024",
-      "title_ka": "5 \u10e0\u10e9\u10d4\u10d5\u10d0 \u10d4\u10e4\u10d4\u10e5\u10e2\u10e3\u10e0\u10d8 \u10d1\u10d8\u10d6\u10dc\u10d4\u10e1 \u10db\u10dd\u10d2\u10d6\u10d0\u10e3\u10e0\u10dd\u10d1\u10d8\u10e1\u10d7\u10d5\u10d8\u10e1 2024 \u10ec\u10d4\u10da\u10e1",
-      "description_en": "Discover the latest strategies to optimize your corporate travel program and reduce costs.",
-      "description_ka": "\u10d2\u10d0\u10d8\u10d2\u10d4\u10d7 \u10e3\u10d0\u10ee\u10da\u10d4\u10e1\u10d8 \u10e1\u10e2\u10e0\u10d0\u10e2\u10d4\u10d2\u10d8\u10d4\u10d1\u10d8 \u10d7\u10e5\u10d5\u10d4\u10dc\u10d8 \u10d9\u10dd\u10e0\u10de\u10dd\u10e0\u10d0\u10e2\u10d8\u10e3\u10da\u10d8 \u10db\u10dd\u10d2\u10d6\u10d0\u10e3\u10e0\u10dd\u10d1\u10d8\u10e1 \u10de\u10e0\u10dd\u10d2\u10e0\u10d0\u10db\u10d8\u10e1 \u10dd\u10de\u10e2\u10d8\u10db\u10d8\u10d6\u10d0\u10ea\u10d8\u10d8\u10e1\u10d0 \u10d3\u10d0 \u10ee\u10d0\u10e0\u10ef\u10d4\u10d1\u10d8\u10e1 \u10e8\u10d4\u10db\u10ea\u10d8\u10e0\u10d4\u10d1\u10d8\u10e1 \u10db\u10d8\u10d6\u10dc\u10d8\u10d7.",
-      "desktop_image": "/images/insights/card1.webp",
-      "mobile_image": "/images/insights/card1Mob.webp"
+      "date_en": "January 1, 2026",
+      "date_ka": "იანვარი 1, 2026",
+      "title_en": "Upcoming Event: Kolkhida Congress 2026",
+      "title_ka": "Upcoming Event: Kolkhida Congress 2026",
+      "description_en": "The 20th edition of the Kolkhida Congress is coming a celebration of science, innovation and two decades of shared knowledge.",
+      "description_ka": "The 20th edition of the Kolkhida Congress is coming a celebration of science, innovation and two decades of shared knowledge.",
+      "desktop_image": "/images/insights/card1.png",
+      "mobile_image": "/images/insights/kolkhidaMob.png"
     },
     {
-      "date_en": "November 28, 2024",
-      "date_ka": "\u10dc\u10dd\u10d4\u10db\u10d1\u10d4\u10e0\u10d8 28, 2024",
+      "date_en": "March 28, 2026",
+      "date_ka": "მარტი 28, 2026",
       "title_en": "How to Plan a Successful Corporate Event",
       "title_ka": "\u10e0\u10dd\u10d2\u10dd\u10e0 \u10d3\u10d0\u10d2\u10d4\u10d2\u10db\u10dd\u10d7 \u10ec\u10d0\u10e0\u10db\u10d0\u10e2\u10d4\u10d1\u10e3\u10da\u10d8 \u10d9\u10dd\u10e0\u10de. \u10e6\u10dd\u10dc\u10d8\u10e1\u10eb\u10d8\u10d4\u10d1\u10d0",
       "description_en": "From venue selection to post-event analysis, learn the essential steps for corporate events.",

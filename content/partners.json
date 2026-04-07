@@ -1,8 +1,10 @@
 {
-  "title_en": "Aptos is a world-renowned aesthetic technology brand",
-  "title_ka": "Aptos არის მსოფლიო აღიარებული ესთეტიკური ტექნოლოგიების ბრენდი",
-  "partner_en": "Partnered with :",
-  "partner_ka": "პარტნიორია :",
+  "title_en": "We are proud to partner with leading global companies, delivering high-level corporate events and travel solutions",
+  "title_ka": "ჩვენ ვამაყობთ, რომ ვთანამშრომლობთ წამყვან გლობალურ კომპანიებთან, მაღალი დონის კორპორატიული ღონისძიებებისა და მოგზაურობის გადაწყვეტილებების მიწოდებაში",
+  "partnershipTag_en": "In Partnership with",
+  "partnershipTag_ka": "ჩვენი პარტნიორები",
+  "partner_en": "Trusted by International Brands",
+  "partner_ka": "ჩვენ გვენდობიან საერთაშორისო ბრენდები",
   "logo": "/images/aptosLogo.webp",
   "topRowImages": [
     {

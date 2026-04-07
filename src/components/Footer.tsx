@@ -35,6 +35,9 @@ const DecorativeLine = styled.div`
   left: 50%;
   transform: translateX(-50%);
   opacity: 0.4;
+  @media screen and (max-width: 1080px) {
+    width: 286px;
+  }
 `;
 
 const FooterContent = styled.div`
@@ -175,6 +178,10 @@ const Footer = ({ content }: FooterProps) => {
   const [hoveredSocial, setHoveredSocial] = React.useState<string | null>(null);
   const [hoveredLocation, setHoveredLocation] = React.useState(false);
   const [hoveredEmail, setHoveredEmail] = React.useState(false);
+
+  const handleSocialStart = (socialName: string) =>
+    setHoveredSocial(socialName);
+  const handleSocialEnd = () => setHoveredSocial(null);
 
   const socialUrls = content.social as {
     whatsapp: string;
@@ -513,8 +520,13 @@ const Footer = ({ content }: FooterProps) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Contact us on WhatsApp"
-                onMouseEnter={() => setHoveredSocial("whatsapp")}
-                onMouseLeave={() => setHoveredSocial(null)}
+                onMouseEnter={() => handleSocialStart("whatsapp")}
+                onMouseLeave={handleSocialEnd}
+                onTouchStart={() => handleSocialStart("whatsapp")}
+                onTouchEnd={handleSocialEnd}
+                onTouchCancel={handleSocialEnd}
+                onFocus={() => handleSocialStart("whatsapp")}
+                onBlur={handleSocialEnd}
               >
                 <DesktopContainer>
                   <WhatsappIcon
@@ -536,8 +548,13 @@ const Footer = ({ content }: FooterProps) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow us on Instagram"
-                onMouseEnter={() => setHoveredSocial("instagram")}
-                onMouseLeave={() => setHoveredSocial(null)}
+                onMouseEnter={() => handleSocialStart("instagram")}
+                onMouseLeave={handleSocialEnd}
+                onTouchStart={() => handleSocialStart("instagram")}
+                onTouchEnd={handleSocialEnd}
+                onTouchCancel={handleSocialEnd}
+                onFocus={() => handleSocialStart("instagram")}
+                onBlur={handleSocialEnd}
               >
                 <DesktopContainer>
                   <InstaIcon
@@ -559,8 +576,13 @@ const Footer = ({ content }: FooterProps) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Message us on Messenger"
-                onMouseEnter={() => setHoveredSocial("messenger")}
-                onMouseLeave={() => setHoveredSocial(null)}
+                onMouseEnter={() => handleSocialStart("messenger")}
+                onMouseLeave={handleSocialEnd}
+                onTouchStart={() => handleSocialStart("messenger")}
+                onTouchEnd={handleSocialEnd}
+                onTouchCancel={handleSocialEnd}
+                onFocus={() => handleSocialStart("messenger")}
+                onBlur={handleSocialEnd}
               >
                 <DesktopContainer>
                   <MessengerIcon

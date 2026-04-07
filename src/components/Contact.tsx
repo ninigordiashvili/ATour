@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React from "react";
 import styled from "styled-components";
@@ -54,6 +54,17 @@ const Title = styled.div`
   margin-right: auto;
   @media screen and (max-width: 1080px) {
     margin-bottom: 32px;
+  }
+`;
+
+const Subtitle = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 24px;
+  @media screen and (max-width: 1080px) {
+    margin-bottom: 8px;
   }
 `;
 
@@ -367,6 +378,26 @@ const Contact = () => {
     <ContactWrapper>
       <DecorativeLine />
       <Container>
+        <Subtitle>
+          <DesktopContainer>
+            <Typography
+              variant="text-mdOneline"
+              color={colors.text.light}
+              weight="regular"
+            >
+              {tContact("subtitle")}
+            </Typography>
+          </DesktopContainer>
+          <MobileContainer>
+            <Typography
+              variant="text-sm"
+              color={colors.text.light}
+              weight="regular"
+            >
+              {tContact("subtitle")}
+            </Typography>
+          </MobileContainer>
+        </Subtitle>
         <Title>
           <DesktopContainer>
             <Typography
@@ -387,6 +418,7 @@ const Contact = () => {
             </Typography>
           </MobileContainer>
         </Title>
+
         <ContactFormCard />
       </Container>
     </ContactWrapper>

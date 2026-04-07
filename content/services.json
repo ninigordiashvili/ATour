@@ -1,19 +1,23 @@
 {
+  "aboutUs_title_en": "About Us",
+  "aboutUs_title_ka": "ჩვენს შესახებ",
+  "aboutUs_description_en": "We are a Georgia-based Destination Management Company (DMC) specializing in corporate travel and MICE services. We support Georgian businesses with outbound corporate travel worldwide, while also delivering full destination management and event services for international clients visiting Georgia. Combining strong local expertise with a global approach, we ensure seamless planning, reliable execution, and high-quality service.",
+  "aboutUs_description_ka": "ჩვენ ვართ საქართველოში დაფუძნებული (DMC) კომპანია, რომელიც სპეციალიზირებულია კორპორატიულ მოგზაურობასა და MICE მომსახურებაში. ვემსახურებით ქართულ კომპანიებს გლობალური კორპორატიული მოგზაურობის დაგეგმვაში და განხორციელებაში. საერთაშორისო სტუმრებს ვთავაზობთ სრულ (DMC) მომსახურებას საქართველოში. ძლიერი ადგილობრივი გამოცდილებით და გლობალური მიდგომების კომბინაციით, ჩვენ ვზრუნავთ თქვენთვის სასურველი ღონისძიების დაგეგმვაზე და მაღალი ხარისხით განხორციელებაზე. ",
   "title_en": "Our Services",
   "title_ka": "ჩვენი სერვისები",
-  "description_en": "Tailored solutions for your business travel and event needs",
-  "description_ka": "ჩვენი მომსახურება მოიცავს ბიზნეს მოგზაურობას, ღონისძიებების დაგეგმვას და კორპორატიულ მოგზაურობას.",
+  "description_en": "Tailored solutions for corporate travel and event management",
+  "description_ka": "ჩვენი მომსახურება მოიცავს კორპორატიული მოგზაურობის ორგანიზებას, ღონისძიებების დაგეგმვას საქართველოში და მის ფარგლებს გარეთ.",
   "cards": [
     {
       "descriptionDetails_en": "Our Corporate Travel service provides end-to-end support for all your business travel needs — from international flights and hotel bookings to transfers, visas, insurance, and conference registrations. We tailor travel arrangements to your preferences and offer 24/7 assistance, ensuring a seamless and efficient journey anywhere in the world.",
       "popup_image": "/images/services/tfls.webp",
-      "titleDetails_ka": "კორპორაციული მოგზაურობის სრული სერვისები",
+      "titleDetails_ka": "კორპორატიული მოგზაურობის სრული სერვისები",
       "card_image": "/images/services/serviceCard1.webp",
-      "description_en": "Complete corporate travel management including flights, accommodations, and ground transportation. We handle every detail so your team can focus on business.",
-      "descriptionDetails_ka": "ჩვენი კორპორაციული მოგზაურობის სერვისი უზრუნველყოფს სრულ მხარდაჭერას თქვენი საქმიანი მოგზაურობის ყველა საჭიროებისთვის — საერთაშორისო ფრენებიდან და სასტუმროს ჯავშნებიდან ტრანსფერებამდე, ვიზებამდე, დაზღვევამდე და კონფერენციებზე რეგისტრაციამდე.\nჩვენ ვამზადებთ მოგზაურობის გეგმებს თქვენი მოთხოვნებისა და პრეფერენციების შესაბამისად და გთავაზობთ 24/7 მხარდაჭერას, რათა უზრუნველვყოთ კომფორტული, შეუფერხებელი და ეფექტური მოგზაურობა მსოფლიოს ნებისმიერ წერტილში.",
+      "description_en": "Complete corporate travel management including flights, accommodations and ground transportation. We handle every detail so your team can focus on business. ",
+      "descriptionDetails_ka": "ჩვენი კორპორატიული მოგზაურობის სერვისი უზრუნველყოფს სრულ მხარდაჭერას თქვენი საქმიანი მოგზაურობის დაგეგმვისას - საერთაშორისო ფრენები, სასტუმროს ჯავშნები, ტრანსფერები, სავიზო მომსახურება, დაზღვევა, კონფერენციებზე რეგისტრაცია, საქმიანი შეხვედრების ორგანიზება თქვენთვის სასურველ გარემოში. ჩვენ ვგეგმავთ თქვენს მოგზაურობას თქვენი მოთხოვნების შესაბამისად და გთავაზობთ 24/7 მხარდაჭერას, რათა უზრუნველვყოთ კომფორტული, შეუფერხებელი და ეფექტური მოგზაურობა მსოფლიოს ნებისმიერ წერტილში.",
       "title_en": "Corporate Travel",
-      "description_ka": "კორპორაციული მოგზაურობის სრული მართვა, მათ შორის ავიაბილეთები, განთავსება და სახმელეთო ტრანსპორტირება.\nჩვენ ვზრუნავთ ყველა დეტალზე, რათა თქვენი გუნდი სრულად კონცენტრირდეს ბიზნესზე.",
-      "title_ka": "კორპორაციული მოგზაურობა",
+      "description_ka": "საერთაშორისო ფრენები, სასტუმროს ჯავშნები, ტრანსფერები, სავიზო მომსახურება, დაზღვევა, კონფერენციებზე რეგისტრაცია, საქმიანი შეხვედრების ორგანიზება.",
+      "title_ka": "კორპორატიული მოგზაურობა",
       "titleDetails_en": "Complete Corporate Travel Solutions"
     },
     {
@@ -30,11 +34,23 @@
       "descriptionDetails_ka": "როგორც სანდო დანიშნულების ადგილის მართვის კომპანია (DMC), ჩვენ ვთავაზობთ სრულ ადგილობრივ მხარდაჭერას კორპორატიული მოგზაურობებისთვის, შეხვედრებისთვის, წამახალისებელი ტურებისთვის და სხვადასხვა ღონისძიებისთვის. დანიშნულების ადგილის ღრმა ცოდნისა და ძლიერი ლოგისტიკური გამოცდილების საფუძველზე, ადგილზე ვმართავთ ყველა პროცესს — დაგეგმვიდან და კოორდინაციიდან დაწყებული, ადგილზე განხორციელებით დამთავრებული — რათა უზრუნველვყოთ თქვენი კლიენტებისა და გუნდებისთვის შეუფერხებელი და ავთენტური გამოცდილება.",
       "title_en": "MICE & DMC",
       "MiceDetails_ka": "შეხვედრები, წამახალისებელი პროგრამები, კონფერენციები, ღონისძიებები და გამოფენები",
-      "DmcDescription_ka": "როგორც სანდო დანიშნულების ადგილის მართვის კომპანია (DMC), ჩვენ ვთავაზობთ სრულ ადგილობრივ მხარდაჭერას კორპორატიული მოგზაურობებისთვის, შეხვედრებისთვის, წამახალისებელი ტურებისთვის და სხვადასხვა ღონისძიებისთვის. დანიშნულების ადგილის ღრმა ცოდნისა და ძლიერი ლოგისტიკური გამოცდილების საფუძველზე, ადგილზე ვმართავთ ყველა პროცესს — დაგეგმვიდან და კოორდინაციიდან დაწყებული, ადგილზე განხორციელებით დამთავრებული — რათა უზრუნველვყოთ თქვენი კლიენტებისა და გუნდებისთვის შეუფერხებელი და ავთენტური გამოცდილება.",
-      "MiceDescription_ka": "ჩვენ ვთავაზობთ სრულყოფილ MICE-ისა და დანიშნულების ადგილის მართვის სერვისებს კორპორატიული კლიენტებისთვის — შეხვედრებიდან და წამახალისებელი მოგზაურობებიდან დაწყებული, კონფერენციებით, ღონისძიებებითა და გამოფენებით დასრულებული. ჩვენი გუნდი უზრუნველყოფს დაგეგმვას, ლოგისტიკას და ადგილზე კოორდინაციას, რათა თითოეული ღონისძიება იყოს შეუფერხებლად ჩატარებული, საინტერესო და პროფესიონალურად ორგანიზებული.",
-      "description_ka": "შეხვედრები, წამახალისებელი პროგრამები, კონფერენციები და ღონისძიებები.\nდანიშნულების ადგილის მართვის სრული სერვისები კორპორაციული შეკრებებისა და ბიზნეს ღონისძიებებისთვის ნებისმიერი მასშტაბით.",
+      "DmcDescription_ka": "როგორც სანდო  (DMC) კომპანია, ჩვენ გთავაზობთ სრულ ადგილობრივ მხარდაჭერას კორპორატიული მოგზაურობებისთვის, შეხვედრებისთვის, წამახალისებელი ტურებისთვის და სხვადასხვა ღონისძიებისთვის. დანიშნულების ადგილის ღრმა ცოდნისა და ძლიერი ლოგისტიკური გამოცდილების საფუძველზე, ადგილზე ვმართავთ ყველა პროცესს — დაგეგმვიდან და კოორდინაციიდან დაწყებული, პროექტის განხორციელებით დამთავრებული — რათა უზრუნველვყოთ თქვენი კლიენტებისა და გუნდებისთვის შეუფერხებელი და ავთენტური გამოცდილება.",
+      "MiceDescription_ka": "ჩვენ გთავაზობთ  MICE და DMC მომსახურებას კორპორატიული კლიენტებისთვის — შეხვედრები, წამახალისებელი მოგზაურობა, კონფერენციები და ღონისძიებები. ჩვენი გუნდი ხელმძღვანელობს დაგეგმვას, ლოჯისტიკას და ადგილზე კოორდინაციას, რათა თითოეული პროექტი იყოს უნიკალური, საინტერესო და პროფესიონალურად განხორციელებული.",
+      "description_ka": "ჩვენ გთავაზობთ MICE & DMC მომსახურებას კორპორატიული კლიენტებისთვის - შეხვედრები, წამახალისებელი მოგზაურობა, კონფერენციები და ღონისძიებები.",
       "title_ka": "MICE & DMC",
       "titleDetails_en": "Destination Management Company"
+    },
+    {
+      "detailsTitle_en": "Leisure & Lifestyle",
+      "detailsDescription_en": "We create unforgettable travel experiences around the world, tailored to your personal tastes and interests. From luxurious 5* stays and private transfers to cultural, culinary, wellness, and adventure experiences, every detail is carefully designed so you can relax, enjoy, and immerse yourself in the journey. While exploring the globe, we also craft exceptional experiences in Georgia, allowing you to discover its beauty, culture, and unique charm with the same comfort and style.",
+      "popup_image": "/images/services/tfls.webp",
+      "card_image": "/images/services/tfls.webp",
+      "description_en": "Tailored luxury travel experiences worldwide, including 5* hotels, private transfers, cultural, culinary, wellness, and adventure travel.",
+      "detailsTitle_ka": "დასვენება როგორც ცხოვრების სტილი",
+      "detailsDescription_ka": "ჩვენ ვქმნით მოგზაურობის დაუვიწყარ მომენტებს მსოფლიოს მასშტაბით, თქვენი პირადი გემოვნებისა და ინტერესების გათვალისწინებით. პრემიუმ კლასის სასტუმროები, ინდივიდუალური ტრანსფერები, კულტურული, კულინარიული, საზღვაო, სათავგადასავლო მოგზაურობა სადაც თითოეული დეტალი ყურადღებით არის დაგეგმილი, რათა თქვენ შეძლოთ სრულფასოვნად დაისვენოთ, ისიამოვნოთ და მთლიანად ჩაერთოთ მოგზაურობაში. მსოფლიოს სხვადასხვა მიმართულებასთან ერთად, ჩვენ ვქმნით გამორჩეულ გამოცდილებებს საქართველოშიც, რაც საშუალებას გაძლევთ აღმოაჩინოთ მისი სილამაზე, კულტურა და უნიკალური ხიბლი იმავე კომფორტითა და სტილით.",
+      "title_en": "Leisure & Lifestyle",
+      "description_ka": "თქვენზე მორგებული პრემიუმ კლასის სასტუმროები, ინდივიდუალური ტრანსფერები, კულტურული, კულინარიული, საზღვაო, სათავგადასავლო მოგზაურობა.",
+      "title_ka": "დასვენება"
     }
   ]
 }

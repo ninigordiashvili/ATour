@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import styled from "styled-components";
 import { useLocale } from "next-intl";
 import Container from "@/src/components/Container";
@@ -78,13 +77,19 @@ const TitleStyled = styled.h1`
 
 const HeroImage = styled.div`
   width: 100%;
-  height: 480px;
+  height: 540px;
   border-radius: 48px;
   overflow: hidden;
   margin-bottom: 64px;
   position: relative;
 
   @media (max-width: 1080px) {
+    height: 400px;
+    border-radius: 32px;
+    margin-bottom: 40px;
+  }
+
+  @media (max-width: 600px) {
     height: 220px;
     border-radius: 24px;
     margin-bottom: 32px;
@@ -240,15 +245,51 @@ const BlogContent = ({ content }: BlogContentProps) => {
           </TitleStyled>
 
           <HeroImage>
-            <Image
-              src={content.hero_image as string}
-              alt={content.title as string}
-              fill
-              style={{ objectFit: "cover" }}
-            />
+            <DesktopContainer>
+              <Image
+                src={content.hero_image as string}
+                alt={content.title as string}
+                fill
+                style={{ objectFit: "cover" }}
+              />
+            </DesktopContainer>
+            <MobileContainer>
+              <Image
+                src={
+                  (content.hero_image_mobile || content.hero_image) as string
+                }
+                alt={content.title as string}
+                fill
+                style={{ objectFit: "cover" }}
+              />
+            </MobileContainer>
           </HeroImage>
 
           <ArticleContent>
+            {!!content.subtitle && (
+              <div>
+                <DesktopContainer>
+                  <Typography
+                    variant={
+                      locale === "ka" ? "display-smUppercase" : "display-sm"
+                    }
+                    color={colors.text.dark}
+                    weight="bold"
+                  >
+                    {content.subtitle as string}
+                  </Typography>
+                </DesktopContainer>
+                <MobileContainer>
+                  <Typography
+                    variant={locale === "ka" ? "text-lgUppercase" : "text-lg"}
+                    color={colors.text.dark}
+                    weight="bold"
+                  >
+                    {content.subtitle as string}
+                  </Typography>
+                </MobileContainer>
+              </div>
+            )}
             <IntroText>
               <DesktopContainer>
                 <Typography
@@ -315,6 +356,50 @@ const BlogContent = ({ content }: BlogContentProps) => {
                     {section.description as string}
                   </Typography>
                 </MobileContainer>
+                {!!section.description_2 && (
+                  <>
+                    <DesktopContainer>
+                      <Typography
+                        variant="text-md"
+                        color={colors.text.light}
+                        weight="regular"
+                      >
+                        {section.description_2 as string}
+                      </Typography>
+                    </DesktopContainer>
+                    <MobileContainer>
+                      <Typography
+                        variant="text-sm"
+                        color={colors.text.light}
+                        weight="regular"
+                      >
+                        {section.description_2 as string}
+                      </Typography>
+                    </MobileContainer>
+                  </>
+                )}
+                {!!section.description_3 && (
+                  <>
+                    <DesktopContainer>
+                      <Typography
+                        variant="text-md"
+                        color={colors.text.light}
+                        weight="regular"
+                      >
+                        {section.description_3 as string}
+                      </Typography>
+                    </DesktopContainer>
+                    <MobileContainer>
+                      <Typography
+                        variant="text-sm"
+                        color={colors.text.light}
+                        weight="regular"
+                      >
+                        {section.description_3 as string}
+                      </Typography>
+                    </MobileContainer>
+                  </>
+                )}
               </Section>
             ))}
             <ButtonWrapper>
