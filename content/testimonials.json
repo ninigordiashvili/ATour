@@ -1,25 +1,34 @@
 {
   "title_en": "What Our Clients Say",
-  "title_ka": "\u10e0\u10d0\u10e1 \u10d0\u10db\u10d1\u10dd\u10d1\u10d4\u10dc \u10e9\u10d5\u10d4\u10dc\u10d8 \u10d9\u10da\u10d8\u10d4\u10dc\u10e2\u10d4\u10d1\u10d8",
+  "title_ka": "რას ამბობენ ჩვენი კლიენტები",
   "description_en": "Trusted by leading companies worldwide",
-  "description_ka": "\u10db\u10e1\u10dd\u10e4\u10da\u10d8\u10dd\u10e1 \u10ec\u10d0\u10db\u10e7\u10d5\u10d0\u10dc\u10d8 \u10d9\u10dd\u10db\u10de\u10d0\u10dc\u10d8\u10d4\u10d1\u10d8\u10e1 \u10dc\u10d3\u10dd\u10d1\u10d8\u10d7",
+  "description_ka": "მსოფლიოს წამყვანი კომპანიების ნდობით",
   "items": [
     {
-      "name_en": "Isabella Rodrigues",
-      "name_ka": "\u10d8\u10d6\u10d0\u10d1\u10d4\u10da\u10d0 \u10e0\u10dd\u10d3\u10e0\u10d8\u10d2\u10d4\u10e1\u10d8",
-      "position_en": "Marketing Head at Aptos",
-      "position_ka": "\u10db\u10d0\u10e0\u10d9\u10d4\u10e2\u10d8\u10dc\u10d2\u10d8\u10e1 \u10ee\u10d4\u10da\u10db\u10eb\u10e6\u10d5\u10d0\u10dc\u10d4\u10da\u10d8, Aptos",
-      "feedback_en": "Working with this team has transformed our business travel program.",
-      "feedback_ka": "\u10d0\u10db \u10d2\u10e3\u10dc\u10d3\u10d7\u10d0\u10dc \u10db\u10e3\u10e8\u10d0\u10dd\u10d1\u10d0\u10db \u10e1\u10e0\u10e3\u10da\u10d8\u10d0\u10d3 \u10e8\u10d4\u10ea\u10d5\u10d0\u10da\u10d0 \u10e9\u10d5\u10d4\u10dc\u10d8 \u10d1\u10d8\u10d6\u10dc\u10d4\u10e1 \u10db\u10dd\u10d2\u10d6\u10d0\u10e3\u10e0\u10dd\u10d1\u10d8\u10e1 \u10de\u10e0\u10dd\u10d2\u10e0\u10d0\u10db\u10d0.",
+      "name_en": "Tata Tsintsadze",
+      "name_ka": "თათა ცინცაძე",
+      "position_en": "Marketing Head at Atour",
+      "position_ka": "მარკეტინგის ხელმძღვანელი, Atour",
+      "feedback_en": "Had a great experience.",
+      "feedback_ka": "საოცარი გამოცდილებაა.",
       "avatar": "/images/avatar.webp"
     },
     {
       "name_en": "Isabella Rodrigues",
-      "name_ka": "\u10d8\u10d6\u10d0\u10d1\u10d4\u10da\u10d0 \u10e0\u10dd\u10d3\u10e0\u10d8\u10d2\u10d4\u10e1\u10d8",
+      "name_ka": "იზაბელა როდრიგესი",
       "position_en": "Marketing Head at Aptos",
-      "position_ka": "\u10db\u10d0\u10e0\u10d9\u10d4\u10e2\u10d8\u10dc\u10d2\u10d8\u10e1 \u10ee\u10d4\u10da\u10db\u10eb\u10e6\u10d5\u10d0\u10dc\u10d4\u10da\u10d8, Aptos",
+      "position_ka": "მარკეტინგის ხელმძღვანელი, Aptos",
       "feedback_en": "Working with this team has transformed our business travel program.",
-      "feedback_ka": "\u10d0\u10db \u10d2\u10e3\u10dc\u10d3\u10d7\u10d0\u10dc \u10db\u10e3\u10e8\u10d0\u10dd\u10d1\u10d0\u10db \u10e1\u10e0\u10e3\u10da\u10d8\u10d0\u10d3 \u10e8\u10d4\u10ea\u10d5\u10d0\u10da\u10d0 \u10e9\u10d5\u10d4\u10dc\u10d8 \u10d1\u10d8\u10d6\u10dc\u10d4\u10e1 \u10db\u10dd\u10d2\u10d6\u10d0\u10e3\u10e0\u10dd\u10d1\u10d8\u10e1 \u10de\u10e0\u10dd\u10d2\u10e0\u10d0\u10db\u10d0.",
+      "feedback_ka": "ამ გუნდთან მუშაობამ სრულიად შეცვალა ჩვენი ბიზნეს მოგზაურობის პროგრამა.",
+      "avatar": "/images/avatar.webp"
+    },
+    {
+      "name_en": "Sandro Sulamanidze",
+      "name_ka": "სანდრო სულამანიძე",
+      "position_en": "Head of Atour",
+      "position_ka": "Atour - ის დამფუძნებელი",
+      "feedback_en": "A good tourist company offers well-organized itineraries, knowledgeable guides, and responsive customer service that makes travelers feel safe, informed, and genuinely cared for throughout their trip.",
+      "feedback_ka": "კარგი ტურისტული კომპანია სთავაზობს კარგად ორგანიზებულ მარშრუტებს, გამოცდილ გიდებს და სწრაფ, ყურადღებიან მომსახურებას, რაც მოგზაურებს აგრძნობინებს თავს უსაფრთხოდ, ინფორმირებულად და გულწრფელად ზრუნვის ქვეშ მთელი მოგზაურობის განმავლობაში.",
       "avatar": "/images/avatar.webp"
     }
   ]
