@@ -95,15 +95,6 @@ const ContactItem = styled.div`
   gap: 16px;
 `;
 
-const ContactLink = styled.a`
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-`;
-
 const SocialSection = styled.div`
   display: flex;
   flex-direction: column;

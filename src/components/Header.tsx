@@ -200,13 +200,13 @@ const Header = () => {
     // Optionally, handle other routes if needed
   }, [pathname]);
   const [selectedLanguage, setSelectedLanguage] = useState(locale);
-  const [isPending, startTransition] = useTransition();
+  const [, startTransition] = useTransition();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
   const lastScrollY = useRef(0);
   const [isFixed, setIsFixed] = useState(false);
   const [isAtTop, setIsAtTop] = useState(true);
-  const [isPastHero, setIsPastHero] = useState(false);
+  const [, setIsPastHero] = useState(false);
   const [isDesktop, setIsDesktop] = useState(true);
   const navigationTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
     null,
@@ -275,7 +275,7 @@ const Header = () => {
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  });
 
   useEffect(() => {
     const activeLink = selectedLink;
