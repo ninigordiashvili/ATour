@@ -31,8 +31,8 @@ export async function generateMetadata({
   };
 
   const descriptions = {
-    en: "Fast, reliable international shipping and package delivery service. Track packages, schedule deliveries, and ship worldwide with competitive rates.",
-    ka: "სწრაფი, საიმედო საერთაშორისო გადაზიდვისა და ამანათის მიწოდების სერვისი. თვალყური ადევნეთ ამანათებს, დაგეგმეთ მიწოდება და გაგზავნეთ მთელ მსოფლიოში კონკურენტული ფასებით.",
+    en: "Corporate Travel & Event Solutions",
+    ka: "კორპორატიული მოგზაურობა და ღონისძიებების გადაწყვეტილებები.",
   };
 
   // Default to 'ka' if locale is undefined or not in our list
@@ -53,11 +53,20 @@ export async function generateMetadata({
       type: "website",
       url: "https://atour.ge",
       locale: currentLocale === "ka" ? "ka_GE" : "en_US",
+      images: [
+        {
+          url: "https://atour.ge/images/hero.png",
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: ["https://atour.ge/images/hero.png"],
     },
   };
 }
@@ -97,12 +106,12 @@ export default async function LocaleLayout({
           type="font/ttf"
           crossOrigin="anonymous"
         />
-        <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" async></script>
+        <script
+          src="https://identity.netlify.com/v1/netlify-identity-widget.js"
+          async
+        ></script>
       </head>
-      <body
-        className={notoSans.variable}
-        suppressHydrationWarning
-      >
+      <body className={notoSans.variable} suppressHydrationWarning>
         <StyledComponentsRegistry>
           <NextIntlClientProvider messages={messages}>
             <Header />

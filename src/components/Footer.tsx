@@ -259,10 +259,17 @@ const Footer = ({ content }: FooterProps) => {
               </MobileContainer>
             </TitleStyled>
             <LinkItem
-              href="/Blog"
+              href="/#insights"
               onClick={(e) => {
                 e.preventDefault();
-                router.push("/Blog");
+                if (pathname === "/") {
+                  const section = document.getElementById("insights");
+                  if (section) {
+                    section.scrollIntoView({ behavior: "smooth" });
+                  }
+                } else {
+                  router.push("/#insights");
+                }
               }}
               onMouseEnter={() => setHoveredLink("blog")}
               onMouseLeave={() => setHoveredLink(null)}
